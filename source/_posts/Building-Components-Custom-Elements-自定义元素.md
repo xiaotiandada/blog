@@ -22,7 +22,7 @@ https://developers.google.com/web/fundamentals/web-components/
 <!-- more -->
 
 **查看demo**
-
+```html
 <style for-run for-show>
 .popup-info {
   width: 100px;
@@ -204,7 +204,7 @@ class popupButton extends HTMLButtonElement {
 customElements.define('popup-button', popupButton, {extends: 'button'})
 
 </script>
-
+```
 
 **定义新元素**
 

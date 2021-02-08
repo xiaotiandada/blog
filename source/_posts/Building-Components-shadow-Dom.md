@@ -13,7 +13,6 @@ https://developers.google.com/web/fundamentals/web-components/shadowdom#slots
 
 
 ```html
-
 <!-- custom dom -->
 <custom-tabs>
     <!-- 定义slot -->
