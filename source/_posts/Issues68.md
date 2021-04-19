@@ -127,6 +127,9 @@
   - [高阶组件](#高阶组件)
   - [Portals](#portals)
   - [React 中如何使用 prop](#react-中如何使用-prop)
+  - [VUE](#vue)
+    - [Vue 组件间通信六种方式](#vue-组件间通信六种方式)
+    - [Virtual Dom](#virtual-dom)
 - [Node](#node)
   - [NodeJS 回调的错误处理方式及其优点](#nodejs-回调的错误处理方式及其优点)
   - [REST](#rest)
@@ -137,6 +140,17 @@
   - [怎么判断页面是否加载完成？](#怎么判断页面是否加载完成)
   - [重绘（Repaint）和回流（Reflow）](#重绘repaint和回流reflow)
     - [减少重绘和回流](#减少重绘和回流)
+  - [图片优化](#图片优化)
+      - [计算图片大小](#计算图片大小)
+      - [图片加载优化](#图片加载优化)
+  - [其他文件优化](#其他文件优化)
+    - [CDN](#cdn)
+    - [使用 Webpack 优化项目](#使用-webpack-优化项目)
+  - [Webpack](#webpack)
+  - [网络](#网络)
+  - [TLS](#tls)
+    - [从输入 URL 到页面加载全过程](#从输入-url-到页面加载全过程)
+    - [HTTP 常用返回码](#http-常用返回码)
 - [Security](#security)
   - [什么是跨站点脚本攻击（XSS）](#什么是跨站点脚本攻击xss)
 - [其他](#其他)
@@ -2709,6 +2723,16 @@ class User extends React.Component {
 - `defaultProps` 用来确保 `this.props` 在父组件没有指定的情况下有一个初始值
 - 类型检查发生在 `defaultProps` 赋值之后，所以类型检查也会应用在 `defaultProps` 上。
 
+### VUE
+
+#### Vue 组件间通信六种方式
+
+https://juejin.cn/post/6844903897258000398#heading-2
+
+#### Virtual Dom
+
+https://juejin.cn/post/6844903615652610055 TODO: 还没看...
+
 ## Node
 
 ### NodeJS 回调的错误处理方式及其优点
@@ -2917,9 +2941,144 @@ TODO: 这里没理解...）
   }
   ```
 
-
-
 https://segmentfault.com/a/1190000017329980
+
+### 图片优化
+
+##### 计算图片大小
+
+对于一张 100 * 100 像素的图片来说，图像上有 10000 个像素点，如果每个像素的值是 RGBA 存储的话，那么也就是说每个像素有 4 个通道，每个通道 1 个字节（8 位 = 1个字节），所以该图片大小大概为 39KB（10000 * 1 * 4 / 1024）。
+
+但是在实际项目中，一张图片可能并不需要使用那么多颜色去显示，我们可以通过减少每个像素的调色板来相应缩小图片的大小。
+
+了解了如何计算图片大小的知识，那么对于如何优化图片，想必大家已经有 2 个思路了：
+
+- 减少像素点
+- 减少每个像素点能够显示的颜色
+
+##### 图片加载优化
+
+1. 不用图片。很多时候会使用到很多修饰类图片，其实这类修饰图片完全可以用 CSS 去代替。
+
+2. 对于移动端来说，屏幕宽度就那么点，完全没有必要去加载原图浪费带宽。一般图片都用 CDN 加载，可以计算出适配屏幕的宽度，然后去请求相应裁剪好的图片。还可以返回webp等图片
+
+3. 小图使用 base64 格式
+
+4. 将多个图标文件整合到一张图片中（雪碧图）
+
+5. 选择正确的图片格式：
+
+   - 对于能够显示 WebP 格式的浏览器尽量使用 WebP 格式。因为 WebP 格式具有更好的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量，缺点就是兼容性并不好。安卓、PC支持都还不错，IOS移动端需要注意
+
+     ```javascript
+     // 判断兼容性
+     const isSupportWebp = process.browser ? !![].map && document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0 : false
+     ```
+
+   - 小图使用 PNG，其实对于大部分图标这类图片，完全可以使用 SVG 代替
+
+   - 照片使用 JPEG
+
+### 其他文件优化
+
+CSS 文件放在 `head` 中
+
+服务端开启文件压缩功能 GZIP
+
+将 `script` 标签放在 `body` 底部，因为 JS 文件执行会阻塞渲染。当然也可以把 `script` 标签放在任意位置然后加上 `defer` ，表示该文件会并行下载，但是会放到 HTML 解析完成后顺序执行。对于没有任何依赖的 JS 文件可以加上 `async` ，表示加载和渲染后续文档元素的过程将和  JS 文件的加载与执行并行无序进行。
+
+执行 JS 代码过长会卡住渲染，对于需要很多时间计算的代码可以考虑使用 `Webworker`。`Webworker` 可以让我们另开一个线程执行脚本而不影响渲染。
+
+#### CDN
+
+静态资源尽量使用 CDN 加载，由于浏览器对于单个域名有并发请求上限，可以考虑使用多个 CDN 域名。对于 CDN 加载静态资源需要注意 CDN 域名要与主站不同，否则每次请求都会带上主站的 Cookie。
+
+#### 使用 Webpack 优化项目
+
+- 对于 Webpack4，打包项目使用 production 模式，这样会自动开启代码压缩
+- 使用 ES6 模块来开启 tree shaking，这个技术可以移除没有使用的代码
+- 优化图片，对于小图可以使用 base64 的方式写入文件中
+- 按照路由拆分代码，实现按需加载
+- 给打包出来的文件名添加哈希，实现浏览器缓存文件
+
+### Webpack
+
+...
+
+### 网络
+
+https://juejin.cn/post/6844903682455109640#heading-76
+
+
+
+### TLS
+
+TLS 协议位于传输层之上，应用层之下。首次进行 TLS 协议传输需要两个 RTT ，接下来可以通过 Session Resumption 减少到一个 RTT。
+
+在 TLS 中使用了两种加密技术，分别为：对称加密和非对称加密。
+
+**对称加密**：
+
+对称加密就是两边拥有相同的秘钥，两边都知道如何将密文加密解密。
+
+**非对称加密**：
+
+有公钥私钥之分，公钥所有人都可以知道，可以将数据用公钥加密，但是将数据解密必须使用私钥解密，私钥只有分发公钥的一方才知道。
+
+#### 从输入 URL 到页面加载全过程
+
+1. 首先做 DNS 查询，如果这一步做了智能 DNS 解析的话，会提供访问速度最快的 IP 地址回来
+2. 接下来是 TCP 握手，应用层会下发数据给传输层，这里 TCP 协议会指明两端的端口号，然后下发给网络层。网络层中的 IP 协议会确定 IP 地址，并且指示了数据传输中如何跳转路由器。然后包会再被封装到数据链路层的数据帧结构中，最后就是物理层面的传输了
+3. TCP 握手结束后会进行 TLS 握手，然后就开始正式的传输数据
+4. 数据在进入服务端之前，可能还会先经过负责负载均衡的服务器，它的作用就是将请求合理的分发到多台服务器上，这时假设服务端会响应一个 HTML 文件
+5. 首先浏览器会判断状态码是什么，如果是 200 那就继续解析，如果 400 或 500 的话就会报错，如果 300 的话会进行重定向，这里会有个重定向计数器，避免过多次的重定向，超过次数也会报错
+6. 浏览器开始解析文件，如果是 gzip 格式的话会先解压一下，然后通过文件的编码格式知道该如何去解码文件
+7. 文件解码成功后会正式开始渲染流程，先会根据 HTML 构建 DOM 树，有 CSS 的话会去构建 CSSOM 树。如果遇到 `script` 标签的话，会判断是否存在 `async` 或者 `defer` ，前者会并行进行下载并执行 JS，后者会先下载文件，然后等待 HTML 解析完成后顺序执行，如果以上都没有，就会阻塞住渲染流程直到 JS 执行完毕。遇到文件下载的会去下载文件，这里如果使用 HTTP 2.0 协议的话会极大的提高多图的下载效率。
+8. 初始的 HTML 被完全加载和解析后会触发 `DOMContentLoaded` 事件
+9. CSSOM 树和 DOM 树构建完成后会开始生成 Render 树，这一步就是确定页面元素的布局、样式等等诸多方面的东西
+10. 在生成 Render 树的过程中，浏览器就开始调用 GPU 绘制，合成图层，将内容显示在屏幕上了
+
+#### HTTP 常用返回码
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+HTTP响应状态代码指示特定的[HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)请求是否已成功完成。响应分为五类：
+
+1. [信息反馈](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#information_responses)（`100`– `199`）
+2. [成功的回应](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses)（`200`– `299`）
+3. [重定向](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#redirection_messages)（`300`– `399`）
+4. [客户端错误](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses)（`400`– `499`）
+5. [服务器错误](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses)（`500`– `599`）
+
+**2XX 成功**
+
+- 200 OK，表示从客户端发来的请求在服务器端被正确处理
+- 204 No content，表示请求成功，但响应报文不含实体的主体部分
+- 205 Reset Content，表示请求成功，但响应报文不含实体的主体部分，但是与 204 响应不同在于要求请求方重置内容
+- 206 Partial Content，进行范围请求
+
+**3XX 重定向**
+
+- 301 moved permanently，永久性重定向，表示资源已被分配了新的 URL
+- 302 found，临时性重定向，表示资源临时被分配了新的 URL
+- 303 see other，表示资源存在着另一个 URL，应使用 GET 方法获取资源
+- 304 not modified，表示服务器允许访问资源，但因发生请求未满足条件的情况
+- 307 temporary redirect，临时重定向，和302含义类似，但是期望客户端保持请求方法不变向新的地址发出请求
+
+**4XX 客户端错误**
+
+- 400 bad request，请求报文存在语法错误
+- 401 unauthorized，表示发送的请求需要有通过 HTTP 认证的认证信息
+- 403 forbidden，表示对请求资源的访问被服务器拒绝
+- 404 not found，表示在服务器上没有找到请求的资源
+- 429 Too Many Requests 用户在给定的时间内发送了太多请求（“速率限制”）
+
+**5XX 服务器错误**
+
+- 500 internal sever error，表示服务器端在执行请求时发生了错误
+- 501 Not Implemented，表示服务器不支持当前请求所需要的某个功能
+- 502 Bad Gateway 此错误响应意味着服务器在充当网关以获取处理请求所需的响应的同时，获得了无效的响应。
+- 503 service unavailable，表明服务器暂时处于超负载或正在停机维护，无法处理请求
 
 
 
