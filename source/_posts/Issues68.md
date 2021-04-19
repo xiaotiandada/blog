@@ -3080,7 +3080,9 @@ HTTP响应状态代码指示特定的[HTTP](https://developer.mozilla.org/en-US/
 - 502 Bad Gateway 此错误响应意味着服务器在充当网关以获取处理请求所需的响应的同时，获得了无效的响应。
 - 503 service unavailable，表明服务器暂时处于超负载或正在停机维护，无法处理请求
 
+### 数据结构算法
 
+https://github.com/xiaotiandada/blog/issues/48
 
 ## Security
 
