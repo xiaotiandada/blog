@@ -1,4 +1,6 @@
-[#78 111123213](https://github.com/xiaotiandada/blog/issues/78)
+<div align="center">
+<h1>Blog</h1>
+</div>[#78 111123213](https://github.com/xiaotiandada/blog/issues/78)
 
 [#77 123123](https://github.com/xiaotiandada/blog/issues/77)
 
