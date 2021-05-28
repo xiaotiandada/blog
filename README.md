@@ -1,5 +1,6 @@
 <div align="center">
-<h1>Blog</h1>
+<h1>blog</h1>
+<p>Blog</p>
 </div>
 
 [#78 111123213](https://github.com/xiaotiandada/blog/issues/78) 
