@@ -11,7 +11,7 @@
 
 [#75 123123](https://github.com/xiaotiandada/blog/issues/75) 
 
-[#74 123123](https://github.com/xiaotiandada/blog/issues/74) 
+[#74 3213123123123123](https://github.com/xiaotiandada/blog/issues/74) 
 
 [#73 前端下载 Markdown File](https://github.com/xiaotiandada/blog/issues/73) 
 
