@@ -11,7 +11,7 @@
 
 [#75 async title test](https://github.com/xiaotiandada/blog/issues/75) 
 
-[#74 3213123123123123](https://github.com/xiaotiandada/blog/issues/74) 
+[#74 140 行写一个自动生成 Issues 为 Markdown 文垱](https://github.com/xiaotiandada/blog/issues/74) [ nodejs ]
 
 [#73 前端下载 Markdown File](https://github.com/xiaotiandada/blog/issues/73) 
 
