@@ -9,7 +9,7 @@
 
 [#76 123123](https://github.com/xiaotiandada/blog/issues/76) 
 
-[#75 async title test](https://github.com/xiaotiandada/blog/issues/75) 
+[#75 Github Actions 教程](https://github.com/xiaotiandada/blog/issues/75) 
 
 [#74 140 行写一个自动生成 Issues 为 Markdown 文垱](https://github.com/xiaotiandada/blog/issues/74) [ nodejs ]
 
