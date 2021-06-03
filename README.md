@@ -7,7 +7,7 @@
 
 [#77 123123](https://github.com/xiaotiandada/blog/issues/77) 
 
-[#76 123123](https://github.com/xiaotiandada/blog/issues/76) 
+[#76 HackMD 打字动画](https://github.com/xiaotiandada/blog/issues/76) 
 
 [#75 Github Actions](https://github.com/xiaotiandada/blog/issues/75) 
 
