@@ -3,7 +3,7 @@
 <p>Blog</p>
 </div>
 
-[#78 111123213](https://github.com/xiaotiandada/blog/issues/78) 
+[#78 Virtual Dom](https://github.com/xiaotiandada/blog/issues/78) [ 源码 ]
 
 [#77 Snabbdom example](https://github.com/xiaotiandada/blog/issues/77) 
 
