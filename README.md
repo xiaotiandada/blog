@@ -3,6 +3,12 @@
 <p>Blog</p>
 </div>
 
+[#81 Intersection Observer API](https://github.com/xiaotiandada/blog/issues/81) 
+
+[#80 Document.createElementNS() API](https://github.com/xiaotiandada/blog/issues/80) 
+
+[#79 document.createComment API](https://github.com/xiaotiandada/blog/issues/79) 
+
 [#78 Virtual Dom](https://github.com/xiaotiandada/blog/issues/78) [ 源码 ]
 
 [#77 Snabbdom example](https://github.com/xiaotiandada/blog/issues/77) 
