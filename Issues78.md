@@ -719,3 +719,175 @@ return function patch(oldVnode: VNode | Element, vnode: VNode): VNode {
   }
 ```
 
+
+
+### patchVnode
+
+```typescript
+function patchVnode(
+    oldVnode: VNode,
+    vnode: VNode,
+    insertedVnodeQueue: VNodeQueue
+  ) {
+    const hook = vnode.data?.hook;
+    // 执行 prepatch hook
+    hook?.prepatch?.(oldVnode, vnode);
+    const elm = (vnode.elm = oldVnode.elm)!;
+    const oldCh = oldVnode.children as VNode[];
+    const ch = vnode.children as VNode[];
+     // 新 旧 vnode 相同
+    if (oldVnode === vnode) return;
+    // 执行 cbs update hook，vnode update hook
+    if (vnode.data !== undefined) {
+      for (let i = 0; i < cbs.update.length; ++i)
+        cbs.update[i](oldVnode, vnode);
+      vnode.data.hook?.update?.(oldVnode, vnode);
+    }
+    // 是没有定义的
+    if (isUndef(vnode.text)) {
+      // 均存在 children 且不相同，调用 updateChildren
+    
+      // 定义过 children
+      if (isDef(oldCh) && isDef(ch)) {
+        // old children 不等于 new children
+        // 更新 updateChildren
+        if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue);
+      } else if (isDef(ch)) { // 只定义了 new children
+        // 新 vnode 存在 children，旧 vnode 不存在 children，如果旧 vnode 存在 text 先清空，然后调用 addVnodes
+        
+        // 如果是 text，设置内容
+        if (isDef(oldVnode.text)) api.setTextContent(elm, "");
+        // 添加 vnode
+        addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);
+      } else if (isDef(oldCh)) { // 只定义 old children
+        // 新 vnode 不存在 children，旧 vnode 存在 children，调用 removeVnodes 移除 children
+        
+        // 移除 vnode
+        removeVnodes(elm, oldCh, 0, oldCh.length - 1);
+      } else if (isDef(oldVnode.text)) { // 只定义了 old vnode text
+        // 设置内容
+        api.setTextContent(elm, "");
+      }
+    } else if (oldVnode.text !== vnode.text) { // old vnode text 和 new vnode text 不一样
+      // 均不存在 children，新 vnode 不存在 text，移除旧 vnode 的 text
+      
+      // 如果定义了 old children
+      if (isDef(oldCh)) {
+        // 移除
+        removeVnodes(elm, oldCh, 0, oldCh.length - 1);
+      }
+      // 均存在 text，更新 text
+      
+      // 设置新内容
+      api.setTextContent(elm, vnode.text!);
+    }
+    // 执行 postpatch hook
+    hook?.postpatch?.(oldVnode, vnode);
+  }
+```
+
+### updateChildren
+
+```typescript
+  function updateChildren(
+    parentElm: Node,
+    oldCh: VNode[],
+    newCh: VNode[],
+    insertedVnodeQueue: VNodeQueue
+  ) {
+    let oldStartIdx = 0;
+    let newStartIdx = 0;
+    let oldEndIdx = oldCh.length - 1;
+    let oldStartVnode = oldCh[0];
+    let oldEndVnode = oldCh[oldEndIdx];
+    let newEndIdx = newCh.length - 1;
+    let newStartVnode = newCh[0];
+    let newEndVnode = newCh[newEndIdx];
+    let oldKeyToIdx: KeyToIndexMap | undefined;
+    let idxInOld: number;
+    let elmToMove: VNode;
+    let before: any;
+
+    // old 0 - 9    new 0 - 8
+    // 9 8 7 6 5 4 3 2 1 0
+    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+      // 
+      if (oldStartVnode == null) {
+        oldStartVnode = oldCh[++oldStartIdx]; // Vnode might have been moved left
+      } else if (oldEndVnode == null) {
+        oldEndVnode = oldCh[--oldEndIdx];
+      } else if (newStartVnode == null) {
+        newStartVnode = newCh[++newStartIdx];
+      } else if (newEndVnode == null) {
+        newEndVnode = newCh[--newEndIdx];
+      } else if (sameVnode(oldStartVnode, newStartVnode)) {
+        patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue);
+        oldStartVnode = oldCh[++oldStartIdx];
+        newStartVnode = newCh[++newStartIdx];
+      } else if (sameVnode(oldEndVnode, newEndVnode)) {
+        patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue);
+        oldEndVnode = oldCh[--oldEndIdx];
+        newEndVnode = newCh[--newEndIdx];
+      } else if (sameVnode(oldStartVnode, newEndVnode)) {
+        // Vnode moved right
+        patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue);
+        api.insertBefore(
+          parentElm,
+          oldStartVnode.elm!,
+          api.nextSibling(oldEndVnode.elm!)
+        );
+        oldStartVnode = oldCh[++oldStartIdx];
+        newEndVnode = newCh[--newEndIdx];
+      } else if (sameVnode(oldEndVnode, newStartVnode)) {
+        // Vnode moved left
+        patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue);
+        api.insertBefore(parentElm, oldEndVnode.elm!, oldStartVnode.elm!);
+        oldEndVnode = oldCh[--oldEndIdx];
+        newStartVnode = newCh[++newStartIdx];
+      } else {
+        if (oldKeyToIdx === undefined) {
+          oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx);
+        }
+        idxInOld = oldKeyToIdx[newStartVnode.key as string];
+        if (isUndef(idxInOld)) {
+          // New element
+          api.insertBefore(
+            parentElm,
+            createElm(newStartVnode, insertedVnodeQueue),
+            oldStartVnode.elm!
+          );
+        } else {
+          elmToMove = oldCh[idxInOld];
+          if (elmToMove.sel !== newStartVnode.sel) {
+            api.insertBefore(
+              parentElm,
+              createElm(newStartVnode, insertedVnodeQueue),
+              oldStartVnode.elm!
+            );
+          } else {
+            patchVnode(elmToMove, newStartVnode, insertedVnodeQueue);
+            oldCh[idxInOld] = undefined as any;
+            api.insertBefore(parentElm, elmToMove.elm!, oldStartVnode.elm!);
+          }
+        }
+        newStartVnode = newCh[++newStartIdx];
+      }
+    }
+    if (oldStartIdx <= oldEndIdx || newStartIdx <= newEndIdx) {
+      if (oldStartIdx > oldEndIdx) {
+        before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm;
+        addVnodes(
+          parentElm,
+          before,
+          newCh,
+          newStartIdx,
+          newEndIdx,
+          insertedVnodeQueue
+        );
+      } else {
+        removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
+      }
+    }
+  }
+```
+
