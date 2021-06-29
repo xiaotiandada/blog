@@ -811,24 +811,24 @@ function patchVnode(
     // old 0 - 9    new 0 - 8
     // 9 8 7 6 5 4 3 2 1 0
     while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
-      // 
+      // old 第一个 vnode 为空 
       if (oldStartVnode == null) {
         oldStartVnode = oldCh[++oldStartIdx]; // Vnode might have been moved left
-      } else if (oldEndVnode == null) {
+      } else if (oldEndVnode == null) { // old 最后一个 vnode 为空
         oldEndVnode = oldCh[--oldEndIdx];
-      } else if (newStartVnode == null) {
+      } else if (newStartVnode == null) { // new 第一个 vnode 为空
         newStartVnode = newCh[++newStartIdx];
-      } else if (newEndVnode == null) {
+      } else if (newEndVnode == null) { // new 最后一个 vnode 为空
         newEndVnode = newCh[--newEndIdx];
-      } else if (sameVnode(oldStartVnode, newStartVnode)) {
+      } else if (sameVnode(oldStartVnode, newStartVnode)) { // 第一个 old new vnode 相同
         patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue);
         oldStartVnode = oldCh[++oldStartIdx];
         newStartVnode = newCh[++newStartIdx];
-      } else if (sameVnode(oldEndVnode, newEndVnode)) {
+      } else if (sameVnode(oldEndVnode, newEndVnode)) { // 最后一个 old new vnode 相同
         patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue);
         oldEndVnode = oldCh[--oldEndIdx];
         newEndVnode = newCh[--newEndIdx];
-      } else if (sameVnode(oldStartVnode, newEndVnode)) {
+      } else if (sameVnode(oldStartVnode, newEndVnode)) { // old 第一个 vnode new 最后一个 vnode 相同
         // Vnode moved right
         patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue);
         api.insertBefore(
@@ -838,7 +838,7 @@ function patchVnode(
         );
         oldStartVnode = oldCh[++oldStartIdx];
         newEndVnode = newCh[--newEndIdx];
-      } else if (sameVnode(oldEndVnode, newStartVnode)) {
+      } else if (sameVnode(oldEndVnode, newStartVnode)) { // old 最后一个 vnode new 第一个 vnode 相同
         // Vnode moved left
         patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue);
         api.insertBefore(parentElm, oldEndVnode.elm!, oldStartVnode.elm!);
@@ -889,5 +889,231 @@ function patchVnode(
       }
     }
   }
+```
+
+### addVnodes
+
+```typescript
+  function addVnodes(
+    parentElm: Node,
+    before: Node | null,
+    vnodes: VNode[],
+    startIdx: number,
+    endIdx: number,
+    insertedVnodeQueue: VNodeQueue
+  ) {
+    for (; startIdx <= endIdx; ++startIdx) {
+      const ch = vnodes[startIdx];
+      if (ch != null) {
+        api.insertBefore(parentElm, createElm(ch, insertedVnodeQueue), before);
+      }
+    }
+  }
+```
+
+### removeVnodes
+
+```typescript
+
+  function removeVnodes(
+    parentElm: Node,
+    vnodes: VNode[],
+    startIdx: number,
+    endIdx: number
+  ): void {
+    for (; startIdx <= endIdx; ++startIdx) {
+      let listeners: number;
+      let rm: () => void;
+      const ch = vnodes[startIdx];
+      if (ch != null) {
+        if (isDef(ch.sel)) {
+          // ˙执行 ch data destroy hook
+          invokeDestroyHook(ch);
+          listeners = cbs.remove.length + 1;
+          rm = createRmCb(ch.elm!, listeners);
+          // 调用 module 中是 remove hook
+          for (let i = 0; i < cbs.remove.length; ++i) cbs.remove[i](ch, rm);
+           // 调用 vnode 的 remove hook
+          const removeHook = ch?.data?.hook?.remove;
+          if (isDef(removeHook)) {
+            removeHook(ch, rm);
+          } else {
+            rm();
+          }
+        } else {
+          // Text node
+          api.removeChild(parentElm, ch.elm!);
+        }
+      }
+    }
+  }
+
+// 调用 destroy hook
+function invokeDestroyHook(vnode: VNode) {
+  const data = vnode.data;
+  if (data !== undefined) {
+    data?.hook?.destroy?.(vnode);
+    for (let i = 0; i < cbs.destroy.length; ++i) cbs.destroy[i](vnode);
+    if (vnode.children !== undefined) {
+      for (let j = 0; j < vnode.children.length; ++j) {
+        const child = vnode.children[j];
+        if (child != null && typeof child !== "string") {
+          invokeDestroyHook(child);
+        }
+      }
+    }
+  }
+}
+
+
+function createRmCb(childElm: Node, listeners: number) {
+  return function rmCb() {
+    if (--listeners === 0) {
+      const parent = api.parentNode(childElm) as Node;
+      api.removeChild(parent, childElm);
+    }
+  };
+}
+```
+
+### createElm
+
+```typescript
+  function createElm(vnode: VNode, insertedVnodeQueue: VNodeQueue): Node {
+    let i: any;
+    let data = vnode.data;
+    if (data !== undefined) {
+      // 调用 init hook
+      const init = data.hook?.init;
+      if (isDef(init)) {
+        init(vnode);
+        data = vnode.data;
+      }
+    }
+    const children = vnode.children;
+    const sel = vnode.sel;
+    if (sel === "!") { // 注释
+      if (isUndef(vnode.text)) {
+        vnode.text = "";
+      }
+      vnode.elm = api.createComment(vnode.text!);
+    } else if (sel !== undefined) {
+      // Parse selector
+      const hashIdx = sel.indexOf("#");
+      const dotIdx = sel.indexOf(".", hashIdx);
+      const hash = hashIdx > 0 ? hashIdx : sel.length;
+      const dot = dotIdx > 0 ? dotIdx : sel.length;
+      const tag =
+        hashIdx !== -1 || dotIdx !== -1
+          ? sel.slice(0, Math.min(hash, dot))
+          : sel;
+      const elm = (vnode.elm =
+        isDef(data) && isDef((i = data.ns))
+          ? api.createElementNS(i, tag, data)
+          : api.createElement(tag, data));
+      if (hash < dot) elm.setAttribute("id", sel.slice(hash + 1, dot));
+      if (dotIdx > 0)
+        elm.setAttribute("class", sel.slice(dot + 1).replace(/\./g, " "));
+      for (i = 0; i < cbs.create.length; ++i) cbs.create[i](emptyNode, vnode);
+      if (is.array(children)) {
+        for (i = 0; i < children.length; ++i) {
+          const ch = children[i];
+          if (ch != null) {
+            api.appendChild(elm, createElm(ch as VNode, insertedVnodeQueue));
+          }
+        }
+      } else if (is.primitive(vnode.text)) {
+        api.appendChild(elm, api.createTextNode(vnode.text));
+      }
+      // 调用 create hook
+      const hook = vnode.data!.hook;
+      if (isDef(hook)) {
+        hook.create?.(emptyNode, vnode);
+        if (hook.insert) {
+          insertedVnodeQueue.push(vnode);
+        }
+      }
+    } else {
+      vnode.elm = api.createTextNode(vnode.text!);
+    }
+    return vnode.elm;
+  }
+```
+
+### thunk
+
+```typescript
+export interface ThunkData extends VNodeData {
+  fn: () => VNode;
+  args: any[];
+}
+
+export interface Thunk extends VNode {
+  data: ThunkData;
+}
+
+export interface ThunkFn {
+  (sel: string, fn: (...args: any[]) => any, args: any[]): Thunk;
+  (sel: string, key: any, fn: (...args: any[]) => any, args: any[]): Thunk;
+}
+
+// thunk  fn 、 args 属性保存到 vnode 上，在 prepatch 时需要进行比较
+// 将 vnode 上的数据拷贝到 thunk 上， patchVnode 中判断，相同会结束 patchVnode
+function copyToThunk(vnode: VNode, thunk: VNode): void {
+  (vnode.data as VNodeData).fn = (thunk.data as VNodeData).fn;
+  (vnode.data as VNodeData).args = (thunk.data as VNodeData).args;
+  thunk.data = vnode.data;
+  thunk.children = vnode.children;
+  thunk.text = vnode.text;
+  thunk.elm = vnode.elm;
+}
+
+function init(thunk: VNode): void {
+  const cur = thunk.data as VNodeData;
+  const vnode = (cur.fn as any)(...cur.args!);
+  copyToThunk(vnode, thunk);
+}
+
+function prepatch(oldVnode: VNode, thunk: VNode): void {
+  let i: number;
+  const old = oldVnode.data as VNodeData;
+  const cur = thunk.data as VNodeData;
+  const oldArgs = old.args;
+  const args = cur.args;
+  //  如果 fn 不同或 args 长度不同，说明发生了变化，调用 fn 生成新的 vnode 并返回
+  if (old.fn !== cur.fn || (oldArgs as any).length !== (args as any).length) {
+    copyToThunk((cur.fn as any)(...args!), thunk);
+    return;
+  }
+  // 如果每个参数发生变化，逻辑同上
+  for (i = 0; i < (args as any).length; ++i) {
+    if ((oldArgs as any)[i] !== (args as any)[i]) {
+      copyToThunk((cur.fn as any)(...args!), thunk);
+      return;
+    }
+  }
+  copyToThunk(oldVnode, thunk);
+}
+// 使用 h 返回 vnode
+// 添加 init prepatch hook
+export const thunk = function thunk(
+  sel: string,
+  key?: any,
+  fn?: any,
+  args?: any
+): VNode {
+  if (args === undefined) {
+    args = fn;
+    fn = key;
+    key = undefined;
+  }
+  return h(sel, {
+    key: key,
+    hook: { init, prepatch },
+    fn: fn,
+    args: args,
+  });
+} as ThunkFn;
+
 ```
 
