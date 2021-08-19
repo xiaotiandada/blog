@@ -795,40 +795,47 @@ function patchVnode(
     newCh: VNode[],
     insertedVnodeQueue: VNodeQueue
   ) {
-    let oldStartIdx = 0;
-    let newStartIdx = 0;
-    let oldEndIdx = oldCh.length - 1;
-    let oldStartVnode = oldCh[0];
-    let oldEndVnode = oldCh[oldEndIdx];
-    let newEndIdx = newCh.length - 1;
-    let newStartVnode = newCh[0];
-    let newEndVnode = newCh[newEndIdx];
+    let oldStartIdx = 0; // 旧 头 索引
+    let newStartIdx = 0; // 新 头 索引
+    let oldEndIdx = oldCh.length - 1; // 旧 尾 索引
+    let oldStartVnode = oldCh[0]; // 旧 头 Vnode
+    let oldEndVnode = oldCh[oldEndIdx]; // 旧 尾 Vnode
+    let newEndIdx = newCh.length - 1; // 新 尾 索引
+    let newStartVnode = newCh[0]; // 新 头 Vnode
+    let newEndVnode = newCh[newEndIdx]; // 新 尾 Vnode
     let oldKeyToIdx: KeyToIndexMap | undefined;
     let idxInOld: number;
     let elmToMove: VNode;
     let before: any;
 
-    // old 0 - 9    new 0 - 8
-    // 9 8 7 6 5 4 3 2 1 0
+    // 循环 从 头 到 尾 处理（新/旧）
     while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
-      // old 第一个 vnode 为空 
+      // 如果 头尾（新/旧）其中有为 null 重新赋值，并且为元素数组中 添加/减少 一位
       if (oldStartVnode == null) {
         oldStartVnode = oldCh[++oldStartIdx]; // Vnode might have been moved left
-      } else if (oldEndVnode == null) { // old 最后一个 vnode 为空
+      } else if (oldEndVnode == null) {
         oldEndVnode = oldCh[--oldEndIdx];
-      } else if (newStartVnode == null) { // new 第一个 vnode 为空
+      } else if (newStartVnode == null) {
         newStartVnode = newCh[++newStartIdx];
-      } else if (newEndVnode == null) { // new 最后一个 vnode 为空
+      } else if (newEndVnode == null) {
         newEndVnode = newCh[--newEndIdx];
-      } else if (sameVnode(oldStartVnode, newStartVnode)) { // 第一个 old new vnode 相同
+
+        // 如果相同 对比 新/旧 内容变化然后更新 DOM
+        // 新/旧 头Vnode 赋值
+      } else if (sameVnode(oldStartVnode, newStartVnode)) {
         patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue);
         oldStartVnode = oldCh[++oldStartIdx];
         newStartVnode = newCh[++newStartIdx];
-      } else if (sameVnode(oldEndVnode, newEndVnode)) { // 最后一个 old new vnode 相同
+      } else if (sameVnode(oldEndVnode, newEndVnode)) {
         patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue);
         oldEndVnode = oldCh[--oldEndIdx];
         newEndVnode = newCh[--newEndIdx];
-      } else if (sameVnode(oldStartVnode, newEndVnode)) { // old 第一个 vnode new 最后一个 vnode 相同
+
+        // 节点移动到右边 更新 DOM
+        // 把更新的内容移动插入到旧节点最后
+        // 旧头索引 ++
+        // 新尾索引 --
+      } else if (sameVnode(oldStartVnode, newEndVnode)) {
         // Vnode moved right
         patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue);
         api.insertBefore(
@@ -838,17 +845,33 @@ function patchVnode(
         );
         oldStartVnode = oldCh[++oldStartIdx];
         newEndVnode = newCh[--newEndIdx];
-      } else if (sameVnode(oldEndVnode, newStartVnode)) { // old 最后一个 vnode new 第一个 vnode 相同
+
+        // 节点移动到左边 更新 DOM
+        // 把更新的内容移动插入到旧节点最前
+        // 旧尾 --
+        // 新头 ++
+      } else if (sameVnode(oldEndVnode, newStartVnode)) {
         // Vnode moved left
         patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue);
         api.insertBefore(parentElm, oldEndVnode.elm!, oldStartVnode.elm!);
         oldEndVnode = oldCh[--oldEndIdx];
         newStartVnode = newCh[++newStartIdx];
+
+
+        // 如果不是以上情况
+        // 开始节点是一个新节点
+        // 如果没有 key，创建 DOM 插入到前方
+        // 如果有 key，判断 sel 是否相同，如果不同创建 DOM 如果相同则代表是相同节点
       } else {
+
+        // 方便通过新节点的key找到旧节点数组的索引
         if (oldKeyToIdx === undefined) {
           oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx);
         }
+        // 用新节点的key 找到老节点的索引
         idxInOld = oldKeyToIdx[newStartVnode.key as string];
+
+        // 如果是新节点
         if (isUndef(idxInOld)) {
           // New element
           api.insertBefore(
@@ -857,7 +880,10 @@ function patchVnode(
             oldStartVnode.elm!
           );
         } else {
+          // 旧节点
+          // 取出旧节点
           elmToMove = oldCh[idxInOld];
+          // 新元素 直接创建一个新的插入
           if (elmToMove.sel !== newStartVnode.sel) {
             api.insertBefore(
               parentElm,
@@ -865,14 +891,19 @@ function patchVnode(
               oldStartVnode.elm!
             );
           } else {
+            // 没有修改过 更新内部 DOM
             patchVnode(elmToMove, newStartVnode, insertedVnodeQueue);
+            // 把旧节点相应位置的元素设置为undefined
             oldCh[idxInOld] = undefined as any;
             api.insertBefore(parentElm, elmToMove.elm!, oldStartVnode.elm!);
           }
         }
+        // 插入完成后，索引增加
         newStartVnode = newCh[++newStartIdx];
       }
     }
+
+    // 老节点 或 新节点遍历完成
     if (oldStartIdx <= oldEndIdx || newStartIdx <= newEndIdx) {
       if (oldStartIdx > oldEndIdx) {
         before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm;
