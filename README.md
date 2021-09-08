@@ -77,7 +77,7 @@
 
 [#49 适配iPhonex](https://github.com/xiaotiandada/blog/issues/49) 
 
-[#48 算法 数据结构](https://github.com/xiaotiandada/blog/issues/48) 
+[#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) [ 算法  数据结构 ]
 
 [#47 toString(36)](https://github.com/xiaotiandada/blog/issues/47) 
 
