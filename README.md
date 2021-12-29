@@ -3,6 +3,8 @@
 <p>Blog</p>
 </div>
 
+[#90 Bit 使用](https://github.com/xiaotiandada/blog/issues/90) [ React  Bit ]
+
 [#89 Nuxt.js deploy to vercel](https://github.com/xiaotiandada/blog/issues/89) [ Nuxt.js  Vercel ]
 
 [#88 React Hooks 学习](https://github.com/xiaotiandada/blog/issues/88) [ React ]
