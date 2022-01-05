@@ -15,7 +15,7 @@
 
 [#85 Vuex 源码研究](https://github.com/xiaotiandada/blog/issues/85) [ 源码  vuex ]
 
-[#84 React.memo 探索](https://github.com/xiaotiandada/blog/issues/84) [ React ]
+[#84 React.memo 学习](https://github.com/xiaotiandada/blog/issues/84) [ React ]
 
 [#83 Vue 源码解析](https://github.com/xiaotiandada/blog/issues/83) [ 源码  Vue ]
 
