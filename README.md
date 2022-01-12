@@ -3,6 +3,8 @@
 <p>Blog</p>
 </div>
 
+[#91 浏览器打开图片 URL 是显示还是下载](https://github.com/xiaotiandada/blog/issues/91) [ OSS  浏览器 ]
+
 [#90 Bit 使用](https://github.com/xiaotiandada/blog/issues/90) [ React  Bit ]
 
 [#89 Nuxt.js deploy to vercel](https://github.com/xiaotiandada/blog/issues/89) [ Nuxt.js  Vercel ]
