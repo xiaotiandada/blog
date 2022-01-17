@@ -3,6 +3,8 @@
 <p>Blog</p>
 </div>
 
+[#91 浏览器打开图片 URL 是显示还是下载](https://github.com/xiaotiandada/blog/issues/91) [ OSS  浏览器 ]
+
 [#90 Bit 使用](https://github.com/xiaotiandada/blog/issues/90) [ React  Bit ]
 
 [#89 Nuxt.js deploy to vercel](https://github.com/xiaotiandada/blog/issues/89) [ Nuxt.js  Vercel ]
@@ -15,7 +17,7 @@
 
 [#85 Vuex 源码研究](https://github.com/xiaotiandada/blog/issues/85) [ 源码  vuex ]
 
-[#84 React.memo 探索](https://github.com/xiaotiandada/blog/issues/84) [ React ]
+[#84 React.memo 学习](https://github.com/xiaotiandada/blog/issues/84) [ React ]
 
 [#83 Vue 源码解析](https://github.com/xiaotiandada/blog/issues/83) [ 源码  Vue ]
 
