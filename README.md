@@ -155,7 +155,7 @@
 
 [#16 React案列](https://github.com/xiaotiandada/blog/issues/16) 
 
-[#15 electron-vue打造低配版网易云(Mv版)](https://github.com/xiaotiandada/blog/issues/15) 
+[#15 Electron](https://github.com/xiaotiandada/blog/issues/15) [ electron ]
 
 [#14 mpvue外卖小程序](https://github.com/xiaotiandada/blog/issues/14) 
 
