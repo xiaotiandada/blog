@@ -3,6 +3,8 @@
 <p>Blog</p>
 </div>
 
+[#93 Git 删除敏感数据](https://github.com/xiaotiandada/blog/issues/93) [ Git ]
+
 [#92 Uniswap Info 学习](https://github.com/xiaotiandada/blog/issues/92) [ GraphQL  Uniswap ]
 
 [#91 浏览器打开图片 URL 是显示还是下载](https://github.com/xiaotiandada/blog/issues/91) [ OSS  浏览器 ]
