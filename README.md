@@ -3,6 +3,8 @@
 <p>Blog</p>
 </div>
 
+[#95 TypeScript 学习 ](https://github.com/xiaotiandada/blog/issues/95) [ TypeScript ]
+
 [#94 UI Swap](https://github.com/xiaotiandada/blog/issues/94) [ CSS  UI ]
 
 [#93 Git 删除敏感数据](https://github.com/xiaotiandada/blog/issues/93) [ Git ]
