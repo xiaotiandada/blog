@@ -39,7 +39,7 @@
 
 [#79 document.createComment API](https://github.com/xiaotiandada/blog/issues/79) 
 
-[#78 Virtual Dom](https://github.com/xiaotiandada/blog/issues/78) [ 源码 ]
+[#78 Vue Virtual Dom](https://github.com/xiaotiandada/blog/issues/78) [ 源码  Vue ]
 
 [#77 Snabbdom example](https://github.com/xiaotiandada/blog/issues/77) 
 
