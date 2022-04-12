@@ -3,6 +3,10 @@
 <p>Blog</p>
 </div>
 
+[#98 Keyboard API](https://github.com/xiaotiandada/blog/issues/98) [ web ]
+
+[#97 Fullscreen API](https://github.com/xiaotiandada/blog/issues/97) [ web ]
+
 [#96 React 学习](https://github.com/xiaotiandada/blog/issues/96) [ React ]
 
 [#95 TypeScript 学习 ](https://github.com/xiaotiandada/blog/issues/95) [ TypeScript ]
