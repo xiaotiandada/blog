@@ -185,7 +185,7 @@
 
 [#15 Electron](https://github.com/xiaotiandada/blog/issues/15) [ electron ]
 
-[#14 mpvue外卖小程序](https://github.com/xiaotiandada/blog/issues/14) 
+[#14 mpvue外卖小程序](https://github.com/xiaotiandada/blog/issues/14) [ 微信小程序 ]
 
 [#13 把AE动画转换成Web原生动画](https://github.com/xiaotiandada/blog/issues/13) 
 
