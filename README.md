@@ -151,7 +151,7 @@
 
 [#35 正则匹配两个字符串之间的内容](https://github.com/xiaotiandada/blog/issues/35) 
 
-[#34  vue-i18n 为什么切换语言部分的数据会不变？](https://github.com/xiaotiandada/blog/issues/34) 
+[#34 i18n](https://github.com/xiaotiandada/blog/issues/34) [ Vue  Next ]
 
 [#33 Building-Components shadow Dom](https://github.com/xiaotiandada/blog/issues/33) 
 
