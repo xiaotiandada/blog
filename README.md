@@ -9,7 +9,7 @@
 
 [#106 npm/yarn scripts 使用指南](https://github.com/xiaotiandada/blog/issues/106) [ Yarn  Npm ]
 
-[#105 Yarn Error](https://github.com/xiaotiandada/blog/issues/105) [ Yarn ]
+[#105 Yarn](https://github.com/xiaotiandada/blog/issues/105) [ Yarn ]
 
 [#104 Animation case](https://github.com/xiaotiandada/blog/issues/104) [ Animation ]
 
