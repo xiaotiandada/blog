@@ -3151,29 +3151,31 @@ const permutations = arr => {
 
 ...
 
+---
+
+## 「2021」高频前端面试题汇总之React篇（上）
+
+- https://juejin.cn/post/6941546135827775525
+- https://juejin.cn/post/6940942549305524238#heading-4
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0598330567c146dd99ffb819efb8cc62~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 
 
+- [React.createClass versus extends React.Component](https://ultimatecourses.com/blog/react-create-class-versus-component)
 
+- https://juejin.cn/post/6844903862319611918
+- https://juejin.cn/post/6844903473180344334
 
+从 react component 的发展历程上来看，它主要是经历了一下三个阶段：
 
+1. createClass Component 废弃并分离到单独的包
+2. Class Component
+3. Function Component
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- https://reactjs.org/docs/portals.html
+- https://blog.bitsrc.io/understanding-react-portals-ab79827732c7
+- https://dev.to/jh3y/react-portals-in-3-minutes-2g3g
 
 
 
