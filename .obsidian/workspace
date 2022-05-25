@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "issues108.md",
+            "file": "issues107.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "issues108.md",
+                "file": "issues107.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,6 +89,7 @@
   },
   "active": "abef8453b2fdbf0b",
   "lastOpenFiles": [
+    "issues107.md",
     "issues108.md",
     "Issues84.md",
     "Issues77.md",
