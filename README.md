@@ -3,6 +3,8 @@
 <p>Blog</p>
 </div>
 
+[#110 FileReader API](https://github.com/xiaotiandada/blog/issues/110) 
+
 [#109 theme](https://github.com/xiaotiandada/blog/issues/109) [ Next ]
 
 [#108 React Hook Form + MUI 构建表单](https://github.com/xiaotiandada/blog/issues/108) [ React ]
