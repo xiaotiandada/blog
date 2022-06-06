@@ -23,9 +23,9 @@
 
 [#101 PixiJS](https://github.com/xiaotiandada/blog/issues/101) [ PixiJS  Canvas ]
 
-[#100 Next 学习](https://github.com/xiaotiandada/blog/issues/100) [ Next ]
+[#100 Next](https://github.com/xiaotiandada/blog/issues/100) [ Next ]
 
-[#99 Nest 学习](https://github.com/xiaotiandada/blog/issues/99) [ Nest ]
+[#99 Nest](https://github.com/xiaotiandada/blog/issues/99) [ Nest ]
 
 [#98 Keyboard API](https://github.com/xiaotiandada/blog/issues/98) [ web ]
 
