@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-07 13:56:32"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-07 15:32:59"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -20,6 +20,21 @@
 ## 置顶 :thumbsup: 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
 ## 最新 :new: 
+
+#### [Cross-Origin Resource Policy (CORP)](https://github.com/xiaotiandada/blog/issues/111) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:32:21
+
+:label: : 
+
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy_(CORP)
+
+如果父级设置了 `Cross-Origin-Opener-Policy`
+
+
+
+[更多>>>](https://github.com/xiaotiandada/blog/issues/111)
+
+---
+
 
 #### [FileReader API](https://github.com/xiaotiandada/blog/issues/110) <sup>0 :speech_balloon:</sup> 	 2022-06-04 16:58:54
 
@@ -75,18 +90,6 @@
 
 
 [更多>>>](https://github.com/xiaotiandada/blog/issues/107)
-
----
-
-
-#### [npm/yarn scripts 使用指南](https://github.com/xiaotiandada/blog/issues/106) <sup>0 :speech_balloon:</sup> 	 2022-05-12 09:26:58
-
-:label: : [Yarn](https://github.com/xiaotiandada/ghiblog/labels/Yarn), [Npm](https://github.com/xiaotiandada/ghiblog/labels/Npm)
-
-- [npm scripts 使用指南](https://www.ruanyifeng.com/blog/2016/10/npm_scripts.html)
-- https://yarnpkg.com/advanced/lifecycle-scripts
-
-[更多>>>](https://github.com/xiaotiandada/blog/issues/106)
 
 ---
 
