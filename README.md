@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-07 15:32:59"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-07 15:35:07"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -20,6 +20,19 @@
 ## 置顶 :thumbsup: 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
 ## 最新 :new: 
+
+#### [Cross-Origin-Opener-Policy](https://github.com/xiaotiandada/blog/issues/112) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:34:31
+
+:label: : 
+
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy
+
+
+
+[更多>>>](https://github.com/xiaotiandada/blog/issues/112)
+
+---
+
 
 #### [Cross-Origin Resource Policy (CORP)](https://github.com/xiaotiandada/blog/issues/111) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:32:21
 
@@ -73,23 +86,6 @@
 - https://mui.com/zh/
 
 [更多>>>](https://github.com/xiaotiandada/blog/issues/108)
-
----
-
-
-#### [seo](https://github.com/xiaotiandada/blog/issues/107) <sup>0 :speech_balloon:</sup> 	 2022-05-12 16:40:12
-
-:label: : [SEO](https://github.com/xiaotiandada/ghiblog/labels/SEO)
-
-- https://search.google.com/search-console/about
-- https://analytics.google.com/analytics/web/
-- https://ziyuan.baidu.com/linksubmit/url?sitename=
-- https://tongji.baidu.com/web/welcome/login
-- https://github.com/w3itch-crafter/w3itch-frontend/issues/129
-
-
-
-[更多>>>](https://github.com/xiaotiandada/blog/issues/107)
 
 ---
 
