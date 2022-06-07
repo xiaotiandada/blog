@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-07 08:08:12"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-07 12:27:41"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -462,7 +462,7 @@
 <summary>前端	<sup>3:newspaper:</sup></summary>
 
 - [前端总结](https://github.com/xiaotiandada/blog/issues/68)  <sup>0 :speech_balloon:</sup>  	 
-- [前端缓存](https://github.com/xiaotiandada/blog/issues/67)  <sup>0 :speech_balloon:</sup>  	 
+- [缓存](https://github.com/xiaotiandada/blog/issues/67)  <sup>0 :speech_balloon:</sup>  	 
 - [tribute 实现@(艾特)功能](https://github.com/xiaotiandada/blog/issues/66)  <sup>0 :speech_balloon:</sup>  	 
 
 
