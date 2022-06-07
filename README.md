@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-07 15:37:17"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-07 15:39:06"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -20,6 +20,19 @@
 ## 置顶 :thumbsup: 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
 ## 最新 :new: 
+
+#### [Cross-Origin-Embedder-Policy](https://github.com/xiaotiandada/blog/issues/113) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:38:38
+
+:label: : 
+
+- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy
+
+
+
+[更多>>>](https://github.com/xiaotiandada/blog/issues/113)
+
+---
+
 
 #### [Cross-Origin-Opener-Policy](https://github.com/xiaotiandada/blog/issues/112) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:34:31
 
@@ -74,18 +87,6 @@
 如果需要 可以考虑用 cookie 
 
 [更多>>>](https://github.com/xiaotiandada/blog/issues/109)
-
----
-
-
-#### [React Hook Form + MUI 构建表单](https://github.com/xiaotiandada/blog/issues/108) <sup>0 :speech_balloon:</sup> 	 2022-05-14 13:52:07
-
-:label: : [React](https://github.com/xiaotiandada/ghiblog/labels/React)
-
-- https://react-hook-form.com/
-- https://mui.com/zh/
-
-[更多>>>](https://github.com/xiaotiandada/blog/issues/108)
 
 ---
 
