@@ -1,9 +1,9 @@
 
 
 <p align='center'>
-    <img src="https://badgen.net/badge/labels/55"/>
+    <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-07 07:12:18"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-07 07:30:56"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -22,7 +22,7 @@
 
 #### [FileReader API](https://github.com/xiaotiandada/blog/issues/110) <sup>0 :speech_balloon:</sup> 	 2022-06-04 16:58:54
 
-:label: : [published](https://github.com/xiaotiandada/ghiblog/labels/published)
+:label: : 
 
 - https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
 - https://dev.to/j471n/preview-file-before-uploading-in-react-27kn
@@ -324,14 +324,6 @@
 <summary>PixiJS	<sup>1:newspaper:</sup></summary>
 
 - [PixiJS](https://github.com/xiaotiandada/blog/issues/101)  <sup>0 :speech_balloon:</sup>  	 
-
-
-</details>
-
-<details>
-<summary>published	<sup>1:newspaper:</sup></summary>
-
-- [FileReader API](https://github.com/xiaotiandada/blog/issues/110)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
