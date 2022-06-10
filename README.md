@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-10 08:26:33"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-10 08:42:51"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -52,10 +52,8 @@
 :label: : 
 
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy_(CORP)
-
-如果父级设置了 `Cross-Origin-Opener-Policy`
-
-
+- https://web.dev/coop-coep/?utm_source=devtools
+- https://w
 
 [更多>>>](https://github.com/xiaotiandada/blog/issues/111)
 
