@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-13 13:54:10"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-13 17:03:07"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -17,9 +17,9 @@
 </p>
 
 
-## 置顶 :thumbsup: 
+## Top :thumbsup: 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
-## 最新 :new: 
+## New :new: 
 
 #### [Cross-Origin-Embedder-Policy](https://github.com/xiaotiandada/blog/issues/113) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:38:38
 
@@ -29,7 +29,7 @@
 
 
 
-[更多>>>](https://github.com/xiaotiandada/blog/issues/113)
+[more](https://github.com/xiaotiandada/blog/issues/113)
 
 ---
 
@@ -42,7 +42,7 @@
 
 
 
-[更多>>>](https://github.com/xiaotiandada/blog/issues/112)
+[more](https://github.com/xiaotiandada/blog/issues/112)
 
 ---
 
@@ -55,7 +55,7 @@
 - https://web.dev/coop-coep/?utm_source=devtools
 - https://w
 
-[更多>>>](https://github.com/xiaotiandada/blog/issues/111)
+[more](https://github.com/xiaotiandada/blog/issues/111)
 
 ---
 
@@ -69,7 +69,7 @@
 
 
 
-[更多>>>](https://github.com/xiaotiandada/blog/issues/110)
+[more](https://github.com/xiaotiandada/blog/issues/110)
 
 ---
 
@@ -84,7 +84,7 @@
 
 如果需要 可以考虑用 cookie 
 
-[更多>>>](https://github.com/xiaotiandada/blog/issues/109)
+[more](https://github.com/xiaotiandada/blog/issues/109)
 
 ---
 
@@ -99,7 +99,7 @@
 
 
 <details>
-<summary>:+1:置顶	<sup>1:newspaper:</sup></summary>
+<summary>:+1:Top	<sup>1:newspaper:</sup></summary>
 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
 
