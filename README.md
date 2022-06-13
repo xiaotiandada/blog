@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-13 13:49:13"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-13 13:54:10"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -153,9 +153,10 @@
 </details>
 
 <details>
-<summary>Contract	<sup>1:newspaper:</sup></summary>
+<summary>Contract	<sup>2:newspaper:</sup></summary>
 
 - [DAPP](https://github.com/xiaotiandada/blog/issues/82)  <sup>0 :speech_balloon:</sup>  	 
+- [Ethereum contract](https://github.com/xiaotiandada/blog/issues/46)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
@@ -208,9 +209,10 @@
 </details>
 
 <details>
-<summary>Ethereum	<sup>1:newspaper:</sup></summary>
+<summary>Ethereum	<sup>2:newspaper:</sup></summary>
 
 - [DAPP](https://github.com/xiaotiandada/blog/issues/82)  <sup>0 :speech_balloon:</sup>  	 
+- [Ethereum contract](https://github.com/xiaotiandada/blog/issues/46)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
@@ -366,9 +368,10 @@
 </details>
 
 <details>
-<summary>Solidity	<sup>1:newspaper:</sup></summary>
+<summary>Solidity	<sup>2:newspaper:</sup></summary>
 
 - [DAPP](https://github.com/xiaotiandada/blog/issues/82)  <sup>0 :speech_balloon:</sup>  	 
+- [Ethereum contract](https://github.com/xiaotiandada/blog/issues/46)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
