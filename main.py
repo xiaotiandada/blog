@@ -175,7 +175,7 @@ def bundle_list_by_labels_section():
             count += 1
 
         list_by_labels_section += '''
-<details open="open">
+<details>
 <summary>%s\t<sup>%s:newspaper:</sup></summary>
 
 %s
