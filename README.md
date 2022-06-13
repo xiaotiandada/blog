@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-13 17:03:07"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-13 17:11:35"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -23,7 +23,7 @@
 
 #### [Cross-Origin-Embedder-Policy](https://github.com/xiaotiandada/blog/issues/113) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:38:38
 
-:label: : 
+:label: : [web](https://github.com/xiaotiandada/ghiblog/labels/web)
 
 - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy
 
@@ -36,7 +36,7 @@
 
 #### [Cross-Origin-Opener-Policy](https://github.com/xiaotiandada/blog/issues/112) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:34:31
 
-:label: : 
+:label: : [web](https://github.com/xiaotiandada/ghiblog/labels/web)
 
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy
 
@@ -49,7 +49,7 @@
 
 #### [Cross-Origin Resource Policy (CORP)](https://github.com/xiaotiandada/blog/issues/111) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:32:21
 
-:label: : 
+:label: : [web](https://github.com/xiaotiandada/ghiblog/labels/web)
 
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy_(CORP)
 - https://web.dev/coop-coep/?utm_source=devtools
@@ -435,8 +435,11 @@
 </details>
 
 <details>
-<summary>web	<sup>2:newspaper:</sup></summary>
+<summary>web	<sup>5:newspaper:</sup></summary>
 
+- [Cross-Origin-Embedder-Policy](https://github.com/xiaotiandada/blog/issues/113)  <sup>0 :speech_balloon:</sup>  	 
+- [Cross-Origin-Opener-Policy](https://github.com/xiaotiandada/blog/issues/112)  <sup>0 :speech_balloon:</sup>  	 
+- [Cross-Origin Resource Policy (CORP)](https://github.com/xiaotiandada/blog/issues/111)  <sup>0 :speech_balloon:</sup>  	 
 - [Keyboard API](https://github.com/xiaotiandada/blog/issues/98)  <sup>0 :speech_balloon:</sup>  	 
 - [Fullscreen API](https://github.com/xiaotiandada/blog/issues/97)  <sup>0 :speech_balloon:</sup>  	 
 
