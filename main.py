@@ -87,10 +87,10 @@ def bundle_summary_section():
 def bundle_pinned_issues_section():
     global ghiblog
 
-    pinned_label = ghiblog.get_label(':+1:置顶')
+    pinned_label = ghiblog.get_label(':+1:Top')
     pinned_issues = ghiblog.get_issues(labels=(pinned_label,))
 
-    pinned_issues_section = '\n## 置顶 :thumbsup: \n'
+    pinned_issues_section = '\n## Top :thumbsup: \n'
 
     for issue in pinned_issues:
         pinned_issues_section += format_issue(issue)
@@ -123,7 +123,7 @@ def format_issue_with_labels(issue: Issue):
 
 {5}
 
-[更多>>>]({1})
+[more]({1})
 
 ---
 
@@ -136,7 +136,7 @@ def bundle_new_created_section():
 
     new_5_created_issues = ghiblog.get_issues()[:5]
 
-    new_created_section = '## 最新 :new: \n'
+    new_created_section = '## New :new: \n'
 
     for issue in new_5_created_issues:
         new_created_section += format_issue_with_labels(issue)
