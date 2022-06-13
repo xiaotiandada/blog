@@ -123,7 +123,7 @@ def format_issue_with_labels(issue: Issue):
 
 {5}
 
-[更多>>>]({1})
+[more]({1})
 
 ---
 
@@ -136,7 +136,7 @@ def bundle_new_created_section():
 
     new_5_created_issues = ghiblog.get_issues()[:5]
 
-    new_created_section = '## 最新 :new: \n'
+    new_created_section = '## New :new: \n'
 
     for issue in new_5_created_issues:
         new_created_section += format_issue_with_labels(issue)
