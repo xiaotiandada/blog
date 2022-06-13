@@ -779,9 +779,191 @@ function legacyCreateRootFromDOMContainer(
 }
 ```
 
+### createLegacyRoot
 
+```tsx
+export function createLegacyRoot(
+  container: Container,
+  options?: RootOptions
+): RootType {
+  // container => <div id="root"></div>
+  // LegacyRoot 常量, 值为 0,
+  // 通过 render 方法创建的 container 就是 LegacyRoot
+  return new (ReactDOMBlockingRoot as any)(container, LegacyRoot, options);
+}
+```
 
+### ReactDOMBlockingRoot
 
+```ts
+/**
+ * 类, 通过它可以创建 LegacyRoot 的 Fiber 数据结构
+ */
+function ReactDOMBlockingRoot(
+  container: Container,
+  tag: RootTag,
+  options: void | RootOptions
+) {
+  // tag => 0 => legacyRoot
+  // container => <div id="root"></div>
+  // container._reactRootContainer = {_internalRoot: {}}
+  this._internalRoot = createRootImpl(container, tag, options);
+}
+```
 
+### createRootImpl
 
+```ts
+function createRootImpl(
+  container: Container,
+  tag: RootTag,
+  options: void | RootOptions
+) {
+  console.log('createRootImpl', container, tag, options);
+  const hydrate = false;
+  const hydrationCallbacks: any = null;
+
+  // container => <div id="root"></div>
+  // tag => 0
+  // options => undefined
+  const root = createContainer(container, tag, hydrate, hydrationCallbacks);
+  // markContainerAsRoot(root.current, container);
+  return root;
+}
+```
+
+### createContainer
+
+```ts
+export function createContainer(
+  containerInfo: Container,
+  tag: RootTag,
+  hydrate: boolean,
+  hydrationCallbacks: null
+): OpaqueRoot {
+  // containerInfo => <div id="root"></div>
+  // tag: 0
+  // hydrate: false
+  // hydrationCallbacks: null
+  // 忽略了和服务器端渲染相关的内容
+  return createFiberRoot(containerInfo, tag, hydrate, hydrationCallbacks);
+}
+```
+
+### createFiberRoot
+
+```ts
+// 创建根节点对应的 fiber 对象
+export function createFiberRoot(
+  containerInfo: any,
+  tag: RootTag,
+  hydrate: boolean,
+  hydrationCallbacks: null
+): FiberRoot {
+  // 创建 FiberRoot
+  const root: FiberRoot = new (FiberRootNode as any)(
+    containerInfo,
+    tag,
+    hydrate
+  ) as any;
+
+  // Cyclic construction. This cheats the type system right now because
+  // stateNode is any.
+  // 创建根节点对应的 rootFiber
+  const uninitializedFiber = createHostRootFiber(tag);
+  // 为 fiberRoot 添加 current 属性 值为 rootFiber
+  root.current = uninitializedFiber;
+  // 为 rootFiber 添加 stateNode 属性 值为 fiberRoot
+  uninitializedFiber.stateNode = root;
+
+  // 返回 root
+  return root;
+}
+```
+
+### FiberRootNode
+
+```ts
+function FiberRootNode(containerInfo: any, tag: RootTag, hydrate: boolean) {
+  this.tag = tag;
+  this.current = null;
+  this.containerInfo = containerInfo;
+  this.pendingChildren = null;
+  this.pingCache = null;
+  this.finishedExpirationTime = NoWork;
+  this.finishedWork = null;
+  this.timeoutHandle = noTimeout;
+  this.context = null;
+  this.pendingContext = null;
+  this.hydrate = hydrate;
+  this.callbackNode = null;
+  this.callbackPriority = NoPriority;
+  this.firstPendingTime = NoWork;
+  this.firstSuspendedTime = NoWork;
+  this.lastSuspendedTime = NoWork;
+  this.nextKnownPendingLevel = NoWork;
+  this.lastPingedTime = NoWork;
+  this.lastExpiredTime = NoWork;
+
+  if (enableSchedulerTracing) {
+    // this.interactionThreadID = unstable_getThreadID();
+    this.interactionThreadID = 0;
+    this.memoizedInteractions = new Set();
+    this.pendingInteractionMap = new Map();
+  }
+  if (enableSuspenseCallback) {
+    this.hydrationCallbacks = null;
+  }
+}
+```
+
+### createHostRootFiber
+
+```ts
+export function createHostRootFiber(tag: RootTag): Fiber {
+  let mode = NoMode;
+  return createFiber(HostRoot, null, null, mode);
+}
+```
+
+### createFiber
+
+```ts
+const createFiber = function(
+  tag: WorkTag,
+  pendingProps: any,
+  key: null | string,
+  mode: TypeOfMode,
+): Fiber {
+  // $FlowFixMe: the shapes are exact here but Flow doesn't like constructors
+  return new (FiberNode as any)(tag, pendingProps, key, mode);
+};
+```
+
+### FiberNode
+
+```ts
+function FiberNode(
+  tag: WorkTag,
+  pendingProps: any,
+  key: null | string,
+  mode: TypeOfMode,
+) {
+  // Instance
+  this.tag = tag;
+  this.key = key;
+  this.elementType = null;
+  this.type = null;
+  this.stateNode = null;
+
+  // Fiber
+  this.return = null;
+  this.child = null;
+  this.sibling = null;
+  this.index = 0;
+
+  this.ref = null;
+	...
+}
+```
 
