@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-15 07:39:32"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-15 10:29:17"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -26,8 +26,7 @@
 :label: : [web](https://github.com/xiaotiandada/ghiblog/labels/web)
 
 - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy
-
-
+- https://developer.chrome.com/blog/coep-credentialless-orig
 
 [more](https://github.com/xiaotiandada/blog/issues/113)
 
