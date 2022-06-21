@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/54"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-21 11:22:18"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-21 11:23:36"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -232,9 +232,10 @@
 </details>
 
 <details>
-<summary>GraphQL	<sup>1:newspaper:</sup></summary>
+<summary>GraphQL	<sup>2:newspaper:</sup></summary>
 
 - [Uniswap Info 学习](https://github.com/xiaotiandada/blog/issues/92)  <sup>0 :speech_balloon:</sup>  	 
+- [GraphQL](https://github.com/xiaotiandada/blog/issues/50)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
