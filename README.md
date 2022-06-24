@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/55"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-24 03:28:07"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-24 03:29:16"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -23,9 +23,11 @@
 
 #### [Jest](https://github.com/xiaotiandada/blog/issues/114) <sup>0 :speech_balloon:</sup> 	 2022-06-24 03:27:18
 
-:label: : 
+:label: : [TypeScript](https://github.com/xiaotiandada/ghiblog/labels/TypeScript), [Next](https://github.com/xiaotiandada/ghiblog/labels/Next), [Jest](https://github.com/xiaotiandada/ghiblog/labels/Jest)
 
-### Jest
+### Next + TypeScript + Jest
+
+
 
 
 [more](https://github.com/xiaotiandada/blog/issues/114)
@@ -268,8 +270,9 @@
 </details>
 
 <details>
-<summary>Jest	<sup>1:newspaper:</sup></summary>
+<summary>Jest	<sup>2:newspaper:</sup></summary>
 
+- [Jest](https://github.com/xiaotiandada/blog/issues/114)  <sup>0 :speech_balloon:</sup>  	 
 - [Next](https://github.com/xiaotiandada/blog/issues/100)  <sup>0 :speech_balloon:</sup>  	 
 
 
@@ -284,8 +287,9 @@
 </details>
 
 <details>
-<summary>Next	<sup>3:newspaper:</sup></summary>
+<summary>Next	<sup>4:newspaper:</sup></summary>
 
+- [Jest](https://github.com/xiaotiandada/blog/issues/114)  <sup>0 :speech_balloon:</sup>  	 
 - [theme](https://github.com/xiaotiandada/blog/issues/109)  <sup>0 :speech_balloon:</sup>  	 
 - [Next](https://github.com/xiaotiandada/blog/issues/100)  <sup>0 :speech_balloon:</sup>  	 
 - [i18n](https://github.com/xiaotiandada/blog/issues/34)  <sup>0 :speech_balloon:</sup>  	 
@@ -390,8 +394,9 @@
 </details>
 
 <details>
-<summary>TypeScript	<sup>1:newspaper:</sup></summary>
+<summary>TypeScript	<sup>2:newspaper:</sup></summary>
 
+- [Jest](https://github.com/xiaotiandada/blog/issues/114)  <sup>0 :speech_balloon:</sup>  	 
 - [TypeScript 学习 ](https://github.com/xiaotiandada/blog/issues/95)  <sup>0 :speech_balloon:</sup>  	 
 
 
