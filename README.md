@@ -1,9 +1,9 @@
 
 
 <p align='center'>
-    <img src="https://badgen.net/badge/labels/54"/>
+    <img src="https://badgen.net/badge/labels/55"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-23 18:46:35"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-24 03:28:07"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -20,6 +20,18 @@
 ## Top :thumbsup: 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
 ## New :new: 
+
+#### [Jest](https://github.com/xiaotiandada/blog/issues/114) <sup>0 :speech_balloon:</sup> 	 2022-06-24 03:27:18
+
+:label: : 
+
+### Jest
+
+
+[more](https://github.com/xiaotiandada/blog/issues/114)
+
+---
+
 
 #### [Cross-Origin-Embedder-Policy](https://github.com/xiaotiandada/blog/issues/113) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:38:38
 
@@ -69,21 +81,6 @@
 
 
 [more](https://github.com/xiaotiandada/blog/issues/110)
-
----
-
-
-#### [theme](https://github.com/xiaotiandada/blog/issues/109) <sup>0 :speech_balloon:</sup> 	 2022-05-26 15:40:41
-
-:label: : [Next](https://github.com/xiaotiandada/ghiblog/labels/Next)
-
-### Next.js
-- https://github.com/xiaotiandada/next-theme
-- https://github.com/xiaotiandada/next-theme/blob/main/pages/_app.tsx
-
-如果需要 可以考虑用 cookie 
-
-[more](https://github.com/xiaotiandada/blog/issues/109)
 
 ---
 
@@ -266,6 +263,14 @@
 <details>
 <summary>invalid	<sup>0:newspaper:</sup></summary>
 
+
+
+</details>
+
+<details>
+<summary>Jest	<sup>1:newspaper:</sup></summary>
+
+- [Next](https://github.com/xiaotiandada/blog/issues/100)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
