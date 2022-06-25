@@ -1,9 +1,9 @@
 
 
 <p align='center'>
-    <img src="https://badgen.net/badge/labels/55"/>
+    <img src="https://badgen.net/badge/labels/57"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-24 03:31:10"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-25 09:52:48"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -20,6 +20,20 @@
 ## Top :thumbsup: 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
 ## New :new: 
+
+#### [Webpack](https://github.com/xiaotiandada/blog/issues/115) <sup>0 :speech_balloon:</sup> 	 2022-06-25 09:52:24
+
+:label: : [webpack](https://github.com/xiaotiandada/ghiblog/labels/webpack), [babel](https://github.com/xiaotiandada/ghiblog/labels/babel)
+
+Babel 7 不需要 ts-loader。从 Babel 7 开始，这ts-loader是不必要的，因为 Babel 7 支持 TypeScript
+
+- https://github.com/Microsoft/TypeScript-Babel-Starter
+- https://stac
+
+[more](https://github.com/xiaotiandada/blog/issues/115)
+
+---
+
 
 #### [Jest](https://github.com/xiaotiandada/blog/issues/114) <sup>0 :speech_balloon:</sup> 	 2022-06-24 03:27:18
 
@@ -73,20 +87,6 @@
 ---
 
 
-#### [FileReader API](https://github.com/xiaotiandada/blog/issues/110) <sup>0 :speech_balloon:</sup> 	 2022-06-04 16:58:54
-
-:label: : 
-
-- https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
-- https://dev.to/j471n/preview-file-before-uploading-in-react-27kn
-
-
-
-[more](https://github.com/xiaotiandada/blog/issues/110)
-
----
-
-
 ## 分类  :card_file_box: 
 
 <details open="open">
@@ -115,6 +115,14 @@
 <summary>Animation	<sup>1:newspaper:</sup></summary>
 
 - [Animation case](https://github.com/xiaotiandada/blog/issues/104)  <sup>0 :speech_balloon:</sup>  	 
+
+
+</details>
+
+<details>
+<summary>babel	<sup>1:newspaper:</sup></summary>
+
+- [Webpack](https://github.com/xiaotiandada/blog/issues/115)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
@@ -452,6 +460,14 @@
 - [Cross-Origin Resource Policy (CORP)](https://github.com/xiaotiandada/blog/issues/111)  <sup>0 :speech_balloon:</sup>  	 
 - [Keyboard API](https://github.com/xiaotiandada/blog/issues/98)  <sup>0 :speech_balloon:</sup>  	 
 - [Fullscreen API](https://github.com/xiaotiandada/blog/issues/97)  <sup>0 :speech_balloon:</sup>  	 
+
+
+</details>
+
+<details>
+<summary>webpack	<sup>1:newspaper:</sup></summary>
+
+- [Webpack](https://github.com/xiaotiandada/blog/issues/115)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
