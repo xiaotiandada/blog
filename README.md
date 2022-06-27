@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/57"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-27 14:28:14"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-27 15:30:18"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -38,6 +38,9 @@ Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，�
 #### [Jest](https://github.com/xiaotiandada/blog/issues/114) <sup>0 :speech_balloon:</sup> 	 2022-06-24 03:27:18
 
 :label: : [TypeScript](https://github.com/xiaotiandada/ghiblog/labels/TypeScript), [Next](https://github.com/xiaotiandada/ghiblog/labels/Next), [Jest](https://github.com/xiaotiandada/ghiblog/labels/Jest)
+
+- https://jestjs.io/
+- https://www.jianshu.com/p/c1b5676c1edd
 
 ## Next + TypeScript + Jest
 
