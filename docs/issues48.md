@@ -1,5 +1,14 @@
 ## 栈
 
+- [codesandbox demo code](https://codesandbox.io/s/data-structures-and-algorithms-hbw4wf?file=/src/index.js)
+
+<iframe src="https://codesandbox.io/embed/data-structures-and-algorithms-hbw4wf?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="Data Structures and Algorithms"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
 ![栈的定义及实现- Crystal_Guang - 博客园](https://i.imgur.com/7fd9IEm.png)
 
 ![数据结构之栈和队列- 归斯君- 博客园](https://i.imgur.com/dVdl97R.png)
@@ -81,13 +90,6 @@ console.log(s.size());
 
 console.log(s);
 ```
-
-<iframe src="https://codesandbox.io/embed/data-structures-and-algorithms-hbw4wf?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="Data Structures and Algorithms"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
 
 - [剑指 Offer 30. 包含min函数的栈](https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/)
 
