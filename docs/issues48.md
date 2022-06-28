@@ -1,5 +1,9 @@
 ## 栈
 
+![栈的定义及实现- Crystal_Guang - 博客园](https://i.imgur.com/7fd9IEm.png)
+
+![数据结构之栈和队列- 归斯君- 博客园](https://i.imgur.com/dVdl97R.png)
+
 ```js
 class Stack {
   constructor() {
