@@ -963,7 +963,7 @@ function FiberNode(
   this.index = 0;
 
   this.ref = null;
-	...
+	// ...
 }
 ```
 
