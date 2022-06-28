@@ -82,7 +82,94 @@ console.log(s.size());
 console.log(s);
 ```
 
+<iframe src="https://codesandbox.io/embed/data-structures-and-algorithms-hbw4wf?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="Data Structures and Algorithms"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
+- [剑指 Offer 30. 包含min函数的栈](https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/)
+
+解题思路：
+
+1. 在存储数据的栈外，再新建一个栈，用于存储最小值
+2. 入栈的时候正常存储值到 stackA 栈，如果存储值小于等于 stackB 栈顶值，stackB 也入栈
+3. 出栈的时候判断 stackA 栈顶值，如果 stackA 栈顶值全等 stackB 栈顶值，stackA stackB 一起出栈，否则仅 stackA 出栈
+
+阶段一
+
+stackA: [2]
+
+stackB: [2]
+
+阶段二
+
+stackA: [2, 1]
+
+stackB: [2, 1]
+
+阶段二
+
+stackA: [2, 1, 4, 5, 6]
+
+stackB: [2, 1]
+
+阶段三
+
+stackA: [2, 1, 4, 5, 6, 1]
+
+stackB: [2, 1, 1]
+
+
+
+阶段性存储最小值到 stackB 栈，在出现新的小于等于最小值之前为一个阶段
+
+```js
+// 在存储数据的栈外，再新建一个栈，用于存储最小值
+class MinStack {
+  constructor() {
+    // stackA 用于存储数据
+    this.stackA = [];
+    this.countA = 0;
+
+    // stackB 用于将数据降序存储（栈顶值为最小值）
+    this.stackB = [];
+    this.countB = 0;
+  }
+
+  // 入栈
+  push(item) {
+    // stackA 正常入栈
+    this.stackA[this.countA++] = item;
+
+    // stackB 如果没有数据 直接入栈
+    // 如果 item 的值 <= stackB 的最小值，入栈
+    if (this.countB === 0 || item <= this.min()) {
+      this.stackB[this.countB++] = item;
+    }
+  }
+  // 出栈
+  pop() {
+    // 先进行 stackB 的检测
+    if (this.top() === this.min()) {
+      // 如果 stackA 的栈顶值 === stackB 的栈顶值，stackB 出栈
+      delete this.stackB[--this.countB];
+    }
+
+    // stackA 出栈
+    delete this.stackA[--this.countA];
+  }
+  // 获取栈顶值
+  top() {
+    return this.stackA[this.countA - 1];
+  }
+  // 最小值函数
+  min() {
+    return this.stackB[this.countB - 1];
+  }
+}
+```
 
 
 
