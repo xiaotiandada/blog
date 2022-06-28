@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/57"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-28 07:40:17"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-28 07:42:44"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -23,7 +23,7 @@
 
 #### [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116) <sup>0 :speech_balloon:</sup> 	 2022-06-28 07:39:45
 
-:label: : 
+:label: : [nodejs](https://github.com/xiaotiandada/ghiblog/labels/nodejs), [Vercel](https://github.com/xiaotiandada/ghiblog/labels/Vercel)
 
 - https://yongjinkim.com/nodejstypeerror-string-replaceall-is-not-a-function-%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/
 
@@ -309,8 +309,9 @@ Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，�
 </details>
 
 <details>
-<summary>nodejs	<sup>3:newspaper:</sup></summary>
+<summary>nodejs	<sup>4:newspaper:</sup></summary>
 
+- [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116)  <sup>0 :speech_balloon:</sup>  	 
 - [140 行写一个自动生成 Issues 为 Markdown 文垱](https://github.com/xiaotiandada/blog/issues/74)  <sup>0 :speech_balloon:</sup>  	 
 - [Egg set-cookie 与 Axios   HttpOnly](https://github.com/xiaotiandada/blog/issues/65)  <sup>0 :speech_balloon:</sup>  	 
 - [Node.js 开发简单的脚手架工具](https://github.com/xiaotiandada/blog/issues/63)  <sup>0 :speech_balloon:</sup>  	 
@@ -430,8 +431,9 @@ Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，�
 </details>
 
 <details>
-<summary>Vercel	<sup>1:newspaper:</sup></summary>
+<summary>Vercel	<sup>2:newspaper:</sup></summary>
 
+- [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116)  <sup>0 :speech_balloon:</sup>  	 
 - [Nuxt.js deploy to vercel](https://github.com/xiaotiandada/blog/issues/89)  <sup>0 :speech_balloon:</sup>  	 
 
 
