@@ -1,9 +1,9 @@
 
 
 <p align='center'>
-    <img src="https://badgen.net/badge/labels/54"/>
+    <img src="https://badgen.net/badge/labels/58"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-13 17:11:35"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-28 07:43:44"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -21,13 +21,56 @@
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
 ## New :new: 
 
+#### [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116) <sup>0 :speech_balloon:</sup> 	 2022-06-28 07:39:45
+
+:label: : [nodejs](https://github.com/xiaotiandada/ghiblog/labels/nodejs), [Vercel](https://github.com/xiaotiandada/ghiblog/labels/Vercel), [github](https://github.com/xiaotiandada/ghiblog/labels/github)
+
+- https://yongjinkim.com/nodejstypeerror-string-replaceall-is-not-a-function-%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/
+
+`String.prototype.repla
+
+[more](https://github.com/xiaotiandada/blog/issues/116)
+
+---
+
+
+#### [Webpack](https://github.com/xiaotiandada/blog/issues/115) <sup>0 :speech_balloon:</sup> 	 2022-06-25 09:52:24
+
+:label: : [webpack](https://github.com/xiaotiandada/ghiblog/labels/webpack), [babel](https://github.com/xiaotiandada/ghiblog/labels/babel)
+
+Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，因为 Babel 7 支持 TypeScript
+
+- https://github.com/Microsoft/TypeScript-Babel-Starter
+- https://stac
+
+[more](https://github.com/xiaotiandada/blog/issues/115)
+
+---
+
+
+#### [Jest](https://github.com/xiaotiandada/blog/issues/114) <sup>0 :speech_balloon:</sup> 	 2022-06-24 03:27:18
+
+:label: : [TypeScript](https://github.com/xiaotiandada/ghiblog/labels/TypeScript), [Next](https://github.com/xiaotiandada/ghiblog/labels/Next), [Jest](https://github.com/xiaotiandada/ghiblog/labels/Jest)
+
+- https://jestjs.io/
+- https://www.jianshu.com/p/c1b5676c1edd
+
+## Next + TypeScript + Jest
+
+
+
+
+[more](https://github.com/xiaotiandada/blog/issues/114)
+
+---
+
+
 #### [Cross-Origin-Embedder-Policy](https://github.com/xiaotiandada/blog/issues/113) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:38:38
 
 :label: : [web](https://github.com/xiaotiandada/ghiblog/labels/web)
 
 - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy
-
-
+- https://developer.chrome.com/blog/coep-credentialless-orig
 
 [more](https://github.com/xiaotiandada/blog/issues/113)
 
@@ -43,48 +86,6 @@
 
 
 [more](https://github.com/xiaotiandada/blog/issues/112)
-
----
-
-
-#### [Cross-Origin Resource Policy (CORP)](https://github.com/xiaotiandada/blog/issues/111) <sup>0 :speech_balloon:</sup> 	 2022-06-07 15:32:21
-
-:label: : [web](https://github.com/xiaotiandada/ghiblog/labels/web)
-
-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy_(CORP)
-- https://web.dev/coop-coep/?utm_source=devtools
-- https://w
-
-[more](https://github.com/xiaotiandada/blog/issues/111)
-
----
-
-
-#### [FileReader API](https://github.com/xiaotiandada/blog/issues/110) <sup>0 :speech_balloon:</sup> 	 2022-06-04 16:58:54
-
-:label: : 
-
-- https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
-- https://dev.to/j471n/preview-file-before-uploading-in-react-27kn
-
-
-
-[more](https://github.com/xiaotiandada/blog/issues/110)
-
----
-
-
-#### [theme](https://github.com/xiaotiandada/blog/issues/109) <sup>0 :speech_balloon:</sup> 	 2022-05-26 15:40:41
-
-:label: : [Next](https://github.com/xiaotiandada/ghiblog/labels/Next)
-
-### Next.js
-- https://github.com/xiaotiandada/next-theme
-- https://github.com/xiaotiandada/next-theme/blob/main/pages/_app.tsx
-
-如果需要 可以考虑用 cookie 
-
-[more](https://github.com/xiaotiandada/blog/issues/109)
 
 ---
 
@@ -117,6 +118,14 @@
 <summary>Animation	<sup>1:newspaper:</sup></summary>
 
 - [Animation case](https://github.com/xiaotiandada/blog/issues/104)  <sup>0 :speech_balloon:</sup>  	 
+
+
+</details>
+
+<details>
+<summary>babel	<sup>1:newspaper:</sup></summary>
+
+- [Webpack](https://github.com/xiaotiandada/blog/issues/115)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
@@ -226,6 +235,14 @@
 </details>
 
 <details>
+<summary>github	<sup>1:newspaper:</sup></summary>
+
+- [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116)  <sup>0 :speech_balloon:</sup>  	 
+
+
+</details>
+
+<details>
 <summary>good first issue	<sup>0:newspaper:</sup></summary>
 
 
@@ -233,9 +250,10 @@
 </details>
 
 <details>
-<summary>GraphQL	<sup>1:newspaper:</sup></summary>
+<summary>GraphQL	<sup>2:newspaper:</sup></summary>
 
 - [Uniswap Info 学习](https://github.com/xiaotiandada/blog/issues/92)  <sup>0 :speech_balloon:</sup>  	 
+- [GraphQL](https://github.com/xiaotiandada/blog/issues/50)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
@@ -271,6 +289,15 @@
 </details>
 
 <details>
+<summary>Jest	<sup>2:newspaper:</sup></summary>
+
+- [Jest](https://github.com/xiaotiandada/blog/issues/114)  <sup>0 :speech_balloon:</sup>  	 
+- [Next](https://github.com/xiaotiandada/blog/issues/100)  <sup>0 :speech_balloon:</sup>  	 
+
+
+</details>
+
+<details>
 <summary>Nest	<sup>1:newspaper:</sup></summary>
 
 - [Nest](https://github.com/xiaotiandada/blog/issues/99)  <sup>0 :speech_balloon:</sup>  	 
@@ -279,8 +306,9 @@
 </details>
 
 <details>
-<summary>Next	<sup>3:newspaper:</sup></summary>
+<summary>Next	<sup>4:newspaper:</sup></summary>
 
+- [Jest](https://github.com/xiaotiandada/blog/issues/114)  <sup>0 :speech_balloon:</sup>  	 
 - [theme](https://github.com/xiaotiandada/blog/issues/109)  <sup>0 :speech_balloon:</sup>  	 
 - [Next](https://github.com/xiaotiandada/blog/issues/100)  <sup>0 :speech_balloon:</sup>  	 
 - [i18n](https://github.com/xiaotiandada/blog/issues/34)  <sup>0 :speech_balloon:</sup>  	 
@@ -289,8 +317,9 @@
 </details>
 
 <details>
-<summary>nodejs	<sup>3:newspaper:</sup></summary>
+<summary>nodejs	<sup>4:newspaper:</sup></summary>
 
+- [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116)  <sup>0 :speech_balloon:</sup>  	 
 - [140 行写一个自动生成 Issues 为 Markdown 文垱](https://github.com/xiaotiandada/blog/issues/74)  <sup>0 :speech_balloon:</sup>  	 
 - [Egg set-cookie 与 Axios   HttpOnly](https://github.com/xiaotiandada/blog/issues/65)  <sup>0 :speech_balloon:</sup>  	 
 - [Node.js 开发简单的脚手架工具](https://github.com/xiaotiandada/blog/issues/63)  <sup>0 :speech_balloon:</sup>  	 
@@ -385,8 +414,9 @@
 </details>
 
 <details>
-<summary>TypeScript	<sup>1:newspaper:</sup></summary>
+<summary>TypeScript	<sup>2:newspaper:</sup></summary>
 
+- [Jest](https://github.com/xiaotiandada/blog/issues/114)  <sup>0 :speech_balloon:</sup>  	 
 - [TypeScript 学习 ](https://github.com/xiaotiandada/blog/issues/95)  <sup>0 :speech_balloon:</sup>  	 
 
 
@@ -409,8 +439,9 @@
 </details>
 
 <details>
-<summary>Vercel	<sup>1:newspaper:</sup></summary>
+<summary>Vercel	<sup>2:newspaper:</sup></summary>
 
+- [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116)  <sup>0 :speech_balloon:</sup>  	 
 - [Nuxt.js deploy to vercel](https://github.com/xiaotiandada/blog/issues/89)  <sup>0 :speech_balloon:</sup>  	 
 
 
@@ -442,6 +473,14 @@
 - [Cross-Origin Resource Policy (CORP)](https://github.com/xiaotiandada/blog/issues/111)  <sup>0 :speech_balloon:</sup>  	 
 - [Keyboard API](https://github.com/xiaotiandada/blog/issues/98)  <sup>0 :speech_balloon:</sup>  	 
 - [Fullscreen API](https://github.com/xiaotiandada/blog/issues/97)  <sup>0 :speech_balloon:</sup>  	 
+
+
+</details>
+
+<details>
+<summary>webpack	<sup>1:newspaper:</sup></summary>
+
+- [Webpack](https://github.com/xiaotiandada/blog/issues/115)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
