@@ -127,6 +127,15 @@ stackB: [2, 1, 1]
 
 阶段性存储最小值到 stackB 栈，在出现新的小于等于最小值之前为一个阶段
 
+解题思路:
+
+- https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/solution/offer30bao-han-minhan-shu-de-zhan-by-log-a6vx/
+- https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/solution/yi-xia-jiu-neng-du-dong-de-ti-jie-fu-zhu-yhbx/
+
+![GIF 2021-8-6 18-17-13.gif](https://i.imgur.com/14toKT6.gif)
+
+![GIF 2021-8-6 18-23-10.gif](https://i.imgur.com/Tf6Lvg9.gif)
+
 ```js
 // 在存储数据的栈外，再新建一个栈，用于存储最小值
 class MinStack {
