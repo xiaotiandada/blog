@@ -3,7 +3,7 @@
 <p align='center'>
     <img src="https://badgen.net/badge/labels/58"/>
     <img src="https://badgen.net/github/issues/xiaotiandada/ghiblog"/>
-    <img src="https://badgen.net/badge/last-commit/2022-06-28 07:43:44"/>
+    <img src="https://badgen.net/badge/last-commit/2022-06-28 17:54:10"/>
     <img src="https://badgen.net/github/forks/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/stars/xiaotiandada/ghiblog"/>
     <img src="https://badgen.net/github/watchers/xiaotiandada/ghiblog"/>
@@ -19,6 +19,7 @@
 
 ## Top :thumbsup: 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
+- [算法数据结构](https://github.com/xiaotiandada/blog/issues/48)  <sup>0 :speech_balloon:</sup>  	 
 ## New :new: 
 
 #### [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116) <sup>0 :speech_balloon:</sup> 	 2022-06-28 07:39:45
@@ -100,9 +101,10 @@ Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，�
 
 
 <details>
-<summary>:+1:Top	<sup>1:newspaper:</sup></summary>
+<summary>:+1:Top	<sup>2:newspaper:</sup></summary>
 
 - [React](https://github.com/xiaotiandada/blog/issues/96)  <sup>0 :speech_balloon:</sup>  	 
+- [算法数据结构](https://github.com/xiaotiandada/blog/issues/48)  <sup>0 :speech_balloon:</sup>  	 
 
 
 </details>
