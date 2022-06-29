@@ -4,15 +4,15 @@ My personal blog using issues and GitHub Actions (随意转载，无需署名)
 ## 友情链接
 | Name | Link | Desc | 
  | ---- | ---- | ---- |
+## 置顶文章
+- [React](https://github.com/xiaotiandada/blog/issues/96)--2022-03-31
+- [算法数据结构](https://github.com/xiaotiandada/blog/issues/48)--2021-01-19
 ## 最近更新
 - [[NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116)--2022-06-28
 - [Webpack](https://github.com/xiaotiandada/blog/issues/115)--2022-06-25
 - [Jest](https://github.com/xiaotiandada/blog/issues/114)--2022-06-24
 - [Cross-Origin-Embedder-Policy](https://github.com/xiaotiandada/blog/issues/113)--2022-06-07
 - [Cross-Origin-Opener-Policy](https://github.com/xiaotiandada/blog/issues/112)--2022-06-07
-## :+1:Top
-- [React](https://github.com/xiaotiandada/blog/issues/96)--2022-03-31
-- [算法数据结构](https://github.com/xiaotiandada/blog/issues/48)--2021-01-19
 ## Animation
 - [Animation case](https://github.com/xiaotiandada/blog/issues/104)--2022-04-28
 ## babel
@@ -112,8 +112,13 @@ My personal blog using issues and GitHub Actions (随意转载，无需署名)
 - [Cross-Origin-Embedder-Policy](https://github.com/xiaotiandada/blog/issues/113)--2022-06-07
 - [Cross-Origin-Opener-Policy](https://github.com/xiaotiandada/blog/issues/112)--2022-06-07
 - [Cross-Origin Resource Policy (CORP)](https://github.com/xiaotiandada/blog/issues/111)--2022-06-07
+- [FileReader API](https://github.com/xiaotiandada/blog/issues/110)--2022-06-04
 - [Keyboard API](https://github.com/xiaotiandada/blog/issues/98)--2022-04-11
+<details><summary>显示更多</summary>
+
 - [Fullscreen API](https://github.com/xiaotiandada/blog/issues/97)--2022-04-11
+</details>
+
 ## webpack
 - [Webpack](https://github.com/xiaotiandada/blog/issues/115)--2022-06-25
 ## Yarn
