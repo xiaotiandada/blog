@@ -1,20 +1,54 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@octokit/rest");
+const date_fns_1 = require("date-fns");
+const lodash_1 = require("lodash");
+const feed_1 = require("feed");
+const MarkdownIt = __importStar(require("markdown-it"));
+const fs = __importStar(require("fs"));
+// @ts-ignore
+const markdownIt = new MarkdownIt({
+    html: true,
+    linkify: true,
+});
 // https://docs.github.com/en/rest/reference/issues#list-repository-issues
 // https://octokit.github.io/rest.js/v18
+// https://github.com/DIYgod/RSSHub/blob/5ee16451dcd9abd2a1d5a9c7c8a3b905fc62e50c/lib/v2/github/issue.js
 const octokit = new rest_1.Octokit({
-    auth: process.env.TOKEN
+    auth: process.env.GITHUB_TOKEN,
 });
 const owner = 'xiaotiandada';
 const repo = 'blog';
 const path = 'README.md';
+const pathRss = 'rss.yml';
+const newCount = 5;
+const rssSwitch = true;
+const DEV = false;
 /**
  * push markdown
  * @param contents 文垱内容
  * @returns
  */
-const push = async (contents) => {
+const push = async (contents, path) => {
     try {
         const { status, data } = await octokit.repos.getContent({
             owner,
@@ -30,7 +64,7 @@ const push = async (contents) => {
         const { status: pushStatus, data: pushData } = await octokit.repos.createOrUpdateFileContents({
             owner,
             repo,
-            path,
+            path: path,
             message: `Update ${Date.now()}`,
             content: contentsBase64,
             sha: data.sha,
@@ -48,26 +82,149 @@ const push = async (contents) => {
     }
 };
 /**
+ * save Issues Labels
+ * @param labels
+ * @returns
+ */
+const saveIssuesLabels = (labels) => {
+    if (labels.length) {
+        const labelArr = labels.map((item) => item.name);
+        return labelArr.length ? `[${labelArr.join(' ,')}]` : '';
+    }
+    else {
+        return '';
+    }
+};
+/**
+ * save Issues
+ * [xxx](xxx) [ xx ]
+ * @param item
+ * @returns
+ */
+const saveIssues = (item) => {
+    return `- [#${item.number} ${item.title}](${item.html_url}) ${saveIssuesLabels(item.labels)} \n`;
+};
+/**
+ * generated Top Markdown
+ * @param list
+ * @returns
+ */
+const generatedTopMd = (list) => {
+    const topResult = list.filter((item) => item.labels.find((label) => label.name === 'Top'));
+    if (topResult.length) {
+        let TopMd = `\n## Top\n`;
+        topResult.forEach((item) => {
+            TopMd += saveIssues(item);
+        });
+        return TopMd;
+    }
+    else {
+        return '';
+    }
+};
+/**
+ * generated New Markdown
+ * @param list
+ * @returns
+ */
+const generatedNewMd = (list) => {
+    const cloneDeepList = lodash_1.cloneDeep(list);
+    // sort updated_at
+    // slice
+    const newResult = cloneDeepList
+        .sort((a, b) => date_fns_1.compareAsc(new Date(b.updated_at), new Date(a.updated_at)))
+        .slice(0, newCount);
+    if (newResult.length) {
+        let md = `\n## New\n`;
+        newResult.forEach((item) => {
+            md += saveIssues(item);
+        });
+        return md;
+    }
+    else {
+        return '';
+    }
+};
+/**
+ * generated Article list Markdown
+ * @param list
+ * @returns
+ */
+const generatedArticleListMd = (list) => {
+    if (list.length) {
+        let md = `\n## Article list\n`;
+        list.forEach((item) => {
+            md += saveIssues(item);
+        });
+        return md;
+    }
+    else {
+        return '';
+    }
+};
+/**
+ * generated Rss
+ * @param list
+ */
+const generatedRss = (list) => {
+    const feed = new feed_1.Feed({
+        id: 'https://github.com/xiaotiandada/blog',
+        title: 'xiaotiandada/blog Issues',
+        description: 'xiaotiandada/blog Issues',
+        link: 'http://example.com/',
+        language: 'zh-CN',
+        copyright: 'All rights reserved 2022, xiaotian',
+    });
+    list.forEach((item) => {
+        feed.addItem({
+            title: item.title,
+            description: item.body ? markdownIt.render(item.body) : 'No description',
+            date: new Date(item.created_at),
+            published: new Date(item.updated_at),
+            link: item.html_url,
+        });
+    });
+    // console.log(feed.rss2());
+    const result = feed.rss2();
+    if (DEV) {
+        try {
+            const data = fs.writeFileSync('rss.yml', result);
+            //文件写入成功。
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    else {
+        push(result, pathRss);
+    }
+};
+/**
  * process markdown
  * @param data issues list
  */
-const processMd = ({ data, name, description }) => {
-    let md = `<div align="center">
-<h1>${name}</h1>
-<p>${description}</p>
-</div>\n\n`;
-    data.map((i) => {
-        let label = '';
-        let labels = i.labels;
-        for (let i = 0; i < labels.length; i++) {
-            const ele = labels[i];
-            label += ` ${ele.name} `;
+const processMd = ({ data }) => {
+    // Head
+    let headMd = `## Blog\nMy personal blog using issues and GitHub Actions\n`;
+    // Top
+    let TopMd = generatedTopMd(data);
+    // New
+    let newMd = generatedNewMd(data);
+    // List
+    let listMd = generatedArticleListMd(data);
+    const result = headMd + TopMd + newMd + listMd;
+    if (DEV) {
+        try {
+            const data = fs.writeFileSync('DEMO.md', result);
+            //文件写入成功。
         }
-        // [xxx](xxx) [ xx ]
-        md += `[#${i.number} ${i.title}](${i.html_url}) ${label ? '[' + label + ']' : ''}\n\n`;
-    });
-    // console.log('md', md)
-    push(md);
+        catch (err) {
+            console.error(err);
+        }
+    }
+    else {
+        push(result, path);
+    }
 };
 /**
  * get repo
@@ -107,7 +264,7 @@ const fetch = async () => {
                 owner,
                 repo,
                 page: i,
-                per_page: per_page
+                per_page: per_page,
             });
             if (status === 200) {
                 // console.log('data', data)
@@ -117,11 +274,10 @@ const fetch = async () => {
                 console.log('fail', status);
             }
         }
-        processMd({
-            data: list,
-            name: respo.name,
-            description: respo.description,
-        });
+        processMd({ data: list });
+        if (rssSwitch) {
+            generatedRss(list);
+        }
     }
     catch (e) {
         console.log('fetch', e.toString());
