@@ -182,7 +182,75 @@ class MinStack {
 }
 ```
 
+```ts
+class MinStack {
+  constructor() {
+    this.stack = [];
+  }
 
+  push(item) {
+    this.stack.push(item);
+  }
+
+  pop() {
+    return this.stack.pop();
+  }
+
+  top() {
+    return this.stack[this.stack.length - 1];
+  }
+
+  min() {
+    return Math.min.apply(null, this.stack);
+  }
+}
+```
+
+```ts
+// 在存储数据的栈外，再新建一个栈，用于存储最小值
+class MinStack {
+  constructor() {
+    // stackA 用于存储数据
+    this.stackA = [];
+
+    // stackB 用于将数据降序存储（栈顶值为最小值）
+    this.stackB = [];
+  }
+
+  // 入栈
+  push(item) {
+    // stackA 正常入栈
+    this.stackA.push(item);
+
+    // stackB 如果没有数据 直接入栈
+    // 如果 item 的值 <= stackB 的最小值，入栈
+    if (this.stackB.length === 0 || item <= this.min()) {
+      this.stackB.push(item);
+    }
+  }
+  // 出栈
+  pop() {
+    // 先进行 stackB 的检测
+    if (this.top() === this.min()) {
+      // 如果 stackA 的栈顶值 === stackB 的栈顶值，stackB 出栈
+      this.stackB.splice(this.stackB.length - 1, 1);
+    }
+
+    // stackA 出栈
+    this.stackA.splice(this.stackA.length - 1, 1);
+  }
+  // 获取栈顶值
+  top() {
+    return this.stackA[this.stackA.length - 1];
+  }
+  // 最小值函数
+  min() {
+    return this.stackB[this.stackB.length - 1];
+  }
+}
+```
+
+![image-20220630014958177](https://i.imgur.com/aeZdzWu.png)
 
 ---
 
