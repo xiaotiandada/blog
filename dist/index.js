@@ -23,9 +23,8 @@ const rest_1 = require("@octokit/rest");
 const date_fns_1 = require("date-fns");
 const lodash_1 = require("lodash");
 const feed_1 = require("feed");
-const MarkdownIt = __importStar(require("markdown-it"));
+const MarkdownIt = require("markdown-it");
 const fs = __importStar(require("fs"));
-// @ts-ignore
 const markdownIt = new MarkdownIt({
     html: true,
     linkify: true,
