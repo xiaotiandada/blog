@@ -38,7 +38,7 @@ const octokit = new rest_1.Octokit({
 const owner = 'xiaotiandada';
 const repo = 'blog';
 const path = 'README.md';
-const pathRss = 'rss.yml';
+const pathRss = 'rss.rss';
 const newCount = 5;
 const rssSwitch = true;
 const DEV = false;
@@ -49,35 +49,30 @@ const DEV = false;
  */
 const push = async (contents, path) => {
     try {
-        const { status, data } = await octokit.repos.getContent({
+        const { status, data: fileData } = await octokit.repos.getContent({
             owner,
             repo,
             path,
         });
-        // console.log(data)
+        // console.log(fileData);
         if (status !== 200) {
             console.log('fail', status);
             return;
         }
-        const contentsBase64 = new Buffer(contents).toString('base64');
-        const { status: pushStatus, data: pushData } = await octokit.repos.createOrUpdateFileContents({
+        const contentsBase64 = Buffer.from(contents).toString('base64');
+        const { status: createOrUpdateFileContentsStatus, data: createOrUpdateFileContentsStatusData, } = await octokit.repos.createOrUpdateFileContents({
             owner,
             repo,
             path: path,
             message: `Update ${Date.now()}`,
             content: contentsBase64,
-            sha: data.sha,
+            // @ts-ignore
+            sha: fileData.sha,
         });
-        if (pushStatus === 200) {
-            // console.log(pushData)
-            console.log(`push success, url: ${pushData.content.html_url}`);
-        }
-        else {
-            console.log('fail', pushStatus);
-        }
+        console.log(createOrUpdateFileContentsStatus, path);
     }
     catch (e) {
-        console.log('push', e.toString());
+        console.log('push fail, path: ', path);
     }
 };
 /**
@@ -222,7 +217,7 @@ const processMd = ({ data }) => {
         }
     }
     else {
-        push(result, path);
+        push(result, 'README.md');
     }
 };
 /**
@@ -249,9 +244,9 @@ const getRepo = async () => {
     }
 };
 /**
- * fetch issues
+ * init issues
  */
-const fetch = async () => {
+const init = async () => {
     try {
         const respo = await getRepo();
         let count = respo.open_issues_count;
@@ -282,4 +277,4 @@ const fetch = async () => {
         console.log('fetch', e.toString());
     }
 };
-fetch();
+init();
