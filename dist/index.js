@@ -22,13 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@octokit/rest");
 const date_fns_1 = require("date-fns");
 const lodash_1 = require("lodash");
-const feed_1 = require("feed");
-const MarkdownIt = require("markdown-it");
 const fs = __importStar(require("fs"));
-const markdownIt = new MarkdownIt({
-    html: true,
-    linkify: true,
-});
 // https://docs.github.com/en/rest/reference/issues#list-repository-issues
 // https://octokit.github.io/rest.js/v18
 // https://github.com/DIYgod/RSSHub/blob/5ee16451dcd9abd2a1d5a9c7c8a3b905fc62e50c/lib/v2/github/issue.js
@@ -38,9 +32,7 @@ const octokit = new rest_1.Octokit({
 const owner = 'xiaotiandada';
 const repo = 'blog';
 const path = 'README.md';
-const pathRss = 'rss.rss';
 const newCount = 5;
-const rssSwitch = true;
 const DEV = false;
 /**
  * push markdown
@@ -157,43 +149,6 @@ const generatedArticleListMd = (list) => {
     }
 };
 /**
- * generated Rss
- * @param list
- */
-const generatedRss = (list) => {
-    const feed = new feed_1.Feed({
-        id: 'https://github.com/xiaotiandada/blog',
-        title: 'xiaotiandada/blog Issues',
-        description: 'xiaotiandada/blog Issues',
-        link: 'http://example.com/',
-        language: 'zh-CN',
-        copyright: 'All rights reserved 2022, xiaotian',
-    });
-    list.forEach((item) => {
-        feed.addItem({
-            title: item.title,
-            description: item.body ? markdownIt.render(item.body) : 'No description',
-            date: new Date(item.created_at),
-            published: new Date(item.updated_at),
-            link: item.html_url,
-        });
-    });
-    // console.log(feed.rss2());
-    const result = feed.rss2();
-    if (DEV) {
-        try {
-            const data = fs.writeFileSync('rss.yml', result);
-            //文件写入成功。
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-    else {
-        push(result, pathRss);
-    }
-};
-/**
  * process markdown
  * @param data issues list
  */
@@ -217,7 +172,7 @@ const processMd = ({ data }) => {
         }
     }
     else {
-        push(result, 'README.md');
+        push(result, path);
     }
 };
 /**
@@ -269,9 +224,6 @@ const init = async () => {
             }
         }
         processMd({ data: list });
-        if (rssSwitch) {
-            generatedRss(list);
-        }
     }
     catch (e) {
         console.log('fetch', e.toString());
