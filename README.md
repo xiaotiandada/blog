@@ -6,7 +6,7 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) [算法 ,数据结构 ,Top] 
 
 ## New
-- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) [nodejs] 
+- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) [nodejs ,TypeScript ,github] 
 - [#92 Uniswap Info](https://github.com/xiaotiandada/blog/issues/92) [GraphQL ,Uniswap] 
 - [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) [TypeScript] 
 - [#116 [NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116) [nodejs ,Error ,Vercel ,github] 
@@ -55,7 +55,7 @@ My personal blog using issues and GitHub Actions
 - [#77 Snabbdom example](https://github.com/xiaotiandada/blog/issues/77)  
 - [#76 HackMD 打字动画](https://github.com/xiaotiandada/blog/issues/76)  
 - [#75 Github Actions](https://github.com/xiaotiandada/blog/issues/75)  
-- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) [nodejs] 
+- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) [nodejs ,TypeScript ,github] 
 - [#73 前端下载 Markdown File](https://github.com/xiaotiandada/blog/issues/73)  
 - [#72 剧本杀](https://github.com/xiaotiandada/blog/issues/72) [娱乐] 
 - [#71 Promise的源码实现](https://github.com/xiaotiandada/blog/issues/71)  
