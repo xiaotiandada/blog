@@ -91,7 +91,9 @@ console.log(s.size());
 console.log(s);
 ```
 
-- [剑指 Offer 30. 包含min函数的栈](https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/)
+
+
+### [剑指 Offer 30. 包含min函数的栈](https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/)
 
 解题思路：
 
@@ -250,7 +252,43 @@ class MinStack {
 }
 ```
 
-![image-20220630014958177](https://i.imgur.com/aeZdzWu.png)
+### [739. 每日温度](https://leetcode.cn/problems/daily-temperatures/)
+
+通过维护[单调栈](https://www.cnblogs.com/liang24/p/14200734.html) 递减来计算
+
+- https://leetcode.cn/problems/daily-temperatures/solution/mei-ri-wen-du-by-leetcode-solution/
+- https://leetcode.cn/problems/daily-temperatures/solution/leetcode-tu-jie-739mei-ri-wen-du-by-misterbooo/
+
+```ts
+/**
+ * @param {number[]} temperatures [73,74,75,71,69,72,76,73]
+ * @return {number[]} [1,1,4,2,1,1,0,0]
+ */
+var dailyTemperatures = function (temperatures) {
+  // 单调栈 递减
+  // 默认第一个索引会入栈，for 直接从 1 开始
+  const stack = [0];
+
+  const len = temperatures.length;
+  const arr = new Array(temperatures.length).fill(0);
+
+  for (let i = 1; i < len; i++) {
+    while (
+      stack.length &&
+      temperatures[i] > temperatures[stack[stack.length - 1]]
+    ) {
+      const previousIndex = stack[stack.length - 1];
+      arr[previousIndex] = i - previousIndex;
+      stack.pop();
+    }
+    stack.push(i);
+  }
+
+  return arr;
+};
+```
+
+
 
 ---
 
