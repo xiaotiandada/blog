@@ -6,11 +6,11 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) [算法 ,数据结构 ,Top] 
 
 ## New
+- [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) [算法 ,数据结构 ,Top] 
+- [#100 Next](https://github.com/xiaotiandada/blog/issues/100) [Next ,Jest] 
+- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) [nodejs ,TypeScript ,github] 
+- [#92 Uniswap Info](https://github.com/xiaotiandada/blog/issues/92) [GraphQL ,Uniswap] 
 - [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) [TypeScript] 
-- [#116 [NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116) [nodejs ,Error ,Vercel ,github] 
-- [#70 Nuxt 添加 Less 报错 TypeError: this.getOptions is not a function at Object.lessLoader](https://github.com/xiaotiandada/blog/issues/70) [Error ,Nuxt] 
-- [#110 FileReader API](https://github.com/xiaotiandada/blog/issues/110) [web] 
-- [#96 React](https://github.com/xiaotiandada/blog/issues/96) [React ,Top] 
 
 ## Article list
 - [#116 [NodeJS] TypeError: string.replaceAll is not a function](https://github.com/xiaotiandada/blog/issues/116) [nodejs ,Error ,Vercel ,github] 
@@ -37,7 +37,7 @@ My personal blog using issues and GitHub Actions
 - [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) [TypeScript] 
 - [#94 UI Swap](https://github.com/xiaotiandada/blog/issues/94) [CSS ,UI] 
 - [#93 Git 删除敏感数据](https://github.com/xiaotiandada/blog/issues/93) [Git] 
-- [#92 Uniswap Info 学习](https://github.com/xiaotiandada/blog/issues/92) [GraphQL ,Uniswap] 
+- [#92 Uniswap Info](https://github.com/xiaotiandada/blog/issues/92) [GraphQL ,Uniswap] 
 - [#91 浏览器打开图片 URL 是显示还是下载](https://github.com/xiaotiandada/blog/issues/91) [OSS ,浏览器] 
 - [#90 Bit 使用](https://github.com/xiaotiandada/blog/issues/90) [React ,Bit] 
 - [#89 Nuxt.js deploy to vercel](https://github.com/xiaotiandada/blog/issues/89) [Nuxt ,Vercel] 
@@ -55,7 +55,7 @@ My personal blog using issues and GitHub Actions
 - [#77 Snabbdom example](https://github.com/xiaotiandada/blog/issues/77)  
 - [#76 HackMD 打字动画](https://github.com/xiaotiandada/blog/issues/76)  
 - [#75 Github Actions](https://github.com/xiaotiandada/blog/issues/75)  
-- [#74 140 行写一个自动生成 Issues 为 Markdown 文垱](https://github.com/xiaotiandada/blog/issues/74) [nodejs] 
+- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) [nodejs ,TypeScript ,github] 
 - [#73 前端下载 Markdown File](https://github.com/xiaotiandada/blog/issues/73)  
 - [#72 剧本杀](https://github.com/xiaotiandada/blog/issues/72) [娱乐] 
 - [#71 Promise的源码实现](https://github.com/xiaotiandada/blog/issues/71)  
