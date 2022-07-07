@@ -1,6 +1,7 @@
 ## 栈
 
 - [codesandbox demo code](https://codesandbox.io/s/data-structures-and-algorithms-hbw4wf?file=/src/index.js)
+- https://leetcode.cn/u/xiaotiandada/
 
 <iframe src="https://codesandbox.io/embed/data-structures-and-algorithms-hbw4wf?fontsize=14&hidenavigation=1&theme=dark"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -287,6 +288,118 @@ var dailyTemperatures = function (temperatures) {
   return ans;
 };
 ```
+
+## 队列
+
+先进先出
+
+![img](https://i.imgur.com/QPwbzZe.png)
+
+```js
+class Queue {
+  constructor() {
+    // 用于储存队列数据
+    this.queue = [];
+    this.count = 0;
+  }
+
+  // 入队方法
+  enQueue(item) {
+    this.queue[this.count++] = item;
+  }
+
+  // 出队方法
+  deQueue() {
+    if (this.isEmpty()) {
+      return;
+    }
+    this.count--;
+    return this.queue.shift();
+  }
+
+  // 空判断
+  isEmpty() {
+    return this.count === 0;
+  }
+
+  // size 大小 
+  size() {
+    return this.count;
+  }
+
+  // 获取队首元素
+  top() {
+    if (this.isEmpty()) {
+      return;
+    }
+    return this.queue[0];
+  }
+
+  // 清空
+  clear() {
+    this.queue = [];
+    this.count = 0;
+  }
+}
+```
+
+```js
+class Queue {
+  constructor() {
+    // 用于储存队列数据
+    this.queue = {};
+    this.count = 0;
+    // 用于记录队首的键
+    this.head = 0;
+  }
+
+  // 入队方法
+  enQueue(item) {
+    this.queue[this.count++] = item;
+  }
+
+  // 出队方法
+  deQueue() {
+    if (this.isEmpty()) {
+      return;
+    }
+
+    const headData = this.queue[this.head];
+    delete this.queue[this.head];
+
+    this.head++;
+    this.count--;
+    return headData;
+  }
+
+  // 空判断
+  isEmpty() {
+    return this.count === 0;
+  }
+
+  // size 大小
+  size() {
+    return this.count;
+  }
+
+  // 获取队首元素
+  top() {
+    if (this.isEmpty()) {
+      return;
+    }
+    return this.queue[this.head];
+  }
+
+  // 清空
+  clear() {
+    this.queue = {};
+    this.count = 0;
+    this.head = 0;
+  }
+}
+```
+
+
 
 
 
