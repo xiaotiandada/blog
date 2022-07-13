@@ -82,13 +82,25 @@ const saveIssuesLabels = (labels) => {
     }
 };
 /**
+ * format date
+ * @param date
+ * @returns
+ */
+const formatDate = (date) => {
+    return date_fns_1.format(new Date(date), 'yyyy-MM-dd HH:mm:ss');
+};
+/**
  * save Issues
  * [xxx](xxx) [ xx ]
  * @param item
  * @returns
  */
-const saveIssues = (item) => {
-    return `- [#${item.number} ${item.title}](${item.html_url}) ${saveIssuesLabels(item.labels)} \n`;
+const saveIssues = (item, hasTime = false) => {
+    const title = `[#${item.number} ${item.title}]`;
+    const link = `(${item.html_url})`;
+    const labels = saveIssuesLabels(item.labels);
+    const date = hasTime ? ' ' + formatDate(item.updated_at) : '';
+    return '- ' + title + link + ' ' + labels + date + '\n';
 };
 /**
  * generated Top Markdown
@@ -123,7 +135,7 @@ const generatedNewMd = (list) => {
     if (newResult.length) {
         let md = `\n## New\n`;
         newResult.forEach((item) => {
-            md += saveIssues(item);
+            md += saveIssues(item, true);
         });
         return md;
     }
