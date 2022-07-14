@@ -466,7 +466,7 @@ class Deque {
 }
 ```
 
-#### [剑指 Offer 59 - II. 队列的最大值](https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/)
+### [剑指 Offer 59 - II. 队列的最大值](https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/)
 
 解题思路：
 
@@ -558,6 +558,66 @@ MaxQueue.prototype.isEmptyQueue = function () {
  * obj.push_back(value)
  * var param_3 = obj.pop_front()
  */
+```
+
+### [剑指 Offer 59 - I. 滑动窗口的最大值](https://leetcode.cn/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)
+
+- https://leetcode.cn/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/
+- https://leetcode.cn/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/
+
+```js
+/**
+ * @param {number[]} nums 传入的数组
+ * @param {number} k 滑动窗口宽度
+ * @return {number[]}
+ */
+var maxSlidingWindow = function (nums, k) {
+  if (nums.length <= 1) {
+    return nums;
+  }
+
+  const result = [];
+  const deque = [];
+
+  // 1 将窗口第一个位置的数据添加到 deque 中，保持递减
+  deque.push(nums[0]);
+
+  let i = 1;
+  for (; i < k; i++) {
+    // - 存在数据
+    // - 在当前数据大于队尾值
+    //   - 出队，再重复比较
+    while (deque.length && nums[i] > deque[deque.length - 1]) {
+      deque.pop();
+    }
+    deque.push(nums[i]);
+  }
+
+  // 将第一个位置的最大值添加到 result
+  result.push(deque[0]);
+
+  // 2 遍历后续的数据
+  const len = nums.length;
+  for (; i < len; i++) {
+    // 同上进行比较
+    while (deque.length && nums[i] > deque[deque.length - 1]) {
+      deque.pop();
+    }
+    deque.push(nums[i]);
+
+    // 检测当前最大值是否位于窗口外
+    if (deque[0] === nums[i - k]) {
+      deque.shift();
+    }
+
+    // 添加最大值到 result
+    result.push(deque[0]);
+  }
+
+  return result;
+};
+
+console.log(maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3));
 ```
 
 
