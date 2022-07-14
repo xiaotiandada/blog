@@ -2,6 +2,9 @@
 
 name: CI
 
+env:
+  TZ: Asia/Shanghai
+
 # Controls when the action will run.
 on:
   issues:
