@@ -75,7 +75,7 @@ const push = async (contents, path) => {
 const saveIssuesLabels = (labels) => {
     if (labels.length) {
         const labelArr = labels.map((item) => item.name);
-        return labelArr.length ? `[${labelArr.join(' ,')}]` : '';
+        return labelArr.length ? `\`${labelArr.join(',')}\`` : '';
     }
     else {
         return '';
@@ -87,7 +87,8 @@ const saveIssuesLabels = (labels) => {
  * @returns
  */
 const formatDate = (date) => {
-    return date_fns_1.format(new Date(date), 'yyyy-MM-dd HH:mm:ss');
+    const time = date_fns_1.format(new Date(date), 'yyyy-MM-dd HH:mm:ss');
+    return `<sub><time datetime="${time}">${time}</time></sub>`;
 };
 /**
  * save Issues
@@ -110,7 +111,7 @@ const saveIssues = (item, hasTime = false) => {
 const generatedTopMd = (list) => {
     const topResult = list.filter((item) => item.labels.find((label) => label.name === 'Top'));
     if (topResult.length) {
-        let TopMd = `\n## Top\n`;
+        let TopMd = `\n## Top 👍 \n`;
         topResult.forEach((item) => {
             TopMd += saveIssues(item);
         });
@@ -133,7 +134,7 @@ const generatedNewMd = (list) => {
         .sort((a, b) => date_fns_1.compareAsc(new Date(b.updated_at), new Date(a.updated_at)))
         .slice(0, newCount);
     if (newResult.length) {
-        let md = `\n## New\n`;
+        let md = `\n## New  🆕 \n`;
         newResult.forEach((item) => {
             md += saveIssues(item, true);
         });
@@ -150,7 +151,7 @@ const generatedNewMd = (list) => {
  */
 const generatedArticleListMd = (list) => {
     if (list.length) {
-        let md = `\n## Article list\n`;
+        let md = `\n## Article  📄 \n`;
         list.forEach((item) => {
             md += saveIssues(item);
         });
