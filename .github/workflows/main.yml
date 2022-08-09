@@ -4,6 +4,9 @@ name: CI
 
 env:
   TZ: Asia/Shanghai
+  OWNER: xiaotiandada
+  REPO: blog
+  REPO_PATH: README.md
 
 # Controls when the action will run.
 on:
@@ -31,4 +34,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --immutable
-      - run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} node ./dist/index.js
+      - run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} node ./lib/index.js
