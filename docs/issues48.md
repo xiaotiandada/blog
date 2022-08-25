@@ -1017,7 +1017,54 @@ console.log(preorderTraversal(one));
 [1,2,3,4,5,null,6,7,8,null,null,9]
 ```
 
+#### [104. 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 
+- https://leetcode.cn/problems/maximum-depth-of-binary-tree/solution/er-cha-shu-de-zui-da-shen-du-by-leetcode-solution/
+
+**方法一：深度优先搜索**  **递归 DFS**
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function (root) {
+  if (!root) {
+    return 0;
+  }
+
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+};
+
+const A = new TreeNode("A");
+const B = new TreeNode("B");
+const C = new TreeNode("C");
+const D = new TreeNode("D");
+const E = new TreeNode("E");
+
+A.left = B;
+A.right = C;
+
+C.left = D;
+
+C.right = E;
+
+console.log(maxDepth(A));
+```
+
+**方法二：广度优先搜索**  **迭代 BFS**
+
+```js
+
+```
 
 
 
