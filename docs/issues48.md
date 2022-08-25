@@ -831,6 +831,194 @@ const ans = reverseList({
 console.log("ans", ans);
 ```
 
+#### [面试题 02.08. 环路检测](https://leetcode.cn/problems/linked-list-cycle-lcci/)
+
+- https://leetcode.cn/problems/linked-list-cycle-lcci/solution/huan-lu-jian-ce-by-leetcode-solution-s2la/
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+  if (head === null) {
+    return null;
+  }
+
+  // 声明快慢指针
+  let slow = head;
+  let fast = head;
+
+  while (fast !== null) {
+    // 慢指针每次移动一位
+    slow = slow.next;
+
+    // 如果不满足条件，说明 fast 为尾部节点，不存在环
+    if (fast.next !== null) {
+      // 快指针每次移动两位
+      fast = fast.next.next;
+    } else {
+      return null;
+    }
+
+    // 检测是否有环
+    if (fast === slow) {
+      // 找到环的起点
+      let ptr = head;
+      while (ptr !== slow) {
+        ptr = ptr.next;
+        slow = slow.next;
+      }
+
+      // ptr 和 slow 的交点就是环的起始节点
+      return ptr;
+    }
+  }
+
+  // while 结束，说明 fast 为 null，说明链表没有环
+  return null;
+};
+
+const vala = {
+  val: "a",
+  next: null
+};
+const valb = {
+  val: "b",
+  next: null
+};
+const valc = {
+  val: "c",
+  next: null
+};
+
+vala.next = valb;
+valb.next = valc;
+valc.next = valb;
+
+console.log("detectCycle1", vala);
+console.log("detectCycle", detectCycle(vala));
+```
+
+### 二叉树
+
+#### [144. 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
+
+- https://leetcode.cn/problems/binary-tree-preorder-traversal/solution/er-cha-shu-de-qian-xu-bian-li-by-leetcode-solution/
+
+**方法一：递归**
+
+```js
+function TreeNode(val, left, right) {
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
+}
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function (root) {
+  // 用于储存遍历的结果
+  const res = [];
+  // 设置函数用于进行递归遍历
+  const preorder = (root) => {
+    // 当前节点为空时，无需进行递归
+    if (!root) {
+      return;
+    }
+
+    // 记录根节点值
+    res.push(root.val);
+    // 前序遍历左子树
+    preorder(root.left);
+    // 前序遍历右子树
+    preorder(root.right);
+  };
+
+  preorder(root);
+  return res;
+};
+
+const A = new TreeNode("A");
+const B = new TreeNode("B");
+const C = new TreeNode("C");
+const D = new TreeNode("D");
+const E = new TreeNode("E");
+const F = new TreeNode("F");
+
+A.left = B;
+A.right = C;
+
+B.right = D;
+
+C.left = E;
+C.right = F;
+
+console.log(preorderTraversal(A));
+
+
+const one = new TreeNode(1);
+const two = new TreeNode(2);
+const three = new TreeNode(3);
+
+one.right = two
+
+two.left = three
+
+console.log(preorderTraversal(one));
+```
+
+**方法二：迭代**
+
+```js
+var preorderTraversal = function (root) {
+  const res = [];
+  const stk = [];
+
+  while (root || stk.length) {
+    while (root) {
+      // 右子节点入栈
+      stk.push(root.right);
+      // 记录根节点
+      res.push(root.val);
+
+      // 下一步处理左子节点
+      root = root.left;
+    }
+    // 左子树处理完毕，将 stk 出栈，处理右子树
+    root = stk.pop();
+  }
+  return res;
+};
+
+console.log(preorderTraversal(one));
+```
+
+```
+// 测试用例
+[1,2,3,4,5,null,6,7,8,null,null,9]
+```
+
+
+
 
 
 ---
