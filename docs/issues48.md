@@ -1140,6 +1140,164 @@ console.log('levelOrder', levelOrder(Node3))
 //  [ [ '3' ], [ '9', '20' ], [ '15', '7' ] ]
 ```
 
+#### [98. 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
+
+- https://leetcode.cn/problems/validate-binary-search-tree/solution/yan-zheng-er-cha-sou-suo-shu-by-leetcode-solution/
+
+![image-20220831014409986](https://i.imgur.com/47FH7dT.png)
+
+#### 方法一: 递归
+
+```js
+function TreeNode(val, left, right) {
+  this.val = val === undefined ? 0 : val
+  this.left = left === undefined ? null : left
+  this.right = right === undefined ? null : right
+}
+
+const Node1 = new TreeNode('1')
+const Node3 = new TreeNode('3')
+const Node4 = new TreeNode('4')
+const Node5 = new TreeNode('5')
+const Node6 = new TreeNode('6')
+
+Node5.left = Node1
+Node5.right = Node4
+
+Node4.left = Node3
+Node4.right = Node6
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+const helper = (root, lower, upper) => {
+  if (root === null) {
+    return true
+  }
+  // console.log(root.val, lower, upper)
+  // 5 -Infinity Infinity
+  // 1 -Infinity 5
+  // 4 5 Infinity
+
+  // 检测当前节点值是否超出边界
+  if (root.val <= lower || root.val >= upper) {
+    return false
+  }
+
+  // 当前节点通过检测，再检测左右子节点
+  return (
+    helper(root.left, lower, root.val) && helper(root.right, root.val, upper)
+  )
+}
+
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isValidBST = function (root) {
+  return helper(root, -Infinity, +Infinity)
+}
+
+console.log('isValidBST', isValidBST(Node5))
+```
+
+#### 中序遍历
+
+```js
+let isValidBST = function (root) {
+  let stack = []
+  let inorder = -Infinity
+
+  while (stack.length || root !== null) {
+    while (root !== null) {
+      stack.push(root)
+      root = root.left
+    }
+
+    root = stack.pop()
+
+    // 如果中序遍历得到的节点值小于等于前一个 inorder，说明不是二叉搜索树
+    if (root.val <= inorder) {
+      return false
+    }
+    inorder = root.val
+    root = root.right
+  }
+  return true
+}
+
+console.log('isValidBST', isValidBST(Node5))
+```
+
+#### [94. 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
+
+- https://leetcode.cn/problems/binary-tree-inorder-traversal/solution/er-cha-shu-de-zhong-xu-bian-li-by-leetcode-solutio/
+
+#### 递归
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function (root) {
+  const res = []
+  const inorder = (root) => {
+    if (!root) {
+      return
+    }
+
+    inorder(root.left)
+    res.push(root.val)
+    inorder(root.right)
+  }
+
+  inorder(root)
+
+  return res
+}
+```
+
+#### 迭代
+
+```js
+var inorderTraversal = function (root) {
+  const res = []
+  const stack = []
+
+  while (root || stack.length) {
+    while (root) {
+      stack.push(root)
+      root = root.left
+    }
+
+    root = stack.pop()
+    res.push(root.val)
+    root = root.right
+  }
+  return res
+}
+```
+
+#### Morris 中序遍历
+
+```js
+```
+
 
 
 ---
