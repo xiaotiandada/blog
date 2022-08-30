@@ -3,12 +3,13 @@ My personal blog using issues and GitHub Actions
 
 ## Top 👍 
 - [#96 React](https://github.com/xiaotiandada/blog/issues/96) `React,Top`
+- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,Top,github`
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top` <sub><time datetime="2022-08-31 03:04:25">2022-08-31 03:04:25</time></sub>
+- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,Top,github` <sub><time datetime="2022-08-25 23:07:58">2022-08-25 23:07:58</time></sub>
 - [#118 node.js 文件操作](https://github.com/xiaotiandada/blog/issues/118) `nodejs` <sub><time datetime="2022-08-24 14:46:58">2022-08-24 14:46:58</time></sub>
-- [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top` <sub><time datetime="2022-08-23 00:09:10">2022-08-23 00:09:10</time></sub>
-- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,github` <sub><time datetime="2022-08-09 11:45:40">2022-08-09 11:45:40</time></sub>
 - [#103 iPhoneX 安全区域](https://github.com/xiaotiandada/blog/issues/103) `CSS,iPhone` <sub><time datetime="2022-07-15 15:54:28">2022-07-15 15:54:28</time></sub>
 - [#117 Three.js](https://github.com/xiaotiandada/blog/issues/117) `React,Three` <sub><time datetime="2022-07-13 16:44:21">2022-07-13 16:44:21</time></sub>
 
@@ -57,7 +58,7 @@ My personal blog using issues and GitHub Actions
 - [#77 Snabbdom example](https://github.com/xiaotiandada/blog/issues/77) 
 - [#76 HackMD 打字动画](https://github.com/xiaotiandada/blog/issues/76) 
 - [#75 Github Actions](https://github.com/xiaotiandada/blog/issues/75) 
-- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,github`
+- [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,Top,github`
 - [#73 前端下载 Markdown File](https://github.com/xiaotiandada/blog/issues/73) 
 - [#72 剧本杀](https://github.com/xiaotiandada/blog/issues/72) `娱乐`
 - [#71 Promise的源码实现](https://github.com/xiaotiandada/blog/issues/71) 
