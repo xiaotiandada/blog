@@ -7,11 +7,11 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript` <sub><time datetime="2022-09-02 03:46:52">2022-09-02 03:46:52</time></sub>
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top` <sub><time datetime="2022-08-31 03:04:25">2022-08-31 03:04:25</time></sub>
 - [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,Top,github` <sub><time datetime="2022-08-25 23:07:58">2022-08-25 23:07:58</time></sub>
 - [#118 node.js 文件操作](https://github.com/xiaotiandada/blog/issues/118) `nodejs` <sub><time datetime="2022-08-24 14:46:58">2022-08-24 14:46:58</time></sub>
 - [#103 iPhoneX 安全区域](https://github.com/xiaotiandada/blog/issues/103) `CSS,iPhone` <sub><time datetime="2022-07-15 15:54:28">2022-07-15 15:54:28</time></sub>
-- [#117 Three.js](https://github.com/xiaotiandada/blog/issues/117) `React,Three` <sub><time datetime="2022-07-13 16:44:21">2022-07-13 16:44:21</time></sub>
 
 ## Article  📄 
 - [#118 node.js 文件操作](https://github.com/xiaotiandada/blog/issues/118) `nodejs`
