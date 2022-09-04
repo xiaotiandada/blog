@@ -2,6 +2,13 @@
 
 
 
+---
+
+- https://github.com/mqyqingfeng/Blog/issues/221
+- https://www.jianshu.com/u/4653bb9f8dd7
+
+
+
 ## 映射类型
 
 ### 只读 冻结
@@ -113,3 +120,29 @@ const enum Month {
 4. E F 可以吧任意 number 赋值给枚举类型，取值可以超出枚举成员定义
 5. 两种不同枚举类型不可以比较
 6. 字符串枚举取值只能是枚举成员类型
+
+
+
+### Interface
+
+- https://www.jianshu.com/p/436aa7112b56
+- https://www.jianshu.com/p/63169c463500
+
+**函数重载**(要把最容易匹配的写在最前面)
+
+```ts
+function add8(...rest: number[]): number
+function add8(...rest: string[]): string
+function add8(...rest: any[]): any {
+  let first = rest[0];
+  if (typeof first === 'string'){
+    return rest.join('')
+  }
+  if (typeof first === 'number') {
+    return rest.reduce((pre, cur) => pre + cur)
+  }
+}
+console.log(add8(1, 2, 3))// 6
+console.log(add8('a', 'b', 'c'))// abc
+```
+
