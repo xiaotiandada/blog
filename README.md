@@ -8,7 +8,7 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
-- [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top` <sub><time datetime="2022-09-07 02:54:07">2022-09-07 02:54:07</time></sub>
+- [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top` <sub><time datetime="2022-09-07 02:56:34">2022-09-07 02:56:34</time></sub>
 - [#119 图片压缩](https://github.com/xiaotiandada/blog/issues/119) `nodejs` <sub><time datetime="2022-09-02 15:39:38">2022-09-02 15:39:38</time></sub>
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top` <sub><time datetime="2022-08-31 03:04:25">2022-08-31 03:04:25</time></sub>
 - [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,Top,github` <sub><time datetime="2022-08-25 23:07:58">2022-08-25 23:07:58</time></sub>
