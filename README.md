@@ -3,12 +3,13 @@ My personal blog using issues and GitHub Actions
 
 ## Top 👍 
 - [#96 React](https://github.com/xiaotiandada/blog/issues/96) `React,Top`
+- [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top`
 - [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,Top,github`
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top` <sub><time datetime="2022-09-07 02:54:07">2022-09-07 02:54:07</time></sub>
 - [#119 图片压缩](https://github.com/xiaotiandada/blog/issues/119) `nodejs` <sub><time datetime="2022-09-02 15:39:38">2022-09-02 15:39:38</time></sub>
-- [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript` <sub><time datetime="2022-09-02 03:46:52">2022-09-02 03:46:52</time></sub>
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top` <sub><time datetime="2022-08-31 03:04:25">2022-08-31 03:04:25</time></sub>
 - [#74 Issues 自动生成 Markdown 目录](https://github.com/xiaotiandada/blog/issues/74) `nodejs,TypeScript,Top,github` <sub><time datetime="2022-08-25 23:07:58">2022-08-25 23:07:58</time></sub>
 - [#118 node.js 文件操作](https://github.com/xiaotiandada/blog/issues/118) `nodejs` <sub><time datetime="2022-08-24 14:46:58">2022-08-24 14:46:58</time></sub>
@@ -38,7 +39,7 @@ My personal blog using issues and GitHub Actions
 - [#98 Keyboard API](https://github.com/xiaotiandada/blog/issues/98) `web`
 - [#97 Fullscreen API](https://github.com/xiaotiandada/blog/issues/97) `web`
 - [#96 React](https://github.com/xiaotiandada/blog/issues/96) `React,Top`
-- [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript`
+- [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top`
 - [#94 UI Swap](https://github.com/xiaotiandada/blog/issues/94) `CSS,UI`
 - [#93 Git 删除敏感数据](https://github.com/xiaotiandada/blog/issues/93) `Git`
 - [#92 Uniswap Info](https://github.com/xiaotiandada/blog/issues/92) `GraphQL,Uniswap`
