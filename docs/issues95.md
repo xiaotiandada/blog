@@ -1,18 +1,17 @@
+<!-- TypeScript -->
+
 - https://www.typescriptlang.org/play
-
-
 
 ---
 
 - https://ts.xcatliu.com/
 - https://github.com/mqyqingfeng/Blog/issues/221
 - https://www.jianshu.com/u/4653bb9f8dd7
+- https://pro.ant.design/zh-CN/docs/type-script
 
+### 映射类型
 
-
-## 映射类型
-
-### 只读 冻结
+#### 只读 冻结
 
 - https://github.com/remix-run/history/blob/dev/packages/history/index.ts#L320-L322
 - https://github.com/Microsoft/TypeScript/blob/0a535f0bf7193741e6b4acf5b7dfea88e2d4beca/lib/lib.d.ts#L1379-L1405
@@ -20,23 +19,20 @@
 - https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
 - https://www.fullstackbb.com/typescript/readonly-in-typescript/
 
-
 ```ts
 /**
  * Make all properties in T readonly
  */
 type Readonly<T> = {
-    readonly [P in keyof T]: T[P];
-};
+  readonly [P in keyof T]: T[P]
+}
 
 const readOnly: <T>(obj: T) => Readonly<T> = __DEV__
   ? (obj) => Object.freeze(obj)
-  : (obj) => obj;
+  : (obj) => obj
 
-readOnly<Location>({ })
+readOnly<Location>({})
 ```
-
-
 
 ![image-20220901023402916](https://i.imgur.com/a1JN7TK.png)
 
@@ -47,38 +43,38 @@ readOnly<Location>({ })
 ```ts
 // 数字枚举
 enum Role {
-    Reporter,
-    Developer,
-    Owner,
-    Guest
+  Reporter,
+  Developer,
+  Owner,
+  Guest,
 }
 
 // 字符串枚举
 enum Message {
-    Success = "成功",
-    Fail = "失败"
+  Success = '成功',
+  Fail = '失败',
 }
 
 // 异构枚举
 enum Answer {
-    N,
-    Y = "YES"
+  N,
+  Y = 'YES',
 }
 
 // 数字枚举
 enum Char {
-  	// const 常量枚举
-  	// 1. 没有初始值的情况
-  	// 2. 对已有枚举成员的引用
-  	// 3. 常量的表达式
-  	// 常量枚举成员会在编译时计算出结果，已常量的形式出现在运行环境
-    a,
-    b = Char.a,
-    c = 1 + 3,
-  	// computed 需要被计算的枚举成员，非常量的表达式。不会在编译阶段计算，保留在执行阶段
-  	// computed 枚举成员后面一定需要被赋予一个初始值，不然报错 "Enum member must have initializer.(1061)"
-    d = Math.random(),
-    e = '123'.length
+  // const 常量枚举
+  // 1. 没有初始值的情况
+  // 2. 对已有枚举成员的引用
+  // 3. 常量的表达式
+  // 常量枚举成员会在编译时计算出结果，已常量的形式出现在运行环境
+  a,
+  b = Char.a,
+  c = 1 + 3,
+  // computed 需要被计算的枚举成员，非常量的表达式。不会在编译阶段计算，保留在执行阶段
+  // computed 枚举成员后面一定需要被赋予一个初始值，不然报错 "Enum member must have initializer.(1061)"
+  d = Math.random(),
+  e = '123'.length,
 }
 
 console.log(Role)
@@ -89,21 +85,17 @@ console.log(Answer)
 // 编译阶段会被移除
 // 当我们不需要一个对象而需要对象值的时候
 const enum Month {
-    Jan,
-    Feb,
-    Mar
+  Jan,
+  Feb,
+  Mar,
 }
 ```
-
-
 
 **数字枚举**
 
 ![image-20220902032102718](https://i.imgur.com/4twVIPa.png)
 
->  “反向映射 枚举的实现原理”
-
-
+> “反向映射 枚举的实现原理”
 
 字符串枚举
 
@@ -122,8 +114,6 @@ const enum Month {
 5. 两种不同枚举类型不可以比较
 6. 字符串枚举取值只能是枚举成员类型
 
-
-
 ### Interface
 
 - https://www.jianshu.com/p/436aa7112b56
@@ -131,39 +121,40 @@ const enum Month {
 
 接口可以用来约束对象，函数，以及类的结构和类型，这是一种代码协作的契约
 
- **对象类型接口**
+**对象类型接口**
 
 ```ts
 interface List {
- readonly id: number; //接口返回的id
- name: string;
- // [x: string]: any;
- age?: number;
+  readonly id: number //接口返回的id
+  name: string
+  // [x: string]: any;
+  age?: number
 }
 interface Result {
- data: List[];
+  data: List[]
 }
-function render(result: Result){
- result.data.forEach(element => {
-  console.log(element.id, element.name)
-  if(element.age){ //age?: number;
-   console.log(element.age)
-  }
- });
+function render(result: Result) {
+  result.data.forEach((element) => {
+    console.log(element.id, element.name)
+    if (element.age) {
+      //age?: number;
+      console.log(element.age)
+    }
+  })
 }
 let result = {
- data: [
-  // 不会报错，因为ts采用了鸭式变形发，这是一种动态语言类型风格
-  // 我们传入的对象只要满足接口的必要条件，就是被允许的，即使传入多余的字段也可以通过类型检测
-  // 但是如果我们传入字面量的话，就会类型检查
-  // 绕过类型检查一共三种方法
-  // 1，直接传入result
-  // 2，使用类型断言
-  // 3，使用字符串索引签名 [x: string]: any;
-  // (用任意的字符串索引List，可以得到任意的结果，这样List就可以支持多个属性了)          
-  { id: 1, name: 'a', sex: 'male' },
-  { id: 2, name: 'b', age: 18 }
- ]
+  data: [
+    // 不会报错，因为ts采用了鸭式变形发，这是一种动态语言类型风格
+    // 我们传入的对象只要满足接口的必要条件，就是被允许的，即使传入多余的字段也可以通过类型检测
+    // 但是如果我们传入字面量的话，就会类型检查
+    // 绕过类型检查一共三种方法
+    // 1，直接传入result
+    // 2，使用类型断言
+    // 3，使用字符串索引签名 [x: string]: any;
+    // (用任意的字符串索引List，可以得到任意的结果，这样List就可以支持多个属性了)
+    { id: 1, name: 'a', sex: 'male' },
+    { id: 2, name: 'b', age: 18 },
+  ],
 }
 render(result)
 
@@ -184,52 +175,49 @@ render(result)
 // 用任意的数字去索引StringArray都会得到一个string
 // 这就相当于声明了一个字符串的数组
 interface StringArray {
-
-[index: number]: string;
-
+  [index: number]: string
 }
 let chars: StringArray = ['a', 'b']
 // 用任意的字符串去索引Names得到的结果都是string
 // 这样声明之后，我们就不能声明一个number的成员了
 interface Names {
+  [x: string]: string
 
-[x: string]: string;
-
- // y: number // 这样是不被允许的，因为可以使用数字索引
- [y: number]: string; //这样数字和字符串都可以了，数字签名的返回值一定要是string类型的子类型
+  // y: number // 这样是不被允许的，因为可以使用数字索引
+  [y: number]: string //这样数字和字符串都可以了，数字签名的返回值一定要是string类型的子类型
 }
 ```
 
-  **函数类型接口**
+**函数类型接口**
 
 ```ts
 //add11这两种方式的定义是等价的
 let add11: (x: number, y: number) => number
 interface Add11 {
- (x: number, y: number): number
+  (x: number, y: number): number
 }
 type Add2 = (x: number, y: number) => number
 let add2: Add2 = (a, b) => a + b
 //混合类型接口：一个接口既可以定义一个函数，也可以像对象一样拥有属性和方法
 interface Lib {
- (): void; //首先Lib是一个函数，没有返回值，没有参数
- version: string;
- doSomething(): void;
+  (): void //首先Lib是一个函数，没有返回值，没有参数
+  version: string
+  doSomething(): void
 }
 //这样会暴露一个全局变量lib，需要封装getLib
 // let lib: Lib = (() => {}) as Lib
 // lib.version = 'v.1.0';
 // lib.doSomething = () => {}
 function getLib() {
- let lib: Lib = (() => {}) as Lib
- lib.version = 'v.1.0';
- lib.doSomething = () => {}
- return lib
+  let lib: Lib = (() => {}) as Lib
+  lib.version = 'v.1.0'
+  lib.doSomething = () => {}
+  return lib
 }
-let lib1 = getLib();
-lib1();
-lib1.doSomething();
-let lib2 = getLib();
+let lib1 = getLib()
+lib1()
+lib1.doSomething()
+let lib2 = getLib()
 ```
 
 > 从 https://www.jianshu.com/p/436aa7112b56 复制
@@ -240,16 +228,16 @@ let lib2 = getLib();
 function add8(...rest: number[]): number
 function add8(...rest: string[]): string
 function add8(...rest: any[]): any {
-  let first = rest[0];
-  if (typeof first === 'string'){
+  let first = rest[0]
+  if (typeof first === 'string') {
     return rest.join('')
   }
   if (typeof first === 'number') {
     return rest.reduce((pre, cur) => pre + cur)
   }
 }
-console.log(add8(1, 2, 3))// 6
-console.log(add8('a', 'b', 'c'))// abc
+console.log(add8(1, 2, 3)) // 6
+console.log(add8('a', 'b', 'c')) // abc
 ```
 
 ### Class
@@ -265,27 +253,27 @@ console.log(add8('a', 'b', 'c'))// abc
 
 ```ts
 class Dog {
-  constructor(name: string){
-     this.name = name
-   }
-   name: string
-   run() {}
-   readonly legs: number = 4;
-   static food: string = 'bones';
+  constructor(name: string) {
+    this.name = name
+  }
+  name: string
+  run() {}
+  readonly legs: number = 4
+  static food: string = 'bones'
 }
 // 类的继承
 class Husky extends Dog {
-    constructor(name: string, public color: string) {
-      super(name)
-      this.color = color
-    }
-    // color: string
+  constructor(name: string, public color: string) {
+    super(name)
+    this.color = color
+  }
+  // color: string
 }
 ```
 
-**成员修饰符，这是ts对js的一种扩展**
+**成员修饰符，这是 ts 对 js 的一种扩展**
 
-public：公有成员，类的默认属性都是public，对所有人都是可见的
+public：公有成员，类的默认属性都是 public，对所有人都是可见的
 private：私有成员，只能在类的本身被调用，而不能被类的实例调用，也不能被子类调用
 private contructor 给构造函数设置：这个类既不能实例化也不能被继承
 protected: 受保护成员，只能在类和子类中访问，而不能在类的实例中访问
@@ -296,7 +284,7 @@ static：类的静态成员，类的静态成员只能通过类名来调用，�
 除了类的成员可以添加修饰符之外，构造函数的参数也可以添加修饰符
 作用：自动的将参数变成了实例的属性,这样我们就能省略在类中的定义了
 
-**抽象类与多态 （TS对JS的扩展）**
+**抽象类与多态 （TS 对 JS 的扩展）**
 
 抽象类:
 
@@ -310,64 +298,239 @@ static：类的静态成员，类的静态成员只能通过类名来调用，�
 
 ```ts
 abstract class Animal {
-    eat() {
-        console.log('eat')
-    }
-    //抽象方法的好处：明确的知道子类有自己的实现，父类就不需要实现了
-    abstract sleep(): void
+  eat() {
+    console.log('eat')
+  }
+  //抽象方法的好处：明确的知道子类有自己的实现，父类就不需要实现了
+  abstract sleep(): void
 }
 
 class Dog extends Animal {
-    constructor(name: string) {
-        super()
-        this.name = name
-    }
-    name: string
-    run() {}
-    sleep() {
-        console.log('dog sleep')
-    }
+  constructor(name: string) {
+    super()
+    this.name = name
+  }
+  name: string
+  run() {}
+  sleep() {
+    console.log('dog sleep')
+  }
 }
 let dog = new Dog('wangwang')
-dog.eat();
+dog.eat()
 
 class Cat extends Animal {
-    sleep() {
-        console.log('cat sleep')
-    }
+  sleep() {
+    console.log('cat sleep')
+  }
 }
-let cat = new Cat();
+let cat = new Cat()
 
 let animal: Animal[] = [dog, cat]
-animal.forEach(i => {
-    i.sleep() //这个地方就实现了多态
+animal.forEach((i) => {
+  i.sleep() //这个地方就实现了多态
 })
 ```
 
-**this类型（TS特殊类型）**
+**this 类型（TS 特殊类型）**
 
 1. 方便的实现链式调用
-2. 在继承的时候this类型也可以表现出多态，this既可以是父类型也可以是子类型
+2. 在继承的时候 this 类型也可以表现出多态，this 既可以是父类型也可以是子类型
 
 ```ts
 class WorkFlow {
-    sleep1() {
-        return this
-    }
-    sleep2() {
-        return this
-    }
+  sleep1() {
+    return this
+  }
+  sleep2() {
+    return this
+  }
 }
-new WorkFlow().sleep1().sleep2()// 这样就实现了方法的链式调用
+new WorkFlow().sleep1().sleep2() // 这样就实现了方法的链式调用
 
 class MyFlow extends WorkFlow {
-    next() {
-        return this
-    }
+  next() {
+    return this
+  }
 }
 new MyFlow().next().sleep1().next().sleep2() // 多态
 ```
 
-
-
 > 从 https://www.jianshu.com/p/55e4b53052d7 复制
+
+
+
+### Interface
+
+- https://juejin.cn/post/6914213447169376263
+- https://1991421.cn/2020/01/30/9b18a5df/
+
+![image-20220921005035236](https://i.imgur.com/4AzqsXY.png)
+
+### 泛型
+
+- https://www.jianshu.com/p/43017c646b74
+
+泛型：不预先确定的数据类型，具体的类型在使用的时候才能确定。
+
+![image-20220921010549577](https://i.imgur.com/thUBFGT.png)
+
+
+
+**1. 很多时候我们希望一个函数或者一个类可以支持多种数据类型，有很大的灵活性**
+**2.泛型：不预先确定的数据类型，具体的类型在使用的时候才能确定**
+**3.泛型好处**
+a. 函数和类可以支持多种类型，增强程序的扩展性；
+b. 不必写多条函数重载，冗余的联合类型声明，增强代码可读性；
+c. 灵活的控制了类型之间的约束；
+
+#### 一 泛型函数与泛型接口
+
+```ts
+// 一个打印函数
+function log(value: string) {
+    console.log(value);
+    return value;
+}
+// 希望上面的打印函数可以接收一个字符串数组
+// 函数重载
+function log(value: string): string;
+function log(value: string[]): string[];
+function log(value: any) {
+    console.log(value);
+    return value;
+}
+// 联合类型
+function log(value: string | string[]) {
+    console.log(value);
+    return value;
+}
+// 希望log可以接收任意类型
+// any类型（问题：丢失了类型之间的关系，它忽略了输入的类型和返回的类型必须是一致的）
+function log(value: any) {
+    console.log(value);
+    return value;
+}
+```
+
+使用泛型改造log函数
+
+```ts
+// 泛型函数
+// 类型T不需要预先指定，就相当于any类型
+// 可以保存输入参数和返回值类型是一致的
+function log<T>(value: T): T {
+    console.log(value);
+    return value;
+}
+// 两种调用方式
+log<string[]>(['1','2']);
+// 利用TS的类型推断，省略类型的参数
+//推荐这种方式
+log(['1','2']);
+
+// 利用泛型定义一个函数类型
+// type 类型别名
+type Log = <T>(value: T) => T;
+// 泛型函数的实现
+let myLog: Log = log
+
+// 泛型接口 (和类型别名的定义是完全等价的)
+// 泛型紧紧约束了一个函数，也可以约束接口的其它成员
+interface Log1 {
+    <T>(value: T): T
+}
+// 这样接口的所有成员都受到了泛型的约束了
+// 当泛型约束了整个接口之后，在实现的时候必须指定一个类型
+interface Log2<T> {
+    (value: T): T
+}
+// 必须指定类型，mylog2的参数只能是number
+let myLog2: Log2<number> = log
+// 设置默认值了，实现的时候就不需要必须指定一个类型了
+interface Log2<T = string> {
+    (value: T): T
+}
+let myLog3: Log2 = log
+log('2')
+```
+
+#### 二 泛型类与泛型约束
+
+```ts
+// 定义一个泛型类（<T>放在Log后面，约束类的所有成员）
+// 泛型不能应用于类的静态成员
+class Log<T> {
+    run(value: T) {
+        console.log(value);
+        return value;
+    }
+}
+// 实例化Log类,实例的方法将会受到泛型的约束
+let log = new Log<number>()
+log.run(1)
+// 实例化的时候也可以不传入参数,不指定参数的时候value就可以是任意值
+let log1 = new Log()
+log1.run({a:1})
+
+
+// 泛型约束，
+// 希望打印出参数和参数的属性
+interface LogLength {
+    length: number;
+}
+function log3<T extends LogLength>(value: T): T {
+    // 不存在length属性，需要预定义一个接口,T继承LogLength就好使了
+    // 现在T就受到了一定的约束，就不是任意类型都可以传入了，输入的参数必须具有length属性
+    console.log(value, value.length);
+    return value;
+}
+log3([1])
+```
+
+### 类型检查机制
+
+- https://www.tslang.cn/docs/handbook/type-compatibility.html
+
+![image-20220921010847495](https://i.imgur.com/PJnKu7L.png)
+
+![image-20220921010911801](https://i.imgur.com/Io9jXGZ.png)
+
+```ts
+// "strictNullChecks": false
+let b = [1, null]
+```
+
+![image-20220921011310563](https://i.imgur.com/oyEFPyN.png)
+
+<img src="https://i.imgur.com/NNdN1js.png" alt="image-20220921011507892" style="zoom:50%;" />
+
+<img src="https://i.imgur.com/UK25Cst.png" alt="image-20220921011846702" style="zoom:50%;" />
+
+<img src="https://i.imgur.com/M2A2FWT.jpg" alt="image-20220921011959680" style="zoom:33%;" />
+
+<img src="https://i.imgur.com/bwrnq6k.png" alt="image-20220921012047650" style="zoom: 50%;" />
+
+<img src="https://i.imgur.com/1ffZD1U.png" alt="image-20220921012145329" style="zoom:50%;" />
+
+<img src="https://i.imgur.com/07yM7Cy.jpg" alt="image-20220921012300481" style="zoom:33%;" />
+
+<img src="https://i.imgur.com/kr2RxEe.png" alt="image-20220921012338064" style="zoom: 50%;" />
+
+```ts
+"strictFunctionTypes": false
+```
+
+![image-20220921012406429](https://i.imgur.com/bhA1Doe.jpg)
+
+![image-20220921012543954](https://i.imgur.com/rdLiv6Q.png)
+
+<img src="https://i.imgur.com/Opz0rCq.png" alt="image-20220921012657153" style="zoom: 50%;" />
+
+<img src="https://i.imgur.com/e9NYgsB.png" alt="image-20220921012931085" style="zoom: 50%;" />
+
+<img src="https://i.imgur.com/u5CIbz1.png" alt="image-20220921012908231" style="zoom: 50%;" />
+
+<img src="https://i.imgur.com/8qJz7gZ.png" alt="image-20220921013030736" style="zoom: 50%;" />
+
+### 高级类型
