@@ -8,6 +8,7 @@
 - https://github.com/mqyqingfeng/Blog/issues/221
 - https://www.jianshu.com/u/4653bb9f8dd7
 - https://pro.ant.design/zh-CN/docs/type-script
+- https://github.com/Jayee-Jiayi-Fu/gitbook-typescript-notes
 
 ### 映射类型
 
@@ -534,3 +535,36 @@ let b = [1, null]
 <img src="https://i.imgur.com/8qJz7gZ.png" alt="image-20220921013030736" style="zoom: 50%;" />
 
 ### 高级类型
+
+#### 交叉类型
+
+#### 联合类型
+
+![image-20220922004300785](https://i.imgur.com/GfwGWTb.png)
+
+![image-20220922004326972](https://i.imgur.com/ITtU7Sq.png)
+
+#### 索引类型
+
+![image-20220922005142106](https://i.imgur.com/ZirDGvW.png)
+
+#### 映射类型
+
+- https://zhuanlan.zhihu.com/p/45249773
+
+Readonly， Partial和 Pick是同态的，但 Record不是。 因为 Record并不需要输入类型来拷贝属性，所以它不属于同态：
+
+非同态类型本质上会创建新的属性，因此它们不会从它处拷贝属性修饰符。
+
+![image-20220922010138598](https://i.imgur.com/ELsfsVo.png)
+
+#### 条件类型
+
+- https://zhuanlan.zhihu.com/p/40311981
+- https://juejin.cn/post/6844903977461514254#heading-4
+- https://zhuanlan.zhihu.com/p/20862787
+- https://www.jiyik.com/tm/xwzj/web_1201.html
+
+![image-20220922012001540](https://i.imgur.com/tX4ozZc.png)
+
+![image-20220922011844661](https://i.imgur.com/6QtvIkl.png)
