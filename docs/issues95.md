@@ -658,3 +658,48 @@ Readonly， Partial和 Pick是同态的，但 Record不是。 因为 Record并�
 ![image-20220926021326785](https://i.imgur.com/8N4mJjZ.jpg)
 
 ![image-20220926021553691](https://i.imgur.com/MgEGHv3.jpg)
+
+### 编译工具
+
+- https://www.npmjs.com/package/ts-loader
+
+- https://github.com/TypeStrong/fork-ts-checker-webpack-plugin#readme
+- https://www.npmjs.com/package/awesome-typescript-loader
+
+```js
+// ts-loader
+options: {
+  transpileOnly: true
+}
+
+
+plugins: [new ForkTsCheckerWebpackPlugin()]
+```
+
+![image-20220926123531165](https://i.imgur.com/fTnNKt5.jpg)
+
+![image-20220926123607222](https://i.imgur.com/DYtD0ur.png)
+
+![image-20220926123747141](https://i.imgur.com/iLMtilS.png)
+
+>  四种语法在 babel 编译中会报错
+
+![image-20220926124256451](https://i.imgur.com/9xa19sm.png)
+
+![image-20220926124353706](https://i.imgur.com/3gobVpz.jpg)
+
+### 代码检测工具
+
+![image-20220926145401226](https://i.imgur.com/rVmNhe6.jpg)
+
+![image-20220926145433391](https://i.imgur.com/vk4tlnT.jpg)
+
+![image-20220926145539655](https://i.imgur.com/Vd7BN1x.jpg)
+
+![](https://i.imgur.com/IBv2Z26.jpg)
+
+![image-20220926151018383](https://i.imgur.com/yZ2mQ0n.jpg)
+
+### Jest 单元测试
+
+![image-20220926151152845](https://i.imgur.com/XfiLq0W.png)
