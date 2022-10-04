@@ -703,3 +703,17 @@ plugins: [new ForkTsCheckerWebpackPlugin()]
 ### Jest 单元测试
 
 ![image-20220926151152845](https://i.imgur.com/XfiLq0W.png)
+
+
+
+### Other
+
+![image-20221004185515982](https://i.imgur.com/UDsJHgU.jpg)
+
+![image-20221004210645792](https://i.imgur.com/2qQNITJ.jpg)
+
+![image-20221004210853153](https://i.imgur.com/FrykSNc.jpg)
+
+![image-20221004210903238](https://i.imgur.com/H4Y21Ko.png)
+
+![image-20221004210812204](https://i.imgur.com/3pkdPUQ.jpg)
