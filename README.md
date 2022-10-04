@@ -8,8 +8,8 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#17 Echarts](https://github.com/xiaotiandada/blog/issues/17)  <sub><time datetime="2022-10-05 03:11:05">2022-10-05 03:11:05</time></sub>
 - [#18 React showGithub](https://github.com/xiaotiandada/blog/issues/18)  <sub><time datetime="2022-10-05 03:09:33">2022-10-05 03:09:33</time></sub>
-- [#17  Echarts系列之复制粘贴大法](https://github.com/xiaotiandada/blog/issues/17)  <sub><time datetime="2022-10-05 03:00:27">2022-10-05 03:00:27</time></sub>
 - [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-10-05 02:59:30">2022-10-05 02:59:30</time></sub>
 - [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top` <sub><time datetime="2022-10-04 21:10:33">2022-10-04 21:10:33</time></sub>
 - [#122 strapi](https://github.com/xiaotiandada/blog/issues/122)  <sub><time datetime="2022-10-02 02:36:25">2022-10-02 02:36:25</time></sub>
@@ -120,7 +120,7 @@ My personal blog using issues and GitHub Actions
 - [#20 ShuffleanArray](https://github.com/xiaotiandada/blog/issues/20) 
 - [#19 CodeNote](https://github.com/xiaotiandada/blog/issues/19) 
 - [#18 React showGithub](https://github.com/xiaotiandada/blog/issues/18) 
-- [#17  Echarts系列之复制粘贴大法](https://github.com/xiaotiandada/blog/issues/17) 
+- [#17 Echarts](https://github.com/xiaotiandada/blog/issues/17) 
 - [#16 React案列](https://github.com/xiaotiandada/blog/issues/16) 
 - [#15 Electron](https://github.com/xiaotiandada/blog/issues/15) `electron`
 - [#14 mpvue外卖小程序](https://github.com/xiaotiandada/blog/issues/14) `微信小程序`
