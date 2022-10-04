@@ -8,11 +8,11 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-10-04 21:11:31">2022-10-04 21:11:31</time></sub>
 - [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top` <sub><time datetime="2022-10-04 21:10:33">2022-10-04 21:10:33</time></sub>
 - [#122 strapi](https://github.com/xiaotiandada/blog/issues/122)  <sub><time datetime="2022-10-02 02:36:25">2022-10-02 02:36:25</time></sub>
 - [#121 D3](https://github.com/xiaotiandada/blog/issues/121)  <sub><time datetime="2022-09-26 23:41:57">2022-09-26 23:41:57</time></sub>
 - [#120 tailwindcss](https://github.com/xiaotiandada/blog/issues/120)  <sub><time datetime="2022-09-21 22:20:30">2022-09-21 22:20:30</time></sub>
-- [#119 图片压缩](https://github.com/xiaotiandada/blog/issues/119) `nodejs` <sub><time datetime="2022-09-02 15:39:38">2022-09-02 15:39:38</time></sub>
 
 ## Article  📄 
 - [#122 strapi](https://github.com/xiaotiandada/blog/issues/122) 
@@ -44,7 +44,7 @@ My personal blog using issues and GitHub Actions
 - [#96 React](https://github.com/xiaotiandada/blog/issues/96) `React,Top`
 - [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top`
 - [#94 UI Swap](https://github.com/xiaotiandada/blog/issues/94) `CSS,UI`
-- [#93 Git 删除敏感数据](https://github.com/xiaotiandada/blog/issues/93) `Git`
+- [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git`
 - [#92 Uniswap Info](https://github.com/xiaotiandada/blog/issues/92) `GraphQL,Uniswap`
 - [#91 浏览器打开图片 URL 是显示还是下载](https://github.com/xiaotiandada/blog/issues/91) `OSS,浏览器`
 - [#90 Bit 使用](https://github.com/xiaotiandada/blog/issues/90) `React,Bit`
