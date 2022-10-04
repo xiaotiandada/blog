@@ -8,7 +8,7 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
-- [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-10-04 21:11:31">2022-10-04 21:11:31</time></sub>
+- [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-10-05 02:59:30">2022-10-05 02:59:30</time></sub>
 - [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top` <sub><time datetime="2022-10-04 21:10:33">2022-10-04 21:10:33</time></sub>
 - [#122 strapi](https://github.com/xiaotiandada/blog/issues/122)  <sub><time datetime="2022-10-02 02:36:25">2022-10-02 02:36:25</time></sub>
 - [#121 D3](https://github.com/xiaotiandada/blog/issues/121)  <sub><time datetime="2022-09-26 23:41:57">2022-09-26 23:41:57</time></sub>
