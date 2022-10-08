@@ -80,3 +80,45 @@ git log --oneline --all -n4 --graph
 
 ![image-20221005025208931](https://i.imgur.com/5mllTyI.png)
 
+#### .git
+
+##### HEAD
+
+整个仓库正在工作在那个分支上
+
+引用 指向 refs 信息 `ref: refs/heads/dev`
+
+![image-20221009002425592](https://i.imgur.com/pNmvncO.jpg)
+
+##### config
+
+本地相关的配置信息
+
+![image-20221009002534427](https://i.imgur.com/0VJNDFl.png)
+
+##### refs
+
+- heads 分支
+- tags 里程碑
+
+
+
+https://git-scm.com/docs/git-cat-file
+
+```bash
+git cat-file -t xxxxxxxxx
+# commit
+```
+
+**heads**
+
+![image-20221009003256723](https://i.imgur.com/msx8Ymv.jpg)
+
+**tag**
+
+![image-20221009003607241](https://i.imgur.com/ao9DlFN.jpg)
+
+##### objects
+
+![image-20221009004007204](https://i.imgur.com/2nkwuQx.jpg)
+
