@@ -1,11 +1,88 @@
-<img src="https://user-images.githubusercontent.com/24250627/130034290-08b1242c-7cf4-48be-a942-b505f354daa7.png" alt="image" style="width: 600px" />
+<!-- DAPP -->
 
----------------------------------   ---------------------------------
+- https://github.com/aragon/use-wallet/pull/122
+- https://guoyu.mirror.xyz/RD-xkpoxasAU7x5MIJmiCX4gll3Cs0pAd5iM258S1Ek
+- [chain-temp](https://github.com/xiaotiandada/chain-temp)
+- [create-eth-app](https://github.com/paulrberg/create-eth-app)
+- [useDapp](https://github.com/TrueFiEng/useDApp)
+- [useWallet](https://github.com/aragon/use-wallet)
+- https://github.com/xiaotiandada/blog/issues/46
 
-> 比较偏前端  Demo 都在 Repo 里面，想写的都在这里了 不想写的都在代码里面了
+### useDapp 连接其他网络正常读取合约数据
 
-- [Repo](https://github.com/xiaotiandada/chain-temp)
-- [Demo](https://chain-temp.vercel.app/)
+- https://github.com/TrueFiEng/useDApp/issues/725
+
+```ts
+useCalls(calls, { chainId: Goerli.chainId }) 
+```
+
+### 获取帐号 NFT
+
+- https://docs.alchemy.com/reference/getnfts
+
+**pageSize** integer
+
+String - 每页要返回的 NFT 数量。默认为 100。最大值为 100。 
+
+> 一定要做好分页处理
+
+**pageKey** string
+
+如果有更多结果可用，则会在响应中返回一个 pageKey。将 pageKey 作为参数传回以获取下一页结果。
+
+```ts
+import { Alchemy, GetNftsForOwnerOptions, OwnedNftsResponse } from 'alchemy-sdk'
+
+export type Writeable<T> = { -readonly [P in keyof T]: T[P] }
+
+/**
+ * Init Alchemy
+ * @returns
+ */
+const initAlchemy = (): Alchemy => {
+  const settings = {
+    apiKey: ALCHEMY_API_KEY,
+    network: ALCHEMY_NETWORK,
+  }
+
+  return new Alchemy(settings)
+}
+
+/**
+ * Get All NFT
+ * @param owner
+ * @returns
+ */
+const getAllNfts = async (owner: string): Promise<OwnedNftsResponse> => {
+  const alchemy = initAlchemy()
+  const nfts: Writeable<OwnedNftsResponse> = {
+    ownedNfts: [],
+    pageKey: undefined,
+    totalCount: 0,
+  }
+
+  const getNft = async (owner: string, options?: GetNftsForOwnerOptions) => {
+    const result = await alchemy.nft.getNftsForOwner(owner, {
+      // pageSize: 100,
+      ...options,
+    })
+
+    nfts.ownedNfts.push(...result.ownedNfts)
+    nfts.pageKey = result.pageKey
+    nfts.totalCount = result.totalCount
+
+    if (result?.pageKey) {
+      await getNft(owner, {
+        pageKey: result.pageKey,
+      })
+    }
+  }
+
+  await getNft(owner)
+
+  return nfts
+}
+```
 
 ### 前端
 
@@ -340,140 +417,3 @@ contract TokenFactory {
 - 查询 Mint 过的合约地址（list）
 
 Compile 之后会生成 typechain 文件方便前端用，也可以自己用第三方工具快速生成 DAPP 方法调用，传入 Contract Address 和ABI就好了
-
-
-
----
-
-# Ethereum
-
-Ethereum study notes
-
-
-学习资料
-- https://ethereum.org/
-- https://solidity.readthedocs.io/en/v0.6.6/introduction-to-smart-contracts.html
-- https://www.qikegu.com/docs/4733
-- https://www.trufflesuite.com/tutorials/pet-shop
--
-- https://docs.openzeppelin.com/learn/developing-smart-contracts
-
-
-**cryptozombies** 这个教程写的挺好的!!!
-- https://cryptozombies.io/
-- https://github.com/loomnetwork/cryptozombies-lesson-code
-
-简易的拍卖 rinkeby 测试网
-- https://xiaotiandada.github.io/ethereum/auction/client/
-
-
-## 总结(一)
-
-### 配置本地的开发环境以及遇到的坑
-
-首先看看这里 https://ethereum.org/
-
-然后开发可以参照这篇文章进行学习和实战 https://www.qikegu.com/docs/4733
-
-在``truffle init``的时候遇到一个connect x.x.x.x:443的错误
-
-官方给出来的答复是 GFW ``It's all GFW's fault, when i crossed GFW, everything work.`` [issues/2995](https://github.com/trufflesuite/truffle/issues/2995)
-
-我目前的解决方案是直接clone [repo](https://github.com/truffle-box/bare-box)然后一些基本的目录都有了,然后在继续参考教程跑流程
-
-## 总结(二)
-
-### 本地部署多个项目的合约无法成功
-
-本地执行 ``truffle compile`` 显示是成功的
-
-执行 ``truffle migrate`` 显示是最新的
-
-但是实际在 ``truffle console`` || ``truffle test`` 里面调用时错误的
-
-解决方案是 ``truffle migrate --reset`` 增加 ``--reset`` !!!
-
-看到一篇文章有写到这个问题 https://www.jianshu.com/p/42479ede6730 
-
-> 这个命令会执行所有migrations目录下的js文件。如果之前执行过truffle migrate命令，再次执行，只会部署新的js文件，如果没有新的js文件，不会起任何作用。如果使用--reset参数，则会重新的执行所有脚本的部署。truffle migrate --reset。
-
-## 总结(二)
-
-### 简单的计数器合约
-
-### 初始化项目
-
-因为本地``truffle init``有问题, 所以我这里采取``clone``的方式init, 具体步骤参考上文
-
-```bash
-git clone xxxxxx
-```
-
-然后替换名字
-
-```bash
-mv xxx counter
-```
-
-然后喜欢性的npm
-
-```bash
-npm init
-```
-
-
-
-### 新建计数器合约
-
-在``contracts``目录新建
-
-```bash
-touch Counter.sol
-pragma solidity >=0.4.21 <0.7.0;
-
-// 声明
-contract Counter {
-  // 声明计数器变量
-  uint256 counter;
-
-  // 部署时调用 初始化
-  constructor() public {
-    counter = 0;
-  }
-
-  // 增加方法
-  function increase() public {
-    counter += 1;
-  }
-
-  // 返回counter uint256是类型
-  function get() public view returns(uint256) {
-    return counter;
-  }
-
-}
-```
-
-### 编译、部署、测试合约
-
-部署的时候需要在``migrations``目录新建``2_deploy_contracts.js``前面需要加上序号
-
-执行需要 具体文档有写 https://www.qikegu.com/docs/4798
-
-```bash
-truffle compile
-
-truffle migrate
-
-truffle test
-```
-
-部署过程基本都大同小异(略过 不重复写了), 可以参考上文的资料进行部署
-
----
-
-⬆️  &nbsp;&nbsp;已落后
-
----
-
-使用 (Hardhat)(https://hardhat.org/guides/create-task.html)
