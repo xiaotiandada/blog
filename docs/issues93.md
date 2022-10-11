@@ -122,3 +122,18 @@ git cat-file -t xxxxxxxxx
 
 ![image-20221009004007204](https://i.imgur.com/2nkwuQx.jpg)
 
+
+
+![image-20221012032754696](https://i.imgur.com/YZXjOPj.jpg)
+
+![image-20221012033157323](https://i.imgur.com/KZ6D5FZ.png)
+
+![image-20221012033347515](https://i.imgur.com/MLE9udV.png)
+
+2 tree
+
+1 blob
+
+1 commit
+
+![image-20221012033515810](https://i.imgur.com/HVf2xfc.jpg)
