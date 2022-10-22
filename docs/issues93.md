@@ -8,7 +8,11 @@
 
 
 
-### Git
+### 创建模板仓库
+
+- https://docs.github.com/cn/repositories/creating-and-managing-repositories/creating-a-template-repository
+
+### Git 教程笔记
 
 ![image-20221004211342637](https://i.imgur.com/c78jXHN.png)
 
@@ -137,3 +141,66 @@ git cat-file -t xxxxxxxxx
 1 commit
 
 ![image-20221012033515810](https://i.imgur.com/HVf2xfc.jpg)
+
+
+
+#### 42丨GitHub都有哪些核心功能？
+
+- https://github.com/features
+- https://github.com/marketplace
+
+#### 43丨怎么快速淘到感兴趣的开源项目
+
+- https://docs.github.com/cn/search-github/getting-started-with-searching-on-github/about-searching-on-github
+- https://docs.github.com/cn/search-github/getting-started-with-searching-on-github/understanding-the-search-syntax
+- https://docs.github.com/cn/search-github/getting-started-with-searching-on-github/sorting-search-results
+
+Advanced search
+
+Cheat sheet
+
+```
+git 最好 学习 资料 in:readme
+
+git 最好 学习 资料 in:readme stars:>1000
+```
+
+#### 44丨怎样在GitHub上搭建个人博客
+
+- https://github.com/barryclark/jekyll-now
+
+#### 45丨开源项目怎么保证代码质量？
+
+- https://github.com/pulls
+
+
+
+- Code Review
+- Code CI
+
+#### 46丨为何需要组织类型的仓库？
+
+- https://github.com/settings/organizations
+
+#### 47丨创建团队的项目
+
+- https://github.com/new
+
+#### 48丨怎样选择适合自己团队的工作流？
+
+![image-20221022100802846](https://i.imgur.com/dZ7BYwd.png)
+
+![image-20221022100813755](https://i.imgur.com/xnL66DK.png)
+
+![image-20221022101033708](https://i.imgur.com/omVPcEi.png)
+
+![image-20221022101128975](https://i.imgur.com/m8zVz2s.png)
+
+![image-20221022101206695](https://i.imgur.com/439mAvv.png)
+
+![image-20221022101329362](https://i.imgur.com/lYpq2g0.png)
+
+![image-20221022101345705](https://i.imgur.com/2gVXFcW.png)
+
+#### 49丨如何挑选合适的分支集成策略？
+
