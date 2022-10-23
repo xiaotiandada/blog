@@ -204,3 +204,40 @@ git 最好 学习 资料 in:readme stars:>1000
 
 #### 49丨如何挑选合适的分支集成策略？
 
+- https://github.com/AmbrusStudio/launcher/network
+- https://github.com/xiaotiandada/cv/settings
+  - Pull Requests
+    - Allow merge commits 
+    - Allow squash merging 
+    - Allow rebase merging 
+
+**changeset**
+
+https://stackoverflow.com/questions/38648491/what-is-a-changeset-in-git
+
+**Merge**
+
+当前特性分支和主干分支不存在冲突，git 会自动合并帮我们创建一个 Merge commit
+
+**Squash** 
+
+当前特性分支不改变
+
+当前特性分支和主干分支最近的一个祖先，从祖先点开始当前分支变更的几个 commit ，把他们最后的变更集 changeset 挑出来，放在主干分支最新的 commit 上去创建一个新的记录
+
+1. 如果 commit 功能点不一样，就没必要合并
+
+**Rebase**
+
+当前特性分支不改变
+
+将当前特性分支的 commit 变更集 changeset 一个一个拧出来放在主干分支最新 commit 后面
+
+
+
+团队喜欢线性分支模式的情况下用 squash rebase 比较合适的
+
+
+
+#### 50丨启用issue跟踪需求和任务
+
