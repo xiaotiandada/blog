@@ -241,3 +241,90 @@ https://stackoverflow.com/questions/38648491/what-is-a-changeset-in-git
 
 #### 50丨启用issue跟踪需求和任务
 
+- https://github.com/vuejs/vue/issues
+- https://github.com/vuejs/vue/labels
+- https://github.com/vuejs/vue/milestones
+- https://github.com/vuejs/vue/tree/main/.github
+- https://github.com/xiaotiandada/cv/issues/templates/edit
+
+#### 51丨如何用project管理issue？
+
+- https://github.com/xiaotiandada/cv/projects
+
+#### 52丨项目内部怎么实施code review？
+
+Require a pull request before merging
+
+- https://github.com/xiaotiandada/cv/settings/branch_protection_rules/new
+
+#### 53丨团队协作时如何做多分支的集成？
+
+- PR
+  - Create a merge commit
+  - Squash and merge
+  - Rebase and merge
+- Resolve Confilcts
+
+
+
+Rebase and merge 网页手动解决冲突后提示 "This branch cannot be rebased due to conflicts"
+
+1. git rebase origin/master
+2. fix conflict
+3. ...
+4. git rebase --continue
+5. ...
+6. fix conflict
+7. git push -f origin/feature
+
+Rebase 后提示 "This branch has no conflicts with the base branch when rebasing"
+
+![image-20221025004807010](https://i.imgur.com/1rMfviA.png)
+
+
+
+一个 commit 多个头像？
+
+一个 author 一个 commit
+
+
+
+**7.9 Git 工具 - Rerere**
+
+- https://git-scm.com/book/en/v2/Git-Tools-Rerere
+- https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-Rerere
+
+
+
+...Todo
+
+#### 54丨怎样保证集成的质量？
+
+- https://github.com/marketplace/codecov
+
+- https://github.com/marketplace/travis-ci
+- https://github.com/marketplace/circleci
+- https://www.travis-ci.com/
+- https://about.codecov.io/
+
+
+
+分支保护
+
+- https://github.com/xiaotiandada/cv/settings/branch_protection_rules/new
+
+#### 55丨怎样把产品包发布到GitHub上？
+
+- https://github.com/xiaotiandada/cv/releases/new
+- CI Deploy
+
+#### 56丨怎么给项目增加详细的指导文档？
+
+- https://github.com/xiaotiandada/cv/wiki
+
+#### 57丨国内互联网企业为什么喜欢GitLab？
+
+- https://about.gitlab.com/
+
+#### 58丨GitLab有哪些核心的功能？
+
