@@ -42,3 +42,85 @@ Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，�
 
 #### 06丨初识webpack
 
+![image-20221026004230452](https://i.imgur.com/K9meybw.png)
+
+![image-20221026004300308](https://i.imgur.com/ZIC5Gb0.png)
+
+![image-20221026004329388](https://i.imgur.com/60lbgMA.png)
+
+只设定了 entry output
+
+#### 07丨环境搭建：安装webpack
+
+- NVM
+- Node.js
+- NPM
+
+
+
+```bash
+yarn init
+yarn add webpack webpack-cli -D
+
+./node_modules/.bin/webpack -v
+webpack: 5.74.0
+webpack-cli: 4.10.0
+webpack-dev-server not installed
+```
+
+#### 08丨webpack初体验：一个最简单的例子
+
+```bash
+'use strict'
+
+const path = require('path')
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
+  mode: 'production',
+}
+```
+
+```bash
+import { helloworld } from './helloworld'
+
+document.write(helloworld())
+```
+
+```bash
+export function helloworld() {
+  return 'Hello webpack'
+}
+```
+
+#### 09丨通过npm script运行webpack
+
+![image-20221026005943014](https://i.imgur.com/FdE982Y.png)
+
+```bash
+  "scripts": {
+    "build": "webpack"
+  },
+```
+
+#### 10丨webpack核心概念之entry用法
+
+Entry 用来指定 webpack 的打包入口
+
+![image-20221026010215258](https://i.imgur.com/stDzLZm.png)
+
+![image-20221026010255896](https://i.imgur.com/Dm6ipqN.png)
+
+#### 11丨webpack核心概念之output
+
+ Output 用来告诉 webpack 如何将编译后的文件输出到磁盘
+
+![image-20221026010419722](https://i.imgur.com/9Bx9rYa.png)
+
+![image-20221026010438954](https://i.imgur.com/MFUl2gm.png)
+
+#### 12丨webpack核心概念之loaders
