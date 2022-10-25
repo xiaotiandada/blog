@@ -1,3 +1,5 @@
+<!-- 算法数据结构 -->
+
 ## 栈
 
 - [codesandbox demo code](https://codesandbox.io/s/data-structures-and-algorithms-hbw4wf?file=/src/index.js)
@@ -1650,3 +1652,20 @@ _.shuffle([1,2,3,4,5,6,7,8,9,0,10,11])
 
 
 
+## Notes
+
+#### 01丨合格程序员的第一步：算法与数据结构
+
+#### 02丨如何事半功倍地学习算法与数据结构
+
+![image-20221025121239275](https://i.imgur.com/nOhOF8V.png)
+
+![image-20221025121248907](https://i.imgur.com/GD8Ux2y.png)
+
+![image-20221025121326408](https://i.imgur.com/QPiwfVb.png)
+
+![image-20221025121343374](https://i.imgur.com/KXTNiqZ.png)
+
+#### 03丨如何计算算法的复杂度
+
+![image-20221025121439304](https://i.imgur.com/IwQunD1.png)
