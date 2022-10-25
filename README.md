@@ -8,8 +8,8 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-10-26 00:39:29">2022-10-26 00:39:29</time></sub>
 - [#115 Webpack](https://github.com/xiaotiandada/blog/issues/115) `webpack,babel` <sub><time datetime="2022-10-25 12:08:28">2022-10-25 12:08:28</time></sub>
-- [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-10-25 11:53:43">2022-10-25 11:53:43</time></sub>
 - [#122 strapi](https://github.com/xiaotiandada/blog/issues/122)  <sub><time datetime="2022-10-14 00:33:51">2022-10-14 00:33:51</time></sub>
 - [#123 视频在 iPhone 上的 Safari 上内联播放（防止自动全屏）](https://github.com/xiaotiandada/blog/issues/123) `Safari` <sub><time datetime="2022-10-11 23:01:38">2022-10-11 23:01:38</time></sub>
 - [#82 DAPP](https://github.com/xiaotiandada/blog/issues/82) `Ethereum,BSC,Hardhat,Solidity,React,Contract` <sub><time datetime="2022-10-11 15:24:21">2022-10-11 15:24:21</time></sub>
