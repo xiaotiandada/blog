@@ -12,7 +12,11 @@
 
 - https://docs.github.com/cn/repositories/creating-and-managing-repositories/creating-a-template-repository
 
+
+
 ### Git 教程笔记
+
+#### 01丨课程综述
 
 ![image-20221004211342637](https://i.imgur.com/c78jXHN.png)
 
@@ -328,3 +332,85 @@ Rebase 后提示 "This branch has no conflicts with the base branch when rebasin
 
 #### 58丨GitLab有哪些核心的功能？
 
+- https://about.gitlab.com/devops-tools/
+- https://about.gitlab.com/stages-devops-lifecycle/
+- https://about.gitlab.com/topics/devops/
+
+
+
+GitLab
+
+- Merge requests
+
+Github
+
+- Pull Requests
+
+
+
+![Continuous integration](https://about.gitlab.com/_nuxt/image/cbdd4f.svg)
+
+#### 59丨GitLab上怎么做项目管理？
+
+- https://gitlab.com/groups/gitlab-org/-/issues
+- https://gitlab.com/groups/gitlab-org/-/epics?state=opened&page=1&sort=start_date_desc
+
+- Issues
+  - List
+  - Boards
+  - Labels
+  - Service Desk
+  - Milestones
+- Epics
+
+#### 60丨GitLab上怎么做code review？
+
+- https://gitlab.com/groups/gitlab-org/-/merge_requests
+
+
+
+**Settings**
+
+- Push Rules
+  - Restrict push operations for this project. [Learn more.](https://gitlab.com/help/user/project/repository/push_rules)
+- Protected Branches
+  - Keep stable branches secure and force developers to use merge requests. [What are protected branches?](https://gitlab.com/help/user/project/protected_branches)
+- ...
+
+#### 61丨GitLab上怎么保证集成的质量？
+
+- https://gitlab.com/gitlab-org/gitlab/-/blob/master/.gitlab-ci.yml
+- https://gitlab.com/gitlab-org/gitlab/-/pipelines
+- https://gitlab.com/gitlab-org/gitlab/-/pipelines/675919425#/
+
+#### 62丨怎么把应用部署到AWS上？
+
+- https://gitlab.com/gitlab-org/gitlab/-/pipelines
+- https://aws.amazon.com/cn/
+
+
+
+**Merge requests**
+
+- https://gitlab.com/xiaotiandada/gatsby/-/settings/merge_requests
+
+**Merge method**
+
+Determine what happens to the commit history when you merge a merge request. [How do they differ?](https://gitlab.com/help/user/project/merge_requests/methods/index.md)
+
+- [ ] **Merge commit**
+
+Every merge creates a merge commit.
+
+- [ ] **Merge commit with semi-linear history**
+
+Every merge creates a merge commit.
+Merging is only allowed when the source branch is up-to-date with its target.
+When semi-linear merge is not possible, the user is given the option to rebase.
+
+- [ ] **Fast-forward merge**
+
+No merge commits are created.
+Fast-forward merges only.
+When there is a merge conflict, the user is given the option to rebase.
+If merge trains are enabled, merging is only possible if the branch can be rebased without conflicts. [What are merge trains?](https://gitlab.com/help/ci/pipelines/merge_trains.md#enable-merge-trains)
