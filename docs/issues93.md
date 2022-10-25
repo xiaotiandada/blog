@@ -26,21 +26,54 @@
 
 ![image-20221004211501698](https://i.imgur.com/nGrdCQq.png)
 
+#### 02丨安装Git
+
+- https://git-scm.com/
+
+#### 03丨使用Git之前需要做的最小配置
+
+- https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE
+
+![image-20221026002810550](https://i.imgur.com/oEP46VB.png)
+
 ![image-20221004211724832](https://i.imgur.com/9VQvz1J.png)
 
+```bash
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+```
 
+#### 04丨创建第一个仓库并配置local用户信息
 
-#### commit
+- https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%8E%B7%E5%8F%96-Git-%E4%BB%93%E5%BA%93
+
+![image-20221026003033544](https://i.imgur.com/ADmKmbC.png)
+
+```bash
+git init
+
+git add *.c
+git add LICENSE
+git commit -m 'initial project version'
+```
+
+#### 05丨通过几次commit来认识工作区和暂存区
+
+![image-20221026003247798](https://i.imgur.com/CS3aKOf.png)
+
+**commit**
 
 ```bash
 git add .
 git add -u # update
+git status
 
+git commit -m "Add refering projects"
 
 # git commit -am"Add test"
 ```
 
-#### 文件重命名
+#### 06丨给文件重命名的简便方法
 
 ```bash
 git mv ./git/rename/readme ./git/rename/readme.md
@@ -58,7 +91,7 @@ Changes to be committed:
 
 ```
 
-#### log
+#### 07丨通过git log 查看版本演变历史
 
 - https://www.cnblogs.com/bellkosmos/p/5923439.html
 
@@ -87,6 +120,23 @@ git log --oneline --all -n4 --graph
 ```
 
 ![image-20221005025208931](https://i.imgur.com/5mllTyI.png)
+
+#### 08丨gitk：通过图形界面工具来查看版本历史
+
+- https://git-scm.com/docs/gitk
+- https://www.jianshu.com/p/01e4b27bd293
+
+#### 09丨探密
+
+
+
+
+
+
+
+
+
+
 
 #### .git
 
