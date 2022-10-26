@@ -124,3 +124,77 @@ Entry 用来指定 webpack 的打包入口
 ![image-20221026010438954](https://i.imgur.com/MFUl2gm.png)
 
 #### 12丨webpack核心概念之loaders
+
+![image-20221027011615046](https://i.imgur.com/Ex6dZ2O.png)
+
+![image-20221027014443748](https://i.imgur.com/lB2FLiA.png)
+
+![image-20221027014513796](https://i.imgur.com/fk2yBAi.png)
+
+#### 13丨webpack核心概念之plugins
+
+![image-20221027014824132](https://i.imgur.com/u20S2Lo.png)
+
+![image-20221027014901916](https://i.imgur.com/bS9ApY2.png)
+
+![image-20221027014933799](https://i.imgur.com/D5CvFoe.png)
+
+#### 14丨webpack核心概念之mode
+
+![image-20221027015011643](https://i.imgur.com/MR68IoN.png)
+
+![image-20221027015055654](https://i.imgur.com/6pS0RdL.png)
+
+#### 15丨解析ES6和React JSX
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+class Hello extends React.Component {
+  render() {
+    return <div>Hello {this.props.toWhat}</div>
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<Hello toWhat="World" />)
+```
+
+```js
+'use strict'
+
+const path = require('path')
+
+module.exports = {
+  entry: {
+    index: './src/index.js',
+    search: './src/search.js',
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js',
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ],
+  },
+}
+```
+
+```json
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}
+```
+
+#### 16丨解析CSS、Less和Sass
