@@ -197,4 +197,179 @@ module.exports = {
 }
 ```
 
+```json
+  "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
+```
+
+
+
 #### 16丨解析CSS、Less和Sass
+
+![image-20221027115129916](https://i.imgur.com/75b0phe.png)
+
+链式调用 从右到左
+
+![image-20221027115336207](https://i.imgur.com/pApCNrP.png)
+
+```js
+'use strict'
+
+const path = require('path')
+
+module.exports = {
+  entry: {
+    index: './src/index.js',
+    search: './src/search.js',
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js',
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.less$/i,
+        use: [
+          // compiles Less to CSS
+          'style-loader',
+          'css-loader',
+          'less-loader',
+        ],
+      },
+    ],
+  },
+}
+```
+
+#### 17丨解析图片和字体
+
+```js
+import img from './file.png';
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+file-loader 导入了，换了好几种字体都没成功...
+
+```less
+@font-face {
+  font-family: 'SourceHanSerifSC-Heavy';
+  src: url('./fonts/SourceHanSerifSC-Heavy.otf') format('tryetype');
+}
+
+body {
+  font-family: 'SourceHanSerifSC-Heavy';
+}
+```
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+```html
+<img src="data:image/jpeg;base64....." />
+```
+
+#### 18丨webpack中的文件监听
+
+![image-20221027143026278](https://i.imgur.com/KS2Ew7g.png)
+
+![image-20221027143102316](https://i.imgur.com/i3eeNcv.png)
+
+![image-20221027143137587](https://i.imgur.com/iJA4HWB.png)
+
+#### 19丨webpack中的热更新及原理分析
+
+- https://www.npmjs.com/package/webpack-dev-server
+- https://github.com/webpack/webpack-dev-middleware
+
+![image-20221027144403799](https://i.imgur.com/asvGC6l.png)
+
+![image-20221027144530060](https://i.imgur.com/5nGsrWu.png)
+
+![image-20221027144652357](https://i.imgur.com/XYH4g4Y.png)
+
+#### 20丨文件指纹策略：chunkhash、contenthash和hash
+
+![image-20221027150951865](https://i.imgur.com/2TwPH4h.png)
+
+![image-20221027151036706](https://i.imgur.com/uE7ZktI.png)
+
+![image-20221027151427395](https://i.imgur.com/ZAfcdGt.png)
+
+JS 的文件指纹设置
+
+设置 output 的 filename，使用[chunnkhash]  `[name][chunkhash:8].js`
+
+CSS 的文件指纹设置
+
+设置 MiniCssExtractPlugin 的 filename， 使用 [contenthash] `[name][commtenthash:8].css`
+
+图片的文件指纹设置
+
+`[name][hash:8].[ext]`
+
+#### 21丨HTML 、CSS和JS代码压缩
+
