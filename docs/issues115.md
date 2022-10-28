@@ -373,3 +373,283 @@ CSS 的文件指纹设置
 
 #### 21丨HTML 、CSS和JS代码压缩
 
+HTML CSS JS 压缩
+
+
+
+JS
+
+内置了
+
+- https://www.npmjs.com/package/uglifyjs-webpack-plugin
+
+CSS
+
+- https://www.npmjs.com/package/optimize-css-assets-webpack-plugin
+- https://github.com/webpack-contrib/css-minimizer-webpack-plugin
+
+HTML
+
+- https://www.npmjs.com/package/html-webpack-plugin
+
+#### 22丨自动清理构建目录产物
+
+每次构建的时候不会清理目录，造成构建的输出目录 ouput 文件越来越多
+
+```bash
+rm -rf ./dist && webpack
+rimraf ./dist && webpack
+```
+
+- https://www.npmjs.com/package/clean-webpack-plugin 一个用于删除/清理构建文件夹的 webpack 插件。 默认会删除 output 指定的输出目录
+
+#### 23丨PostCSS插件autoprefixer自动补齐CSS3前缀
+
+- https://github.com/postcss/postcss
+- https://github.com/postcss/autoprefixer
+- https://github.com/webpack-contrib/postcss-loader
+
+```json
+// package.json
+"browserslist": {
+    "production": [
+      "last 2 version",
+      ">0.2%"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "last 1 ie version"
+    ]
+  }
+```
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: [require('autoprefixer')],
+}
+```
+
+#### 24丨移动端CSS px自动转换成rem
+
+- https://www.npmjs.com/package/px2rem-loader
+- https://github.com/amfe/lib-flexible
+
+![image-20221028114409511](https://i.imgur.com/4DFViXW.png)
+
+![image-20221028114441932](https://i.imgur.com/1J8C5Wx.png)
+
+![image-20221028114511058](https://i.imgur.com/Khvni0m.png)
+
+#### 25丨静态资源内联
+
+![image-20221028115300273](https://i.imgur.com/WSBDxZq.png)
+
+![image-20221028115346229](https://i.imgur.com/oTD91v4.png)
+
+![image-20221028115418689](https://i.imgur.com/w42pFDu.png)
+
+- https://www.npmjs.com/package/html-inline-css-webpack-plugin
+- https://www.npmjs.com/package/raw-loader
+- https://webpack.js.org/guides/asset-modules/ webpack 5
+
+#### 26丨多页面应用打包通用方案
+
+**多页面应用（MPA）概念**
+
+每一次页面跳转的时候，后台服务器都会给返回一个新的 html 文档，这种类型的网站也就是多页网站，也叫做多页应用。
+
+
+
+**多页面打包基本思路**
+
+每个页面对应一个 entry，一个 html- webpack- plugin
+
+缺点：每次新增或删除页面需要改 webpack 配置
+
+
+
+**多页面打包通用方案**
+
+动态获取 entry 和设置 html- webpack- plugin 数量 利用 glob.sync
+
+entry: glob.sync (path.join (_dirname, './src/*/index.js'),
+
+
+
+- https://www.npmjs.com/package/glob
+
+
+
+```js
+'use strict'
+
+const glob = require('glob')
+const path = require('path')
+// const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+const setMPA = () => {
+  const entry = {}
+  const htmlWebpackPlugins = []
+
+  //  '/Users/x/Code/Case/webpack/learn2/src/index/index.js',
+  //  '/Users/x/Code/Case/webpack/learn2/src/search/index.js'
+  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.js'))
+
+  Object.keys(entryFiles).map((index) => {
+    const entryFile = entryFiles[index]
+
+    const match = entryFile.match('/src/(.*)/index.js')
+    const pageName = match && match[1]
+
+    entry[pageName] = entryFile
+
+    htmlWebpackPlugins.push(
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, `src/${pageName}/index.html`),
+        filename: `${pageName}.html`,
+      })
+    )
+  })
+
+  return {
+    entry,
+    htmlWebpackPlugins,
+  }
+}
+
+const { entry, htmlWebpackPlugins } = setMPA()
+
+module.exports = {
+  entry: entry,
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name]_[chunkhash:8].js',
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
+        test: /\.less$/i,
+        sideEffects: true,
+        use: [
+          // compiles Less to CSS
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          {
+            loader: 'postcss-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]_[hash:8].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]_[hash:8].[ext]',
+            },
+          },
+        ],
+      },
+    ],
+  },
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name]_[contenthash:8].css',
+    }),
+    // new webpack.HotModuleReplacementPlugin()
+    new CleanWebpackPlugin(),
+  ].concat(htmlWebpackPlugins),
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    hot: true,
+  },
+}
+```
+
+#### 27丨使用sourcemap
+
+- https://juejin.cn/post/6960941899616092167
+
+- https://webpack.js.org/configuration/devtool/#devtool
+
+
+
+
+
+作用：通过 source map 定位到源代码
+
+- source map 科普文：
+- [JavaScript Source Map 详解](https://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html)
+
+开发环境开启，线上环境关闭
+
+- 线上排查问题的时候可以将 sourcemap 上传到错误监控系统
+
+
+
+**Source map 关键字**
+
+- eval：使用 eval 包裹模块代码 
+
+- source map：产生 .Map 文件 
+- cheap：不包含列信息
+
+- inline：将.Map 作为 DataURI 嵌入，不单独生成.Map 文件 
+- module：包含 loader 的 sourcemap
+
+
+
+![image-20221028151453409](https://i.imgur.com/A1fyYt8.png)
+
+
+
+**default**
+
+![image-20221028153252920](https://i.imgur.com/BgFCWnM.png)
+
+  **devtool: 'source-map'**
+
+![image-20221028152920605](https://i.imgur.com/df110u0.png)
+
+**devtool: 'cheap-source-map',**
+
+![image-20221028153142936](https://i.imgur.com/w3t7r6K.png)
+
+#### 28丨提取页面公共资源
