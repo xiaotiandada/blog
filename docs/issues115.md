@@ -9,6 +9,13 @@ Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，�
 
 
 
+- [webpack 系列一：最佳配置指北 #68](https://github.com/sisterAn/blog/issues/68)
+- [玩转 webpack5（上）](https://heapdump.cn/article/3551616)
+- [学习 Webpack5 之路（优化篇）- 近 7k 字](https://juejin.cn/post/6996816316875161637)
+- [webpack5](https://github.com/HolyZheng/holyZheng-blog/issues/46)
+
+
+
 #### Notes
 
 #### 01丨课程介绍
@@ -514,6 +521,7 @@ const setMPA = () => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, `src/${pageName}/index.html`),
         filename: `${pageName}.html`,
+        chunks: [pageName],
       })
     )
   })
@@ -653,3 +661,96 @@ module.exports = {
 ![image-20221028153142936](https://i.imgur.com/w3t7r6K.png)
 
 #### 28丨提取页面公共资源
+
+- https://www.npmjs.com/package/html-webpack-externals-plugin
+- https://webpack.js.org/configuration/optimization/
+- https://webpack.js.org/plugins/split-chunks-plugin/#splitchunksminsize
+
+
+
+**基础库分离**
+
+- 思路：将 react、react-dom 基础包通过 cdn 引入，不打入 bundle 中
+
+- 方法：使用 html- webpack- externals-plugin
+
+
+
+**利用 SplitChunksPlugin 进行公共脚本分离**
+
+
+
+Webpack4 内置的，替代 CommonsChunkPlugin：插件 chunks 参数说明：
+
+- async 异步引入的库进行分离（默认）
+
+- initial 同步引入的库进行分离
+- all 所有引入的库进行分离（推荐)
+
+
+
+**利用 SplitChunksPlugin 分离基础包**
+
+test：匹配出需要分离的包
+
+
+
+**利用 SplitChunksPlugin 分离页面公共文件**
+
+minChunks：设置最小引用次数为 2 次
+
+minuSize：分离的包体积的大小 name: 'commons',
+
+
+
+```js
+{
+  plugins: [
+       new HtmlWebpackPlugin({
+        template: path.join(__dirname, `src/${pageName}/index.html`),
+        filename: `${pageName}.html`,
+        // chunks 不配置 'vendors', 'commons' 也讷讷个工作
+        chunks: ['vendors', 'commons', pageName], 
+      })
+  ],
+  optimization: {
+    // minSize: 0 不生效，在 common 里面导入了 lodash 体积变大才功能打包出来
+    minimizer: [new CssMinimizerPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+        commons: {
+          name: 'commons',
+          chunks: 'all',
+          minChunks: 2,
+        },
+      },
+    },
+  },
+}
+```
+
+```bash
+assets by info 753 KiB [immutable]
+  assets by path *.js 689 KiB
+    asset commons_b8135d34.js 528 KiB [emitted] [immutable] [big] (name: commons) (id hint: commons)
+    asset vendors_dcd4109b.js 137 KiB [emitted] [immutable] (name: vendors) (id hint: vendor)
+    asset search_b218e1ce.js 17.2 KiB [emitted] [immutable] (name: search)
+    asset index_e3aea713.js 7.62 KiB [emitted] [immutable] (name: index)
+  asset img_f48f97d1.jpeg 64 KiB [emitted] [immutable] [from: src/images/img.jpeg] (auxiliary name: search)
+  asset search_6e9cebe1.css 123 bytes [emitted] [immutable] [minimized] (name: search)
+assets by path *.html 844 bytes
+  asset search.html 476 bytes [emitted]
+  asset index.html 368 bytes [emitted]
+Entrypoint index [big] 535 KiB = commons_b8135d34.js 528 KiB index_e3aea713.js 7.62 KiB
+Entrypoint search [big] 682 KiB (64 KiB) = commons_b8135d34.js 528 KiB vendors_dcd4109b.js 137 KiB search_b218e1ce.js 17.2 KiB search_6e9cebe1.css 123 bytes 1 auxiliary asset
+```
+
+> 当 webpack 处理文件路径时，它们总是包含`/`在 Unix 系统和`\`Windows 上。这就是为什么必须使用`[\\/]`in`{cacheGroup}.test`字段来表示路径分隔符。`/`或`\`在`{cacheGroup}.test`跨平台使用时会导致问题。
+
+#### 29丨treeshaking的使用和原理分析
+
