@@ -754,3 +754,39 @@ Entrypoint search [big] 682 KiB (64 KiB) = commons_b8135d34.js 528 KiB vendors_d
 
 #### 29丨treeshaking的使用和原理分析
 
+**Tree shaking（摇树优化）**
+
+概念：1 个模块可能有多个方法，只要其中的某个方法使用到了，则整个文件都会被打到 bundle 里面去，tree shaking 就是只把用到的方法打入 bundle，没用到的方法会在 uglify 阶段被擦除掉。
+
+使用：webpack 默认支持，在。Babelrc 里设置 modules: false 即可
+
+· production model 的情况下默认开启
+
+要求：必须是 ES6 的语法，CJS 的方式不支持
+
+
+
+> 摇树，顾名思义，就是将枯黄的落叶摇下来，只留下树上活的叶子。枯黄的落叶代表项目中未引用的无用代码，活的树叶代表项目中实际用到的源码。https://juejin.cn/post/6996816316875161637#heading-40
+
+
+
+**DCE  (Elimination)**
+
+代码不会被执行，不可到达代码执行的结果不会被用到代码只会影响死变量（只写不读）
+
+```js
+if (false) {
+	console.log('这段代码永远不会执行')
+}
+```
+
+**Tree- shaking 原理**
+
+利用 ES6 模块的特点：
+
+- 只能作为模块顶层的语句出现
+
+- import 的模块名只能是字符串常量
+- import binding 是 immutablel 的
+
+代码擦除：uglify 阶段删除无用代码
