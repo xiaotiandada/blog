@@ -790,3 +790,140 @@ if (false) {
 - import binding 是 immutablel 的
 
 代码擦除：uglify 阶段删除无用代码
+
+#### 30丨ScopeHoisting使用和原理分析
+
+![image-20221031232538654](https://i.imgur.com/adv6zTK.png)
+
+**会导致什么问题？**
+
+大量函数闭包包裹代码，导致体积增大（模块越多越明显）
+
+运行代码时创建的函数作用域变多，内存开销变大
+
+![image-20221031232641769](https://i.imgur.com/dlraHFg.png)
+
+结论：
+
+- 被 webpack 转换后的模块会带上一层包裹 
+- import 会被转换成_ webpack_ require
+
+**进一步分析 webpack 的模块机制**
+
+![image-20221031232951481](https://i.imgur.com/TnLcfc6.png)
+
+
+
+分析：
+
+- 打包出来的是一个 IFE（匿名闭包）
+
+- modules 是一个数组，每一项是一个模块初始化函数
+
+- _ webpack. Require 用来加载模块，返回 module. Exports 
+- 通过 WEBPACK_ REQUIRE_ METHOD (O）启动程序
+
+
+
+**Scope hoisting 原理**
+
+原理：将所有模块的代码按照引用顺序放在一个函数作用域里，然后适当的重命名一些变量以防止变量名冲突
+
+对比：通过 scope hoisting 可以减少函数声明代码和内存开销
+
+![image-20221031233341816](https://i.imgur.com/1Qup4B9.png)
+
+**Scope hoisting 使用**
+
+webpack mode 为 production 默认开启必须是 ES6 语法，CJS 不支持
+
+- https://webpack.js.org/plugins/module-concatenation-plugin/
+
+```
+// 历史版本 3 可能需要手动配置
+new webpack.optimize.ModuleConcatenationPlugin();
+```
+
+#### 31丨代码分割和动态import
+
+**代码分割的意义**
+
+对于大的 Web 应用来讲，将所有的代码都放在一个文件中显然是不够有效的，特别是当你的某些代码块是在某些特殊的时候才会被使用到。webpack 有一个功能就是将你的代码库分割成 chunks（语块），当代码运行到需要它们的时候再进行加载。
+
+适用的场景：
+
+- 抽离相同代码到一个共享块
+
+- 脚本懒加载，使得初始下载的代码更小
+
+![image-20221031234314107](https://i.imgur.com/xN0KtZQ.png)
+
+
+
+**懒加载 JS 脚本的方式**
+
+CommonJS: require.ensure
+ES6:动态import (目 前还没有原生支持，需要babel转换)
+
+**如何使用动态 import?**
+
+- 安装 babel 插件
+- ES6:动态import ( 目前还没有原生支持，需要babel转换)
+- https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import
+
+**代码分割的效果**
+
+![image-20221101003950592](https://i.imgur.com/cr9iRLz.png)
+
+```jsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+import img from '../images/img.jpeg'
+import '../../common/index'
+
+import './index.css'
+import './style.less'
+
+class Hello extends React.Component {
+  constructor() {
+    super(...arguments)
+    this.state = {
+      Text: null,
+    }
+  }
+
+  loadComponent() {
+    import('./text.js').then((Text) => {
+      this.setState({
+        Text: Text.default,
+      })
+    })
+  }
+
+  render() {
+    const { Text } = this.state
+    return (
+      <div>
+        {Text ? <Text /> : null}
+        Hello {this.props.toWhat}
+        <p>汉字 watch devServer 12345678</p>
+        <img src={img} onClick={this.loadComponent.bind(this)} />
+      </div>
+    )
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<Hello toWhat="World" />)
+```
+
+发送一个 Jsonp 请求，`window[webpackJsonp]` 异步加载逻辑
+
+新版本 webpack5 是 `(self["webpackChunkwebpack_learn"] = self["webpackChunkwebpack_learn"] || [])`
+
+根据我的 package name 来的，`"name": "webpack-learn"`
+
+![image-20221101004234265](https://i.imgur.com/W5QQCoz.png)
+
+#### 32丨webpack和ESLint结合
+
