@@ -846,6 +846,10 @@ new webpack.optimize.ModuleConcatenationPlugin();
 
 #### 31丨代码分割和动态import
 
+- https://zhuanlan.zhihu.com/p/73325163
+
+
+
 **代码分割的意义**
 
 对于大的 Web 应用来讲，将所有的代码都放在一个文件中显然是不够有效的，特别是当你的某些代码块是在某些特殊的时候才会被使用到。webpack 有一个功能就是将你的代码库分割成 chunks（语块），当代码运行到需要它们的时候再进行加载。
@@ -927,3 +931,27 @@ root.render(<Hello toWhat="World" />)
 
 #### 32丨webpack和ESLint结合
 
+- https://www.npmjs.com/package/eslint-config-airbnb
+- https://www.npmjs.com/package/eslint-config-airbnb-base
+
+![image-20221101005334648](https://i.imgur.com/s6NXBjB.png)
+
+**ESL _int如何执行落地?**
+和CI/CD系统集成
+和webpack集成
+
+
+
+![image-20221101005457333](https://i.imgur.com/yUqJfo7.png)
+
+本地开发阶段增加 precommit 钩子
+
+- husky https://www.npmjs.com/package/husky
+
+**方案二: webpack 与ESLint集成**
+
+- https://www.npmjs.com/package/eslint-loader  been deprecated
+- https://www.npmjs.com/package/eslint-webpack-plugin
+- https://esprima.org/
+- https://www.npmjs.com/package/babel-eslint been deprecated
+- https://www.npmjs.com/package/@babel/eslint-parser
