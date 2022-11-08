@@ -754,6 +754,10 @@ Entrypoint search [big] 682 KiB (64 KiB) = commons_b8135d34.js 528 KiB vendors_d
 
 #### 29丨treeshaking的使用和原理分析
 
+- https://webpack.js.org/guides/tree-shaking/
+
+
+
 **Tree shaking（摇树优化）**
 
 概念：1 个模块可能有多个方法，只要其中的某个方法使用到了，则整个文件都会被打到 bundle 里面去，tree shaking 就是只把用到的方法打入 bundle，没用到的方法会在 uglify 阶段被擦除掉。
@@ -934,6 +938,8 @@ root.render(<Hello toWhat="World" />)
 - https://www.npmjs.com/package/eslint-config-airbnb
 - https://www.npmjs.com/package/eslint-config-airbnb-base
 
+![image-20221108021024587](https://i.imgur.com/AhNhf67.png)
+
 ![image-20221101005334648](https://i.imgur.com/s6NXBjB.png)
 
 **ESL _int如何执行落地?**
@@ -955,3 +961,67 @@ root.render(<Hello toWhat="World" />)
 - https://esprima.org/
 - https://www.npmjs.com/package/babel-eslint been deprecated
 - https://www.npmjs.com/package/@babel/eslint-parser
+- https://www.robinwieruch.de/webpack-eslint/
+- https://webpack.js.org/plugins/eslint-webpack-plugin/
+
+#### 33丨webpack打包组件和基础库
+
+- https://www.npmjs.com/package/terser-webpack-plugin
+- https://webpack.js.org/configuration/output/#outputlibrary
+
+**webpack打包库和组件**
+
+webpack除了可以用来打包应用，也可以用来打包js库
+
+实现一个大整数加法库的打包
+
+- 需要打包压缩版和非压缩版本
+- 支持AMD/CJS/ESM模块引入
+
+
+
+**如何将库暴露出去?**
+
+library:指定库的全局变量
+
+libraryTarget:支持库引入的方式
+
+
+
+```js
+  {
+    entry: {
+      'large-number': './src/index.ts',
+      'large-number.min': './src/index.ts',
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
+      library: {
+        name: 'largeNumber',
+        type: 'umd',
+        export: 'default',
+      },
+    },
+      optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          include: /\.min\.js$/,
+        }),
+      ],
+    },
+  }
+```
+
+```js
+{
+  "main": "index.js",
+  "script": {
+     "prepublish": "yarn run build:prod"
+  }
+}
+```
+
+
+
