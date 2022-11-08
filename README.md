@@ -8,11 +8,11 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#96 React](https://github.com/xiaotiandada/blog/issues/96) `React,Top` <sub><time datetime="2022-11-08 15:35:44">2022-11-08 15:35:44</time></sub>
 - [#115 Webpack](https://github.com/xiaotiandada/blog/issues/115) `webpack,babel` <sub><time datetime="2022-11-01 01:41:15">2022-11-01 01:41:15</time></sub>
 - [#1 lolSix周年活动页面](https://github.com/xiaotiandada/blog/issues/1)  <sub><time datetime="2022-10-30 02:28:36">2022-10-30 02:28:36</time></sub>
 - [#124 前端监控 Sentry](https://github.com/xiaotiandada/blog/issues/124) `React` <sub><time datetime="2022-10-30 00:54:38">2022-10-30 00:54:38</time></sub>
 - [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-10-26 00:39:29">2022-10-26 00:39:29</time></sub>
-- [#122 strapi](https://github.com/xiaotiandada/blog/issues/122)  <sub><time datetime="2022-10-14 00:33:51">2022-10-14 00:33:51</time></sub>
 
 ## Article  📄 
 - [#124 前端监控 Sentry](https://github.com/xiaotiandada/blog/issues/124) `React`
