@@ -1023,5 +1023,263 @@ libraryTarget:支持库引入的方式
 }
 ```
 
+#### 34丨webpack实现SSR打包（上）
+
+![image-20221110020622305](https://i.imgur.com/67Zetvb.png)
+
+**服务端渲染(SSR)是什么?**
+
+渲染:HTML+csS+JS+Data-->渲染后的HTML
+
+服务端:
+
+- 所有模板等资源都存储在服务端
+- 内网机器拉取数据更快
+- 一个HTML返回所有数据
+
+![image-20221110020929988](https://i.imgur.com/HUeD3Me.png)
+
+![image-20221110020948219](https://i.imgur.com/aPdoNMQ.png)
 
 
+
+**SSR的优势**
+
+减少白屏时间
+
+对于SEO友好
+
+![image-20221110021033620](https://i.imgur.com/0qhncJb.png)
+
+![屏幕快照 2022-11-10 上午2.11.05](https://i.imgur.com/uJehkyR.png)
+
+#### 35丨webpack实现SSR打包（下）
+
+**如何解决样式不显示的问题?**
+
+- 使用打包出来的浏览器端htm|为模板
+- 设置占位符，动态插入组件
+
+**首屏数据如何处理?**
+
+- 服务端获取数据
+- 替换占位符
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <div id="root"><!--HTML_PLACEHOLDER--></div>
+    <!--INSTALL_DATA_PLACEHOLDER-->
+  </body>
+</html>
+
+```
+
+```js
+const express = require('express')
+const fs = require('fs')
+const path = require('path')
+const { renderToString } = require('react-dom/server')
+
+const template = fs.readFileSync(path.join(__dirname, '../dist/search.html'), 'utf-8')
+const data = require('./data.json')
+const SSR = require('../dist/search-server')
+
+if (typeof self === 'undefined') {
+  global.self = {}
+}
+
+const renderMarkUp = str => {
+  const dataStr = JSON.stringify(data)
+  return template
+    .replace('<!--HTML_PLACEHOLDER-->', str)
+    .replace(
+      '<!--INSTALL_DATA_PLACEHOLDER-->',
+      `<script>window.__install_data=${dataStr}</script>`
+    )
+}
+
+const server = (port) => {
+  const app = express()
+
+  app.use(express.static('dist'))
+  app.get('/search', (req, res) => {
+    const html = renderToString(SSR)
+    res.status(200).send(renderMarkUp(html))
+  })
+
+  app.listen(port, () => {
+    console.log('Server is running on port: ', `http://localhost:${port}`)
+  })
+}
+
+server(process.env.port || 3000)
+```
+
+```js
+'use strict'
+const glob = require('glob')
+const path = require('path')
+// const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
+
+const setMPA = () => {
+  const entry = {}
+  const htmlWebpackPlugins = []
+
+  //  '/Users/xiaotian/Code/Case/webpack/learn2/src/index/index.js',
+  //  '/Users/xiaotian/Code/Case/webpack/learn2/src/search/index.js'
+  const entryFiles = glob.sync(path.join(__dirname, './src/*/index-server.js'))
+
+  // eslint-disable-next-line array-callback-return
+  Object.keys(entryFiles).map((index) => {
+    const entryFile = entryFiles[index]
+
+    const match = entryFile.match('/src/(.*)/index-server.js')
+    const pageName = match && match[1]
+
+    if (pageName) {
+      entry[pageName] = entryFile
+
+      htmlWebpackPlugins.push(
+        new HtmlWebpackPlugin({
+          template: path.join(__dirname, `src/${pageName}/index.html`),
+          filename: `${pageName}.html`,
+          chunks: ['vendors', 'commons', pageName],
+          minify: {
+            removeComments: false
+          }
+        })
+      )
+    }
+  })
+
+  return {
+    entry,
+    htmlWebpackPlugins
+  }
+}
+
+const { entry, htmlWebpackPlugins } = setMPA()
+
+module.exports = {
+  entry,
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name]-server.js',
+    library: {
+      type: 'umd'
+    },
+    globalObject: 'typeof self !== \'undefined\' ? self : this',
+    publicPath: ''
+
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.css$/i,
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: ''
+          }
+        },
+        'css-loader']
+      },
+      {
+        test: /\.less$/i,
+        sideEffects: true,
+        use: [
+          // compiles Less to CSS
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ''
+            }
+          },
+          'css-loader',
+          'less-loader',
+          {
+            loader: 'postcss-loader'
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]_[hash:8].[ext]'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]_[hash:8].[ext]'
+            }
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name]_[contenthash:8].css'
+    }),
+    // new webpack.HotModuleReplacementPlugin()
+    new CleanWebpackPlugin(),
+    new ESLintPlugin()
+  ].concat(htmlWebpackPlugins),
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist')
+    },
+    compress: true,
+    hot: true
+  },
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        },
+        commons: {
+          name: 'commons',
+          chunks: 'all',
+          minChunks: 2
+        }
+      }
+    }
+  }
+}
+```
+
+#### 36丨优化构建时命令行的显示日志
