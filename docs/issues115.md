@@ -1283,3 +1283,85 @@ module.exports = {
 ```
 
 #### 36丨优化构建时命令行的显示日志
+
+- https://www.npmjs.com/package/friendly-errors-webpack-plugin
+- https://webpack.js.org/configuration/stats/
+
+
+
+**当前构建时的日志显示.**
+
+展示一大堆日志，很多并不需要开发者关注
+
+
+
+**Stats Presets**
+
+Webpack comes with certain presets available for the stats output:
+
+| Preset              | Alternative | Description                                                  |
+| :------------------ | :---------- | :----------------------------------------------------------- |
+| `'errors-only'`     | *none*      | Only output when errors happen                               |
+| `'errors-warnings'` | *none*      | Only output errors and warnings happen                       |
+| `'minimal'`         | *none*      | Only output when errors or new compilation happen            |
+| `'none'`            | `false`     | Output nothing                                               |
+| `'normal'`          | `true`      | Standard output                                              |
+| `'verbose'`         | *none*      | Output everything                                            |
+| `'detailed'`        | *none*      | Output everything except `chunkModules` and `chunkRootModules` |
+| `'summary'`         | *none*      | Output webpack version, warnings count and errors count      |
+
+
+
+**如何优化命令行的构建日志**
+
+使用friendly-errors-webpack-plugin
+
+- success:构建成功的日志提示
+- warning:构建警告的日志提示
+- error:构建报错的日志提示
+- stats设置成errors- only
+
+
+
+#### 37丨构建异常和中断处理
+
+**如何判断构建是否成功?**
+
+在CI/CD的pipline 或者发布系统需要知道当前构建状态
+
+每次构建完成后输入echo $?获取错误码
+
+
+
+**构建异常和中断处理**
+
+webpack4之前的版本构建失败不会抛出错误码(error code)
+
+Node.js中的process.exit规范
+
+- 0表示成功完成，回调函数中，err为null
+- 非0表示执行失败，回调函数中，err 不为null, err.code 就是传给exit 的数字
+
+**如何主动捕获并处理构建错误?**
+
+compiler在每次构建结束后会触发 done 这个 hook
+
+process.exit主动处理构建报错
+
+![image-20221111003141815](https://i.imgur.com/QmqU9Bd.png)
+
+```js
+function () {
+  this.hooks.done.tap('done', (stats) => {
+    console.log(stats.errors)
+    // process.exit(0)
+  })
+}
+```
+
+- https://stackoverflow.com/questions/43147330/what-is-difference-between-method-process-exit1-and-process-exit0-in-node-js
+- https://nodejs.org/api/process.html#processexitcode
+- https://nodejs.org/api/process.html#process_exit_codes
+
+#### 38丨构建配置包设计
+
