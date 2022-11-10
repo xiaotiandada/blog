@@ -1436,4 +1436,6 @@ test放置测试代码
 
 ![image-20221111004951377](https://i.imgur.com/a0h3qU8.png)
 
+拆分不同环境的配置，通过 merge 合并
+
 #### 40丨使用ESLint规范构建脚本
