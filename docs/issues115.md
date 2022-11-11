@@ -1439,3 +1439,146 @@ test放置测试代码
 拆分不同环境的配置，通过 merge 合并
 
 #### 40丨使用ESLint规范构建脚本
+
+**使用ESL int规范构建脚本**
+
+使用eslint-config- -airbnb- base
+
+eslint -- fix 可以自动处理空格
+
+```json
+module.exports = {
+  env: {
+    browser: true,
+    node: true,
+    commonjs: true,
+    es2021: true,
+  },
+  extends: 'airbnb-base',
+  overrides: [
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+  },
+  rules: {
+  },
+};
+```
+
+#### 41丨冒烟测试介绍和实际运用
+
+- https://www.npmjs.com/package/rimraf
+- https://www.npmjs.com/package/glob-all
+- https://www.npmjs.com/package/mocha
+
+**冒烟测试(smoke testing)**
+
+冒烟测试是指对提交测试的软件在进行详细深入的测试之前而进行的预测试，这种
+预测试的主要目的是暴露导致软件需重新发布的基本功能失效等严重问题。
+
+**冒烟测试执行**
+
+构建是否成功
+
+每次构建完成build目录是否有内容输出
+
+- 是否有JS、CSS等静态资源文件
+- 是否有HTML文件
+
+
+
+**判断构建是否成功**
+
+在示例项目里面运行构建，看看是否有报错
+
+```js
+const path = require('path');
+const webpack = require('webpack');
+const rimraf = require('rimraf');
+const Mocha = require('mocha');
+
+const mocha = new Mocha({
+  timeout: 10000,
+});
+
+process.chdir(path.join(__dirname, 'template'));
+
+rimraf('./dist', () => {
+  // eslint-disable-next-line global-require
+  const prodConfig = require('../../lib/webpack.pord');
+
+  webpack(prodConfig, (err, stats) => {
+    if (err) {
+      console.error(err);
+      process.exit(2);
+    }
+
+    console.log(stats.toString({
+      color: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false,
+    }));
+  });
+
+  console.log('Webpack Build Success, begin run test.');
+
+  // 不知道为什么 先执行了，延迟执行一下
+  setTimeout(() => {
+    mocha.addFile(path.join(__dirname, 'html-test.js'));
+    mocha.addFile(path.join(__dirname, 'css-js-test.js'));
+
+    mocha.run();
+  }, 3000);
+});
+```
+
+**判断基本功能是否正常**
+
+编写mocha测试用例
+
+- 是否有JS、CSS等静态资源文件
+- 是否有HTML文件
+
+```js
+const glob = require('glob-all');
+
+// eslint-disable-next-line no-undef
+describe('Checking generated html files', () => {
+  // eslint-disable-next-line no-undef
+  it('should generate html files', (done) => {
+    const files = glob.sync(['./dist/index.html', './dist/search.html']);
+    console.log('object', files);
+
+    if (files.length > 0) {
+      done();
+    } else {
+      throw new Error('no html files generated');
+    }
+  });
+});
+```
+
+```js
+const glob = require('glob-all');
+
+describe('Checking generated css js files', () => {
+  it('should generate css js files', (done) => {
+    const files = glob.sync([
+      './dist/index_*.js',
+      './dist/index_*.css',
+      './dist/search_*.js',
+      './dist/search_*.css',
+    ]);
+
+    if (files.length > 0) {
+      done();
+    } else {
+      throw new Error('no css js files generated');
+    }
+  });
+});
+```
+
+#### 42丨单元测试和测试覆盖率
