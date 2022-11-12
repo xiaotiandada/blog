@@ -18,6 +18,10 @@ Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，�
 
 #### Notes
 
+webpack4
+
+version: 4.31.0
+
 #### 01丨课程介绍
 
 ![image-20221025120059984](https://i.imgur.com/6j8buUl.png)
@@ -1582,3 +1586,203 @@ describe('Checking generated css js files', () => {
 ```
 
 #### 42丨单元测试和测试覆盖率
+
+- https://github.com/gotwarlost/istanbul
+- https://github.com/gotwarlost/istanbul
+
+![image-20221113000931871](https://i.imgur.com/Yt5uNrN.png)
+
+![image-20221113001238178](https://i.imgur.com/oIKZwpy.png)
+
+![image-20221113001253129](https://i.imgur.com/c2dnA4I.png)
+
+#### 43丨持续集成和TravisCI
+
+- https://www.travis-ci.com/
+
+![image-20221113005128247](https://i.imgur.com/aN1OWse.png)
+
+![image-20221113005138720](https://i.imgur.com/SH6M6Xs.png)
+
+接入Travis CI
+1. https:/ /travis- -ci.org/ 使用GitHub账号登录
+2. 在https:/ /travis- -ci.org/ account/ repositories为项目开启
+3. 项目根目录下新增.travis.ymI
+
+![image-20221113005339015](https://i.imgur.com/HIpN57g.png)
+
+#### 44丨发布到npm
+
+发布到npm
+
+添加用户: npm adduser
+
+升级版本
+
+​	升级补丁版本号: npm version patch
+​	升级小版本号: npm version minor
+​	升级大版本号: npm version major
+
+发布版本: npm publish
+
+
+
+#### 45丨Git丨Commi规范和changelog生成
+
+![image-20221113005720379](https://i.imgur.com/1uJ8UHg.png)
+
+![image-20221113005749636](https://i.imgur.com/HKlRVO3.png)
+
+![image-20221113005822212](https://i.imgur.com/bkasYsR.png)
+
+![image-20221113005835285](https://i.imgur.com/8Pnflr8.jpg)
+
+#### 46丨语义化版本（Semantic丨Versioning）规范格式
+
+![image-20221113010204690](https://i.imgur.com/M3tdyiY.png)
+
+![image-20221113010020618](https://i.imgur.com/FreXnLd.png)
+
+![image-20221113010111239](https://i.imgur.com/YM9smU8.png)
+
+![image-20221113010130190](https://i.imgur.com/rv3nB3V.png)
+
+#### 47丨初级分析：使用webpack内置的stats
+
+stats:构建的统计信息
+
+package.json 中使用 stats
+
+```bash
+"build:stats": "webpack --config webpack.prod.js --json > stats.json",
+```
+
+
+
+![image-20221113011416349](https://i.imgur.com/RvCHHAa.jpg)
+
+#### 48丨速度分析：使用speed-measure-webpack-plugin
+
+- https://www.npmjs.com/package/speed-measure-webpack-plugin
+
+
+
+![image-20221113011901608](https://i.imgur.com/8Pf9iVP.jpg)
+
+**速度分析插件作用**
+
+分析整个打包总耗时
+
+每个插件和loader的耗时情况
+
+#### 49丨体积分析：使用webpack-bundle-analyzer
+
+![image-20221113012823423](https://i.imgur.com/BwxYmMb.png)
+
+**可以分析哪些问题?**
+
+依赖的第三方模块文件大小
+
+业务里面的组件代码大小
+
+
+
+#### 50丨使用高版本的webpack和Node
+
+![image-20221113013737079](https://i.imgur.com/FGv1Gb3.jpg)
+
+![image-20221113013812707](https://i.imgur.com/L2OaX6W.jpg)
+
+#### 51丨多进程多实例构建
+
+- https://webpack.js.org/loaders/thread-loader/
+
+![image-20221113015946094](https://i.imgur.com/p8IzRES.png)
+
+![image-20221113015956399](https://i.imgur.com/uajgIB9.png)
+
+![image-20221113020013496](https://i.imgur.com/N7ty97l.png) 
+
+#### 52丨多进程多实例并行压缩
+
+![image-20221113020527310](https://i.imgur.com/Np16rwx.png)
+
+![image-20221113020542399](https://i.imgur.com/qW1xhiZ.png)
+
+![image-20221113020552299](https://i.imgur.com/VTof56Y.png)
+
+推荐
+
+#### 53丨进一步分包：预编译资源模块
+
+![image-20221113023141437](https://i.imgur.com/SPk9p1r.png)
+
+**进一步分包:预编译资源模块**
+
+思路:将react、react- dom、redux、 react- redux 基础包和业务基础包打包成一个文件
+
+方法:使用DLLPlugin进行分包，DllReferencePlugin 对manifest.json弓|用
+
+![image-20221113023225717](https://i.imgur.com/vkJAmhO.png)
+
+![image-20221113023242507](https://i.imgur.com/C4hx4La.png)
+
+```js
+const path = require('path')
+const webpack = require('webpack')
+
+module.exports = {
+  entry: {
+    library: ['react', 'react-dom']
+  },
+  output: {
+    filename: '[name]_[hash].ddl.js',
+    path: path.join(__dirname, 'build/library'),
+    library: '[name]'
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      name: '[name]_[hash]',
+      path: path.join(__dirname, 'build/library/[name].json')
+    })
+  ]
+}
+```
+
+#### 54丨充分利用缓存提升二次构建速度
+
+**缓存**
+
+目的:提升二次构建速度
+
+缓存思路:
+
+- babel-loader开启缓存
+- terser- -webpack- -plugin 开启缓存
+- 使用cache-loader或者hard- source-webpack-plugin
+
+#### 55丨缩小构建目标
+
+缩小构建目标
+
+目的:尽可能的少构建模块
+
+比如babel-loader 不解析node_ modules
+
+
+
+![image-20221113023958678](https://i.imgur.com/OfwF8C8.png)
+
+**减少文件搜索范围**
+
+优化resolve.modules配置(减少模块搜索层级)
+
+优化resolve.mainFields配置
+
+优化resolve.extensions 配置
+
+合理使用alias
+
+![image-20221113024036424](https://i.imgur.com/TidgZvO.png)
+
+#### 56丨使用webpack进行图片压缩
