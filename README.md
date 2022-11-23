@@ -8,16 +8,17 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#88 React Hooks 学习](https://github.com/xiaotiandada/blog/issues/88) `React,Hooks` <sub><time datetime="2022-11-23 01:37:52">2022-11-23 01:37:52</time></sub>
+- [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-11-21 16:07:32">2022-11-21 16:07:32</time></sub>
+- [#122 Strapi](https://github.com/xiaotiandada/blog/issues/122) `Strapi` <sub><time datetime="2022-11-17 12:11:22">2022-11-17 12:11:22</time></sub>
+- [#125 Gatsby](https://github.com/xiaotiandada/blog/issues/125) `GraphQL,Gatsby,Strapi` <sub><time datetime="2022-11-17 12:11:03">2022-11-17 12:11:03</time></sub>
 - [#96 React](https://github.com/xiaotiandada/blog/issues/96) `React,Top` <sub><time datetime="2022-11-08 15:37:15">2022-11-08 15:37:15</time></sub>
-- [#115 Webpack](https://github.com/xiaotiandada/blog/issues/115) `webpack,babel` <sub><time datetime="2022-11-01 01:41:15">2022-11-01 01:41:15</time></sub>
-- [#1 lolSix周年活动页面](https://github.com/xiaotiandada/blog/issues/1)  <sub><time datetime="2022-10-30 02:28:36">2022-10-30 02:28:36</time></sub>
-- [#124 前端监控 Sentry](https://github.com/xiaotiandada/blog/issues/124) `React` <sub><time datetime="2022-10-30 00:54:38">2022-10-30 00:54:38</time></sub>
-- [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-10-26 00:39:29">2022-10-26 00:39:29</time></sub>
 
 ## Article  📄 
+- [#125 Gatsby](https://github.com/xiaotiandada/blog/issues/125) `GraphQL,Gatsby,Strapi`
 - [#124 前端监控 Sentry](https://github.com/xiaotiandada/blog/issues/124) `React`
 - [#123 视频在 iPhone 上的 Safari 上内联播放（防止自动全屏）](https://github.com/xiaotiandada/blog/issues/123) `Safari`
-- [#122 strapi](https://github.com/xiaotiandada/blog/issues/122) 
+- [#122 Strapi](https://github.com/xiaotiandada/blog/issues/122) `Strapi`
 - [#121 D3](https://github.com/xiaotiandada/blog/issues/121) 
 - [#120 tailwindcss](https://github.com/xiaotiandada/blog/issues/120) 
 - [#119 图片压缩](https://github.com/xiaotiandada/blog/issues/119) `nodejs`
