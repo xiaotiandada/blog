@@ -1786,3 +1786,55 @@ module.exports = {
 ![image-20221113024036424](https://i.imgur.com/TidgZvO.png)
 
 #### 56丨使用webpack进行图片压缩
+
+图片压缩
+要求:基于Node库的imagemin或者tinypng API
+使用:配置image- -webpack-loader
+
+
+
+- https://www.npmjs.com/package/image-webpack-loader
+
+```json
+rules: [{
+  test: /\.(gif|png|jpe?g|svg)$/i,
+  use: [
+    'file-loader',
+    {
+      loader: 'image-webpack-loader',
+      options: {
+        mozjpeg: {
+          progressive: true,
+        },
+        // optipng.enabled: false will disable optipng
+        optipng: {
+          enabled: false,
+        },
+        pngquant: {
+          quality: [0.65, 0.90],
+          speed: 4
+        },
+        gifsicle: {
+          interlaced: false,
+        },
+        // the webp option will enable WEBP
+        webp: {
+          quality: 75
+        }
+      }
+    },
+  ],
+}]
+```
+
+
+
+![image-20221121142259358](https://i.imgur.com/9dYRwRt.png)
+
+
+
+#### 57丨使用TreeShaking擦除无用的CSS
+
+#### 58丨使用动态Polyfill服务
+
+#### 59丨webpack启动过程分析
