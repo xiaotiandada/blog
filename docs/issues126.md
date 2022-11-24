@@ -29,13 +29,13 @@ const currentFrame = (index: number) =>
     .toString()
     .padStart(4, '0')}.jpg`
 
-canvas.width = 1158
-canvas.height = 770
-
 // Create, load and draw the image
 const img = new Image()
 // we'll make this dynamic in the next step, for now we'll just load image 1 of our sequence
 img.src = currentFrame(1)
+
+canvas.width = 1158
+canvas.height = 770
 
 img.onload = () => {
   context?.drawImage(img, 0, 0)
