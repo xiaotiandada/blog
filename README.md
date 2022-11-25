@@ -8,7 +8,7 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
-- [#88 React Hooks 学习](https://github.com/xiaotiandada/blog/issues/88) `React,Hooks` <sub><time datetime="2022-11-25 11:51:34">2022-11-25 11:51:34</time></sub>
+- [#88 React Hooks](https://github.com/xiaotiandada/blog/issues/88) `React,Hooks` <sub><time datetime="2022-11-25 11:59:00">2022-11-25 11:59:00</time></sub>
 - [#126 滚动动画](https://github.com/xiaotiandada/blog/issues/126) `Animation` <sub><time datetime="2022-11-25 02:20:58">2022-11-25 02:20:58</time></sub>
 - [#93 Git](https://github.com/xiaotiandada/blog/issues/93) `Git` <sub><time datetime="2022-11-21 16:07:32">2022-11-21 16:07:32</time></sub>
 - [#122 Strapi](https://github.com/xiaotiandada/blog/issues/122) `Strapi` <sub><time datetime="2022-11-17 12:11:22">2022-11-17 12:11:22</time></sub>
@@ -53,7 +53,7 @@ My personal blog using issues and GitHub Actions
 - [#91 浏览器打开图片 URL 是显示还是下载](https://github.com/xiaotiandada/blog/issues/91) `OSS,浏览器`
 - [#90 Bit 使用](https://github.com/xiaotiandada/blog/issues/90) `React,Bit`
 - [#89 Nuxt.js deploy to vercel](https://github.com/xiaotiandada/blog/issues/89) `Nuxt,Vercel`
-- [#88 React Hooks 学习](https://github.com/xiaotiandada/blog/issues/88) `React,Hooks`
+- [#88 React Hooks](https://github.com/xiaotiandada/blog/issues/88) `React,Hooks`
 - [#87 Taro 学习](https://github.com/xiaotiandada/blog/issues/87) `React,taro`
 - [#86 React Native 学习](https://github.com/xiaotiandada/blog/issues/86) `react native`
 - [#85 Vuex 源码研究](https://github.com/xiaotiandada/blog/issues/85) `源码,vuex`
