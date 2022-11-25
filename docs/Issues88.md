@@ -1,3 +1,13 @@
+<!-- React Hooks -->
+
+- https://www.joshwcomeau.com/react/usememo-and-usecallback/
+- https://kentcdodds.com/blog/usememo-and-usecallback
+- https://medium.com/@jan.hesters/usecallback-vs-usememo-c23ad1dc60
+
+---
+
+
+
 - https://github.com/peng-yin/note/issues/55
 
 > 1. 将完全不相关的 state 拆分为多组 state。
@@ -120,8 +130,6 @@ export default function App() {
   );
 }
 ```
-
-
 
 
 
