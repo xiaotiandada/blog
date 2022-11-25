@@ -27,6 +27,102 @@
 > 4. ref 不要直接暴露给外部使用，而是提供一个修改值的方法。
 > 5. 在使用 useMemo 或者 useCallback 时，可以借助 ref 或者 setState callback，确保返回的函数只创建一次。也就是说，函数不会根据依赖数组的变化而二次创建。
 
+- https://codesandbox.io/p/sandbox/react-hooks-pmjj0p?file=%2Fsrc%2FApp.tsx
+
+```tsx
+import { useState, useMemo, useEffect, useCallback } from "react";
+
+export const useCount = () => {
+  const [count, setCount] = useState(0);
+
+  const [increase, decrease] = useMemo(() => {
+    console.log("memo");
+    const increase = () => {
+      console.log("click", count);
+
+      setCount(count + 1);
+    };
+
+    const decrease = () => {
+      setCount(count - 1);
+    };
+    return [increase, decrease];
+  }, [count]);
+
+  return [count, increase, decrease];
+};
+
+export const useCountNew = () => {
+  const [count, setCount] = useState(0);
+
+  const [increase, decrease] = useMemo(() => {
+    console.log("memo new");
+
+    const increase = (val: number) => {
+      console.log("v", val);
+      setCount((latestCount) => latestCount + val);
+    };
+
+    const decrease = (val: number) => {
+      console.log("v1", val);
+
+      setCount((latestCount) => latestCount - val);
+    };
+    return [increase, decrease];
+  }, []); // 保持依赖数组为空，这样 increase 和 decrease 方法都只会被创建一次
+
+  const increaseCall = useCallback((val: number) => {
+    console.log("increaseCall val", val);
+    setCount((latestCount) => latestCount + val);
+  }, []);
+
+  return [count, increase, decrease, increaseCall];
+};
+
+function Counter() {
+  const [count, increase] = useCount();
+
+  useEffect(() => {
+    const handleClick = () => {
+      console.log("Counter Click");
+      increase(); // 执行后 count 的值永远都是 1
+    };
+
+    document.body.addEventListener("click", handleClick);
+    return () => {
+      document.body.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  return <h1>{count}</h1>;
+}
+
+export default function App() {
+  const [count1, increase1, decrease1] = useCount();
+  const [count, increase, decrease, increaseCall] = useCountNew();
+
+  return (
+    <div className="App" style={{ textAlign: "center" }}>
+      <h1>Hello CodeSandbox</h1>
+      <p>{count1}</p>
+      <button onClick={() => increase1()}>increase</button>
+      <button onClick={() => decrease1()}>decrease</button>
+
+      <hr />
+      <p>{count}</p>
+      <button onClick={() => increase(count1)}>increase</button>
+      <button onClick={() => decrease(count1)}>decrease</button>
+      <button onClick={() => increaseCall(count1)}>decrease</button>
+
+      <hr />
+      <Counter />
+    </div>
+  );
+}
+```
+
+
+
 
 
 ---
