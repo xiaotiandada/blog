@@ -1835,6 +1835,147 @@ rules: [{
 
 #### 57丨使用TreeShaking擦除无用的CSS
 
+**tree shaking(摇树优化)复习**
+
+概念: 1个模块可能有多个方法，只要其中的某个方法使用到了，则整个文件都会被打到
+bundle里面去，tree shaking就是只把用到的方法打入bundle，没用到的方法会在
+uglify阶段被擦除掉。
+
+
+使用: webpack默认支持，在.babelrc里设置modules: false即可
+
+- production mode的情况下默认开启
+
+  
+
+要求:必须是ES6的语法，CJS的方式不支持
+
+
+
+
+
+**无用的CSS如何删除掉?**
+
+PurifyCSS:遍历代码，识别已经用到的CSS class
+
+uncss: HTML需要通过jsdom加载，所有的样式通过PostCSS解析，通过
+document.querySelector来识别在html文件里面不存在的选择器
+
+
+
+- https://www.npmjs.com/package/purifycss-webpack-plugin
+- https://www.npmjs.com/package/mini-css-extract-plugin
+
+![image-20221130014349452](https://i.imgur.com/MvoSRKo.png)
+
 #### 58丨使用动态Polyfill服务
 
+![image-20221130014628362](https://i.imgur.com/CHGmd7G.png)
+
+- https://caniuse.com/?search=promise
+
+![image-20221130015150972](https://i.imgur.com/AIViPiY.png)
+
+- https://github.com/paulmillr/es6-shim
+
+![image-20221130015209644](https://i.imgur.com/o70zcvf.png)
+
+- https://polyfill.io/v3/
+- https://polyfill.io/v3/polyfill.min.js?features=Promise
+
+![image-20221130015431686](https://i.imgur.com/kQBvsXt.png)
+
+![image-20221130015552975](https://i.imgur.com/2y8fb9l.png)
+
+![image-20221130015711356](https://i.imgur.com/V0rtaXE.png)
+
 #### 59丨webpack启动过程分析
+
+![image-20221130015853825](https://i.imgur.com/yCMP9Kh.png)
+
+**查找webpack入口文件**
+
+在命令行运行以上命令后，npm会让命令行工具进入node_ modules\.bin 目录
+查找是否存在webpack.sh或者webpack.cmd文件，如果存在，就执行，不
+存在，就抛出错误。
+
+实际的入口文件是: node_ modules \webpack \bin\webpack.js
+
+```json
+"bin": {
+  "webpack": "bin/webpack.js"
+},
+```
+
+![image-20221130020232562](https://i.imgur.com/XKtFe9P.png)
+
+"version": "5.75.0",
+
+```js
+const cli = {
+	name: "webpack-cli",
+	package: "webpack-cli",
+	binName: "webpack-cli",
+	installed: isInstalled("webpack-cli"),
+	url: "https://github.com/webpack/webpack-cli"
+};
+
+if (!cli.installed) {
+		//...
+		process.exitCode = 0;
+
+		//...
+
+		runCommand(packageManager, installOptions.concat(cli.package))
+			.then(() => {
+				runCli(cli);
+			})
+			.catch(error => {
+				console.error(error);
+				process.exitCode = 1;
+			});
+	});
+} else {
+	runCli(cli);
+}
+```
+
+**启动后的结果**
+
+webpack最终找到webpack- -cli (webpack- -command) 这个npm包，并且执行CLI
+
+#### 60丨webpack-cli源码阅读
+
+**webpack- -cli做的事情**
+
+引入yargs,对命令行进行定制
+
+分析命令行参数，对各个参数进行转换，组成编译配置项
+
+引用webpack,根据配置项进行编译和构建
+
+
+
+**从NON_ COMPIL ATION_ _CMD分析出不需要编译的命令**
+
+webpack- cli处理不需要经过编译的命令
+
+
+
+![image-20221130021319443](https://i.imgur.com/Fgr81ia.png)
+
+![image-20221130021657625](https://i.imgur.com/rXutr4v.png)
+
+- https://www.npmjs.com/package/yargs
+
+![image-20221130021744065](https://i.imgur.com/7xX7YVd.png)
+
+![image-20221130022025149](https://i.imgur.com/MmBYFaW.png)
+
+**webpack-cli执行的结果**
+
+webpack--cli对配置文件和命令行参数进行转换最终生成配置选项参数options
+
+最终会根据配置参数实例化webpack对象，然后执行构建流程
+
+#### 61丨Tapable插件架构与Hooks设计
