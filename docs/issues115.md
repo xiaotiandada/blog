@@ -1979,3 +1979,163 @@ webpack--cli对配置文件和命令行参数进行转换最终生成配置选�
 最终会根据配置参数实例化webpack对象，然后执行构建流程
 
 #### 61丨Tapable插件架构与Hooks设计
+
+**Webpack的本质**
+
+Webpack可以将其理解是一种基于事件流的编程范例，一 系列的插件运行。
+
+
+
+核心对象Compiler继承Tapable
+
+核心対象Compilation継承Tapable
+
+```js
+class Compiler extends Tapable {}
+
+class Compilation extends Tapable {}
+```
+
+
+
+**Tapable是什么?**
+
+- https://www.npmjs.com/package/tapable
+
+Tapable是一个类似于Node.js的EventEmitter的库,主要是控制钩子函数的发布与订阅，控制着webpack的插件系统。
+
+Tapable库暴露了很多Hook (钩子)类，为插件提供挂载的钩子
+
+```js
+const {
+	SyncHook, //同步钩子
+	SyncBailHook, //同步熔断钩子
+	SyncWaterfallHook, //同步流水钩子
+	SyncLoopHook, //同步循环钩子
+	AsyncParallelHook, 从异步并发钩子
+	AsyncParallelBailHook, 4异步并发熔断钩子
+	AsyncSeriesHook, //异步串行钩子
+	AsyncSeriesBailHook, //异步串行熔断钩子
+	AsyncSeriesWaterfallHook //异步串行流水钩子
+} = require("tapable'");
+```
+
+Tapable hooks 类型
+
+![image-20221130123803677](https://i.imgur.com/2MhC4fG.png)
+
+**Tapable的使用-new Hook新建钩子**
+
+Tapable暴露出来的都是类方法，new一个类方法获得我们需要的钩子
+
+class接受数组参数options，非必传。类方法会根据传参，接受同样数量的参数。
+`const hook1 = new SyncHook(["arg1", "arg2", "arg3"]);`
+
+
+
+**Tapable的使用-钩子的绑定与执行**
+
+Tabpack提供了同步&异步绑定钩子的方法，并且他们都有绑定事件和执行事件对应的方法。
+
+| Async*                        | Sync*      |
+| ----------------------------- | ---------- |
+| 绑定: tapAsync/tapPromise/tap | 绑定: tap  |
+| 执行: callAsync/promise       | 执行: call |
+
+
+
+**Tapable的使用-hook基本用法示例**
+
+`const hook1 = new SyncHook(["arg1", "arg2", "arg3"]);`
+
+//绑定事件到webapck事件流
+`hook1.tap('hook1', (arg1, arg2, arg3) => console.log(arg1, arg2, arg3)) //1,2,3`
+
+//执行绑定的事件
+`hook1.call(1,2,3)`
+
+
+
+**Tapable的使用-实际例子演示**
+
+定义一个Car方法，在内部hooks.上新建钩子。分别是同步钩子accelerate、brake (accelerate接受一个参数)、 异步 钩子calculateRoutes
+
+使用钩子对应的绑定和执行方法
+
+calculateRoutes使用tapPromise可以返回一个promise对象。
+
+
+
+```js
+const { SyncHook } = require('tapable')
+
+const hook = new SyncHook(['arg1', 'arg2', 'arg3'])
+
+hook.tap('hook1', (arg1, arg2, arg3) => {
+  console.log(arg1, arg2, arg3)
+})
+
+hook.call(1, 2, 3)
+```
+
+
+
+```js
+const {
+  SyncHook,
+  SyncBailHook,
+  SyncWaterfallHook,
+  SyncLoopHook,
+  AsyncParallelHook,
+  AsyncParallelBailHook,
+  AsyncSeriesHook,
+  AsyncSeriesBailHook,
+  AsyncSeriesWaterfallHook
+} = require("tapable");
+
+class Car {
+  constructor() {
+    this.hooks = {
+      accelerate: new SyncHook(["newSpeed"]),
+      brake: new SyncHook(),
+      calculateRoutes: new AsyncParallelHook(["source", "target", "routesList"])
+    };
+  }
+}
+
+const myCar = new Car();
+
+// 绑定同步钩子
+// Use the tap method to add a consument
+myCar.hooks.brake.tap("WarningLampPlugin", () => console.log('WarningLampPlugin'));
+
+// 绑定同步钩子
+myCar.hooks.accelerate.tap("LoggerPlugin", newSpeed => console.log(`Accelerating to ${newSpeed}`));
+
+// 绑定一个异步 Promise 钩子
+myCar.hooks.calculateRoutes.tapPromise("calculateRoutes tapPromise", (source, target, routesList, callback) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log(`tapPromise too ${source} ${target} ${routesList}`);
+      resolve()
+      console.log('end');
+    }, 1000)
+  })
+});
+
+myCar.hooks.brake.call()
+myCar.hooks.accelerate.call(10)
+
+
+console.time('coost');
+
+// 执行异步钩子
+myCar.hooks.calculateRoutes.promise('Async', 'hook', 'demo').then(() => {
+  console.log('resolve')
+  console.timeEnd('coost');
+}, err => {
+  console.error(err);
+  console.timeEnd('coost');
+})
+```
+
