@@ -2343,3 +2343,66 @@ this.hooks.emit.callAsync(compilation, err => {
 ```
 
 #### 66丨动手编写一个简易的webpack(上)
+
+**模块化:增强代码可读性和维护性**
+
+传统的网页开发转变成Web Apps开发
+
+代码复杂度在逐步增高
+
+分离的JS文件/模块，便于后续代码的维护性
+
+部署时希望把代码优化成几个HTTP请求
+
+
+
+
+
+**常见的几种模块化方式**
+
+ES module
+```js
+import * as largeNumber from 'large-number';
+// ...
+largeNumber.add('999','1');
+```
+
+CJS
+```js
+const largeNumbers = require('large-number');
+// ...
+largeNumber.add('999','1');
+```
+
+AMD
+```js
+require(['large-number'], function (large-number){
+  // ...
+  largeNumber.add('999','1');
+}
+```
+
+**AST基础知识**
+
+在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。 它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。 之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。
+
+DEMO: https://esprima.org/demo/parse.html
+
+![image-20221130185124373](https://i.imgur.com/Z4C5YDy.png)
+
+![image-20221130185450729](https://i.imgur.com/vevPTOv.png)
+
+**动手实现一个简易的webpack**
+
+可以将ES6语法转换成ES5的语法
+
+- 通过babylon生成AST
+- 通过babel-core将AST重新生成源码
+
+可以分析模块之间的依赖关系
+
+- 通过babel-traverse的ImportDeclaration方法获取依赖属性
+
+生成的JS文件可以在浏览器中运行
+
+#### 67丨动手编写一个简易的webpack(下)
