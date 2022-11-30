@@ -2139,3 +2139,127 @@ myCar.hooks.calculateRoutes.promise('Async', 'hook', 'demo').then(() => {
 })
 ```
 
+```bash
+WarningLampPlugin
+Accelerating to 10
+tapPromise too Async hook demo
+end
+resolve
+coost: 1.005s
+```
+
+
+
+#### 62丨Tapable是如何和Webpack进行关联起来的？
+
+![image-20221130145802648](https://i.imgur.com/zEGp4qx.png)
+
+模拟 Compiler.js
+
+```js
+const { SyncHook, AsyncParallelHook } = require("tapable");
+
+module.exports = class Compiler {
+  constructor() {
+    this.hooks = {
+      accelerate: new SyncHook(["newSpeed"]),
+      brake: new SyncHook(),
+      calculateRoutes: new AsyncParallelHook(["source", "target", "routesList"])
+    };
+  }
+
+  run() {
+    this.accelerate(10)
+    this.brake()
+    this.calculateRoutes('Async', 'hook', 'demo')
+  }
+
+
+  accelerate(speed) {
+    this.hooks.accelerate.call(speed)
+  }
+
+  brake() {
+    this.hooks.brake.call()
+  }
+
+  calculateRoutes() {
+    this.hooks.calculateRoutes.promise('Async', 'hook', 'demo').then(() => {
+      console.log('resolve')
+      console.timeEnd('coost');
+    }, err => {
+      console.error(err);
+      console.timeEnd('coost');
+    })
+  }
+}
+```
+
+插件 my-plugin.js
+
+```js
+const Compiler = require('./compiler')
+
+class MyPlugin {
+  constructor() {}
+
+  apply(compiler) {
+    // 绑定同步钩子
+    // Use the tap method to add a consument
+    compiler.hooks.brake.tap('WarningLampPlugin', () =>
+      console.log('WarningLampPlugin')
+    )
+
+    // 绑定同步钩子
+    compiler.hooks.accelerate.tap('LoggerPlugin', (newSpeed) =>
+      console.log(`Accelerating to ${newSpeed}`)
+    )
+
+    // 绑定一个异步 Promise 钩子
+    compiler.hooks.calculateRoutes.tapPromise(
+      'calculateRoutes tapPromise',
+      (source, target, routesList, callback) => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            console.log(`tapPromise too ${source} ${target} ${routesList}`)
+            resolve()
+            console.log('end')
+          }, 1000)
+        })
+      }
+    )
+  }
+}
+```
+
+模拟插件执行
+
+```js
+const myPlugin = new MyPlugin()
+
+const options = {
+  plugins: [myPlugin],
+}
+
+const compiler = new Compiler()
+
+for (const plugin of options.plugins) {
+  if (typeof plugin === 'function') {
+    plugin.call(compiler, compiler)
+  } else {
+    plugin.apply(compiler)
+  }
+}
+
+compiler.run()
+```
+
+```bash
+Accelerating to 10
+WarningLampPlugin
+tapPromise too Async hook demo
+end
+resolve
+```
+
+#### 63丨webpack流程篇：准备阶段
