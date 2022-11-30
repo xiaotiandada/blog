@@ -2263,3 +2263,83 @@ resolve
 ```
 
 #### 63丨webpack流程篇：准备阶段
+
+![image-20221130160916966](https://i.imgur.com/HBdTdG5.png)
+
+**WebpackOptionsApply**
+
+将所有的配置options 参数转换成webpack内部插件
+
+使用默认插件列表
+
+举例:
+
+- output.library -> LibraryTemplatePlugin
+- externals -> ExternalsPlugin
+- devtool -> EvalDevtoolModulePlugin, SourceMapDev ToolPlugin
+- AMDPlugin, CommonJsPlugin
+- RemoveEmptyChunksPlugin
+
+#### 64丨webpack流程篇：模块构建和chunk生成阶段
+
+**Compiler hooks**
+
+流程相关:
+
+- (before-)run
+- (before-/ after-)compile
+- make
+- (after- -)emit
+- done
+
+监听相关:
+
+- watch-run
+- watch-close
+
+
+
+**Compilation**
+
+Compiler 调用 Compilation 生命周期方法
+
+- addEntry - -> addModuleChain
+- finish (上报模块错误)
+- seal
+
+![image-20221130181843918](https://i.imgur.com/f1r6VIK.png)
+
+![image-20221130182026306](https://i.imgur.com/BQ6EwWX.png)
+
+**NormalModule**
+
+Build
+
+- 使用 loader-runner 运行 loaders
+- 通过Parser解析(内部是acron)
+- ParserPlugins 添加依赖
+
+
+
+![image-20221130183433506](https://i.imgur.com/sIUMr4l.png)
+
+
+
+**Chunk生成算法**
+
+1. webpack先将entry中对应的module都生成一个 新的chunk
+2. 遍历module的依赖列表，将依赖的module也加入到chunk中
+3. 如果一个依赖module是动态引入的模块，那么就会根据这个module创建一个新的chunk，继续遍历依赖
+4. 重复.上面的过程，直至得到所有的chunks
+
+#### 65丨webpack流程篇：文件生成
+
+```ts
+this.hooks.emit.callAsync(compilation, err => {
+  if (err) return callback(err);
+  outputPath = compilation.getPath(this.outputPath, {});
+  mkdirp(this.outputFileSystem, outputPath, emitFiles);
+});
+```
+
+#### 66丨动手编写一个简易的webpack(上)
