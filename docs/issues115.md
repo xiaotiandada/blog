@@ -2346,6 +2346,9 @@ this.hooks.emit.callAsync(compilation, err => {
 
 #### 66丨动手编写一个简易的webpack(上)
 
+- [面试官：webpack原理都不会？](https://github.com/Cosen95/blog/issues/48#top)
+- [从零实现一个迷你 Webpack](https://mp.weixin.qq.com/s/KiADtB1-VBpnajKvQllIMg)
+
 **模块化:增强代码可读性和维护性**
 
 传统的网页开发转变成Web Apps开发
@@ -2549,5 +2552,46 @@ module.exports = {
     return code
   }
 }
+```
+
+```js
+;(function (modules) {
+  // 模块加载函数
+  function __webpack_require__(filename) {
+    let fn = modules[filename]
+    let module = { exports: {} }
+
+    fn(__webpack_require__, module, module.exports)
+
+    return module.exports
+  }
+
+  __webpack_require__(
+    '/Users/xiaotian/Code/Case/webpack/simplepack/src/index.js'
+  )
+})({
+  '/Users/xiaotian/Code/Case/webpack/simplepack/src/index.js': function (
+    __webpack_require__,
+    module,
+    exports
+  ) {
+    'use strict'
+
+    var _greeting = require('./greeting.js')
+    document.write((0, _greeting.greeting)('Jane'))
+  },
+  './greeting.js': function (__webpack_require__, module, exports) {
+    'use strict'
+
+    Object.defineProperty(exports, '__esModule', {
+      value: true,
+    })
+    exports.greeting = void 0
+    var greeting = function greeting(name) {
+      return 'hello ' + name
+    }
+    exports.greeting = greeting
+  },
+})
 ```
 
