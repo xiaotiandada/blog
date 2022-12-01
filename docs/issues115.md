@@ -13,6 +13,8 @@ Babel 7 不需要 ts-loader。从 Babel 7 开始，ts-loader 是不必要的，�
 - [玩转 webpack5（上）](https://heapdump.cn/article/3551616)
 - [学习 Webpack5 之路（优化篇）- 近 7k 字](https://juejin.cn/post/6996816316875161637)
 - [webpack5](https://github.com/HolyZheng/holyZheng-blog/issues/46)
+- [面试官：webpack原理都不会？](https://github.com/Cosen95/blog/issues/48#top)
+- [从零实现一个迷你 Webpack](https://mp.weixin.qq.com/s/KiADtB1-VBpnajKvQllIMg)
 
 
 
@@ -2390,6 +2392,8 @@ DEMO: https://esprima.org/demo/parse.html
 
 ![image-20221130185124373](https://i.imgur.com/Z4C5YDy.png)
 
+
+
 ![image-20221130185450729](https://i.imgur.com/vevPTOv.png)
 
 **动手实现一个简易的webpack**
@@ -2406,3 +2410,144 @@ DEMO: https://esprima.org/demo/parse.html
 生成的JS文件可以在浏览器中运行
 
 #### 67丨动手编写一个简易的webpack(下)
+
+```js
+const Compiler = require('./compiler')
+const options = require('../simplepack.config')
+
+new Compiler(options).run()
+```
+
+```js
+const { getAST, getDependencies, transform } = require('./parser')
+const path = require('path');
+const fs = require('fs');
+
+module.exports = class Compiler {
+  
+  // 接收通过lib/index.js new Compiler(options).run()传入的参数，对应`forestpack.config.js`的配置
+  // 接收forestpack.config.js配置参数，并初始化entry、output
+  constructor(options) {
+    const { entry, output } = options;
+
+    this.entry = entry
+    this.output = output
+    this.modules = []
+  }
+
+  // 开启编译
+  // 开启编译run方法。处理构建模块、收集依赖、输出文件等。
+  run() {
+    const entryModule = this.buildMModule(this.entry, true)
+
+    console.log('entryModule', entryModule)
+
+    this.modules.push(entryModule)
+
+    this.modules.map((_module) => {
+      _module.dependencies.map((dependency) => {
+        this.modules.push(this.buildMModule(dependency))
+      })
+    })
+
+    console.log(this.modules)
+
+    this.emitFiles()
+  }
+
+  // 构建模块相关
+    // filename: 文件名称
+    // isEntry: 是否是入口文件
+  // buildModule方法。主要用于构建模块（被run方法调用）
+  buildMModule(filename, isEntry) {
+    let ast
+
+    if (isEntry) {
+      ast = getAST(filename)
+    } else {
+      const absolutePath = path.join(process.cwd(), './src', filename)
+
+      console.log('buildMModule absolutePath', absolutePath, isEntry);
+
+      ast = getAST(absolutePath)
+    }
+
+    return {
+      filename, // 文件名称
+      dependencies: getDependencies(ast), // 依赖列表
+      source: transform(ast) // 转化后的代码
+    }
+  }
+
+  // 输出文件
+  // emitFiles方法。输出文件（同样被run方法调用）
+  emitFiles() {
+    const outputPath = path.join(this.output.path, this.output.filename)
+
+    let modules = ''
+
+    this.modules.map((_module) => {
+      modules += `'${_module.filename}': function(__webpack_require__, module, exports) { ${_module.source} },`
+    })
+
+    const bundle = `(function(modules) {
+      // 模块加载函数
+      function __webpack_require__(filename) {
+        let fn = modules[filename];
+        let module = { exports: {} }
+
+        fn(__webpack_require__, module, module.exports)
+
+        return module.exports
+      }
+
+      __webpack_require__('${ this.entry }')
+    })({${ modules }})`
+
+    console.log('bundle.js', bundle)
+
+    fs.writeFileSync(outputPath, bundle, 'utf-8')
+  }
+}
+```
+
+```js
+const fs = require('fs');
+// const babylon = require("babylon");
+const { parse } = require("@babel/parser");
+const traverse = require("@babel/traverse").default;
+const { transformFromAst } = require('@babel/core');
+
+module.exports = {
+  // 解析我们的代码生成AST抽象语法树
+  getAST: (path) => {
+    const source = fs.readFileSync(path, 'utf8')
+
+    return parse(source, {
+      // parse in strict mode and allow module declarations
+      sourceType: "module", //表示我们要解析的是ES模块
+    });
+  },
+
+  // 对AST节点进行递归遍历
+  getDependencies: (ast) => {
+    const dependencies = []
+
+    traverse(ast, {
+      ImportDeclaration: ({node}) => {
+        dependencies.push(node.source.value)
+      }
+    });
+
+    return dependencies
+  },
+
+  // 将获得的ES6的AST转化成ES5
+  transform: (ast) => {
+    const { code } = transformFromAst(ast, null, { "presets": ["@babel/preset-env"] });
+    // console.log('result', result);
+    return code
+  }
+}
+```
+
