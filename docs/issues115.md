@@ -2595,3 +2595,183 @@ module.exports = {
 })
 ```
 
+#### 68丨loader的链式调用与执行顺序
+
+从右到左
+
+**一个最简单的 loader 代码结构**
+
+定义：loader 只是一个导出为函数的 JavaScript 模块
+
+```js
+module.exports = function (source) {
+	return source;
+}
+```
+
+**多 Loader 时的执行顺序**
+
+多个 Loader 串行执行
+
+顺序从后到前
+
+```js
+{
+  use: [
+    'style-loader',
+    'css-loader',
+    'less-loader'
+  ]
+}
+```
+
+**函数组合的两种情况**
+
+Unix 中的 pipline
+
+Compose (webpack 采取的是这种）
+
+```js
+compose = (f, g) => (...args) => f(g(args))
+```
+
+**通过一个例子验证 loader 的执行顺序**
+
+a-loader.js:
+
+```js
+module.exports = function (source) {
+	console.log('loader a is executed');
+	return source;
+}
+```
+
+b-loader. Js:
+
+```js
+module.exports = function (source) {
+	console.log('loader b is executed');
+	return source;
+}
+```
+
+#### 69丨使用loader-runner高效进行loader的调试
+
+**Loader-- runner 介绍**
+
+- https://github.com/webpack/loader-runner#readme
+
+
+
+定义：loader-- runner 允许你在不安装 webpack 的情况下运行 loaders
+
+
+
+作用：
+
+- 作为 webpack 的依赖，webpack 中使用它执行 loader
+- 进行 loader 的开发和调试
+
+
+
+![image-20221211030131552](https://i.imgur.com/OxK87Kf.png)
+
+![image-20221211030156399](https://i.imgur.com/8qWuA1c.png)
+
+![image-20221211030307428](https://i.imgur.com/9IQ3FJS.png)
+
+#### 70丨更复杂的loader的开发场
+
+**Loader 的参数获取**
+
+- https://github.com/webpack/loader-utils#readme
+
+
+
+通过 loader- utils 的 getOptions 方法获取
+
+```js
+const loaderUtils require ("loader-utils");
+
+module.exports = function(content) {
+	const { name } = loaderUtils.getOptions(this);
+}
+```
+
+**Loader 异常处理**
+
+
+
+loader 内直接通过 throw 抛出
+
+通过 this. Callback 传递错误
+
+```JS
+this.callback(
+  err: Error | null,
+	content: string | Buffer,
+	sourceMap?: SourceMap,
+	meta?: any
+ );
+```
+
+
+
+**Loader 的异步处理**
+
+
+
+通过 this. Async 来返回一个异步函数
+
+- 第一个参数是 Error
+- 第二个参数是处理的结果
+
+
+
+示意代码：
+
+```js
+module.exports = function(input) { 
+  const callback this. Async ();
+  // No callback-> return synchronous results
+  // if  (callback) (... }
+  callback (null, inputinput);
+};
+```
+
+
+
+**在 loader 中使用缓存**
+
+
+
+webpack 中默认开启 loader 缓存
+
+- 可以使用 this.cacheable(false）关掉缓存
+
+缓存条件：loader 的结果在相同的输入下有确定的输出
+
+- 有依赖的 loader 无法使用缓存
+
+
+
+**Loader 如何进行文件输出？**
+
+
+
+通过 this. EmitFile 进行文件写入
+
+```js
+const loaderUtils require ("loader-utils");
+
+module.exports = function(content) {
+	const url = loaderUtils.interpolateName(this, "[hash].[ext]", { content });
+
+  this.emitFile(url, content);
+
+	const path = `__webpack_public_path__ + ${JSON.stringify(url)};`;
+
+	return `export default ${path}`;
+};
+```
+
