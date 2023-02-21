@@ -8,13 +8,14 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#129 自动重启服务的定时任务脚本](https://github.com/xiaotiandada/blog/issues/129)  <sub><time datetime="2023-02-22 01:07:28">2023-02-22 01:07:28</time></sub>
 - [#68 前端总结](https://github.com/xiaotiandada/blog/issues/68) `前端` <sub><time datetime="2023-02-21 16:03:18">2023-02-21 16:03:18</time></sub>
 - [#114 Jest](https://github.com/xiaotiandada/blog/issues/114) `TypeScript,Next,Jest` <sub><time datetime="2023-02-16 10:28:38">2023-02-16 10:28:38</time></sub>
 - [#128 `position: sticky` 什么情况下会失效](https://github.com/xiaotiandada/blog/issues/128)  <sub><time datetime="2023-02-15 22:26:46">2023-02-15 22:26:46</time></sub>
 - [#91 浏览器打开图片 URL 是显示还是下载](https://github.com/xiaotiandada/blog/issues/91) `OSS,浏览器` <sub><time datetime="2023-02-13 16:34:37">2023-02-13 16:34:37</time></sub>
-- [#127 c++](https://github.com/xiaotiandada/blog/issues/127)  <sub><time datetime="2022-12-11 21:39:10">2022-12-11 21:39:10</time></sub>
 
 ## Article  📄 
+- [#129 自动重启服务的定时任务脚本](https://github.com/xiaotiandada/blog/issues/129) 
 - [#128 `position: sticky` 什么情况下会失效](https://github.com/xiaotiandada/blog/issues/128) 
 - [#127 c++](https://github.com/xiaotiandada/blog/issues/127) 
 - [#126 滚动动画](https://github.com/xiaotiandada/blog/issues/126) `Animation`
