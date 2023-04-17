@@ -8,13 +8,14 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#132 Python](https://github.com/xiaotiandada/blog/issues/132)  <sub><time datetime="2023-04-17 17:52:48">2023-04-17 17:52:48</time></sub>
 - [#131 PostgreSQL](https://github.com/xiaotiandada/blog/issues/131)  <sub><time datetime="2023-03-28 15:28:41">2023-03-28 15:28:41</time></sub>
 - [#130 实现一个简易 React](https://github.com/xiaotiandada/blog/issues/130)  <sub><time datetime="2023-03-26 17:13:02">2023-03-26 17:13:02</time></sub>
 - [#65 Egg set-cookie 与 Axios   HttpOnly](https://github.com/xiaotiandada/blog/issues/65) `nodejs` <sub><time datetime="2023-03-19 18:48:30">2023-03-19 18:48:30</time></sub>
 - [#68 前端总结](https://github.com/xiaotiandada/blog/issues/68) `前端` <sub><time datetime="2023-02-27 03:33:26">2023-02-27 03:33:26</time></sub>
-- [#129 自动重启服务的定时任务脚本](https://github.com/xiaotiandada/blog/issues/129)  <sub><time datetime="2023-02-22 01:07:28">2023-02-22 01:07:28</time></sub>
 
 ## Article  📄 
+- [#132 Python](https://github.com/xiaotiandada/blog/issues/132) 
 - [#131 PostgreSQL](https://github.com/xiaotiandada/blog/issues/131) 
 - [#130 实现一个简易 React](https://github.com/xiaotiandada/blog/issues/130) 
 - [#129 自动重启服务的定时任务脚本](https://github.com/xiaotiandada/blog/issues/129) 
