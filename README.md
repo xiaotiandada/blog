@@ -8,13 +8,14 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#139 Git 查找所有出现过的文件](https://github.com/xiaotiandada/blog/issues/139) `Git,github` <sub><time datetime="2023-06-06 19:42:29">2023-06-06 19:42:29</time></sub>
 - [#138 彻底删除 Git 中的文件提交记录](https://github.com/xiaotiandada/blog/issues/138) `Git,github` <sub><time datetime="2023-06-06 19:41:44">2023-06-06 19:41:44</time></sub>
 - [#137 "@/*": ["src/*"] vs "@src": "src" 写法区别](https://github.com/xiaotiandada/blog/issues/137)  <sub><time datetime="2023-06-06 18:08:31">2023-06-06 18:08:31</time></sub>
 - [#136 解决 Git 文件名大小写问题的方法](https://github.com/xiaotiandada/blog/issues/136) `Git,github` <sub><time datetime="2023-06-06 17:53:43">2023-06-06 17:53:43</time></sub>
 - [#128 `position: sticky` 什么情况下会失效](https://github.com/xiaotiandada/blog/issues/128) `CSS` <sub><time datetime="2023-05-06 19:20:15">2023-05-06 19:20:15</time></sub>
-- [#130 实现一个简易 React](https://github.com/xiaotiandada/blog/issues/130) `React` <sub><time datetime="2023-05-06 19:20:08">2023-05-06 19:20:08</time></sub>
 
 ## Article  📄 
+- [#139 Git 查找所有出现过的文件](https://github.com/xiaotiandada/blog/issues/139) `Git,github`
 - [#138 彻底删除 Git 中的文件提交记录](https://github.com/xiaotiandada/blog/issues/138) `Git,github`
 - [#137 "@/*": ["src/*"] vs "@src": "src" 写法区别](https://github.com/xiaotiandada/blog/issues/137) 
 - [#136 解决 Git 文件名大小写问题的方法](https://github.com/xiaotiandada/blog/issues/136) `Git,github`
