@@ -8,7 +8,7 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
-- [#71 Promise的源码实现](https://github.com/xiaotiandada/blog/issues/71)  <sub><time datetime="2023-06-20 01:45:20">2023-06-20 01:45:20</time></sub>
+- [#71 Promise的源码实现](https://github.com/xiaotiandada/blog/issues/71)  <sub><time datetime="2023-06-20 01:46:33">2023-06-20 01:46:33</time></sub>
 - [#139 Git 查找所有出现过的文件](https://github.com/xiaotiandada/blog/issues/139) `Git,github` <sub><time datetime="2023-06-06 19:42:29">2023-06-06 19:42:29</time></sub>
 - [#138 彻底删除 Git 中的文件提交记录](https://github.com/xiaotiandada/blog/issues/138) `Git,github` <sub><time datetime="2023-06-06 19:41:44">2023-06-06 19:41:44</time></sub>
 - [#137 "@/*": ["src/*"] vs "@src": "src" 写法区别](https://github.com/xiaotiandada/blog/issues/137)  <sub><time datetime="2023-06-06 18:08:31">2023-06-06 18:08:31</time></sub>
