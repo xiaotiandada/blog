@@ -8,11 +8,11 @@ My personal blog using issues and GitHub Actions
 - [#48 算法数据结构](https://github.com/xiaotiandada/blog/issues/48) `算法,数据结构,Top`
 
 ## New  🆕 
+- [#71 Promise的源码实现](https://github.com/xiaotiandada/blog/issues/71) `Javascript` <sub><time datetime="2023-09-10 20:03:16">2023-09-10 20:03:16</time></sub>
 - [#134 深拷贝浅拷贝的区别？如何实现一个深拷贝？](https://github.com/xiaotiandada/blog/issues/134) `Javascript` <sub><time datetime="2023-09-10 19:12:57">2023-09-10 19:12:57</time></sub>
 - [#95 TypeScript](https://github.com/xiaotiandada/blog/issues/95) `TypeScript,Top` <sub><time datetime="2023-09-08 00:58:22">2023-09-08 00:58:22</time></sub>
 - [#141 React18 源码解析之 useCallback 和 useMemo](https://github.com/xiaotiandada/blog/issues/141)  <sub><time datetime="2023-09-07 18:07:58">2023-09-07 18:07:58</time></sub>
 - [#68 前端总结](https://github.com/xiaotiandada/blog/issues/68) `前端` <sub><time datetime="2023-07-04 22:49:49">2023-07-04 22:49:49</time></sub>
-- [#71 Promise的源码实现](https://github.com/xiaotiandada/blog/issues/71) `Javascript` <sub><time datetime="2023-06-29 16:28:36">2023-06-29 16:28:36</time></sub>
 
 ## Article  📄 
 - [#141 React18 源码解析之 useCallback 和 useMemo](https://github.com/xiaotiandada/blog/issues/141) 
